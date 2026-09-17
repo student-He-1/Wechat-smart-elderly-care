@@ -22,7 +22,7 @@
 
 ## ✨ 核心功能
 
-- **AI 智能陪伴**：基于通义千问大模型的多轮对话，支持方言切换（普通话/四川话/东北话/天津话/粤语）
+- **AI 双智能体（健康助手 + 陪伴助手）**：基于通义千问大模型，两个智能体共用同一个阿里云 DashScope API，通过 system prompt 强力约束各自角色——健康助手负责健康咨询、用药解读、指标分析；陪伴助手负责日常聊天、讲故事、情感陪伴。支持方言切换（普通话/四川话/东北话/天津话/粤语）
 - **语音交互**：阿里云 CosyVoice 语音合成 + Paraformer 语音识别，支持老年人语音输入与播报
 - **健康管理**：血压/血糖/心率记录与趋势分析，异常指标智能解读
 - **用药提醒**：定时用药提醒与用药日志记录，支持多药品管理
@@ -37,7 +37,8 @@
 | 前端 | 微信小程序（原生 WXML / WXSS / JS） |
 | 主后端 | Python + FastAPI（端口 8000） |
 | 视频后端 | Python + Flask + OpenCV（端口 5001） |
-| 大模型 | 阿里云 DashScope（通义千问 qwen-turbo / qwen-flash） |
+| 大模型 | 阿里云 DashScope（通义千问 qwen-turbo / qwen-flash），双智能体共用同一 API，通过 prompt 约束角色 |
+| 智能体架构 | 本地 Agent 工作流：function calling + 工具调用 + RAG 知识库检索，多轮对话管理 |
 | 语音合成 | 阿里云 CosyVoice v3 |
 | 语音识别 | 阿里云 Paraformer-realtime-v2 |
 | 向量检索 | text-embedding-v4 + 本地向量存储（RAG） |
@@ -52,7 +53,7 @@
 ├── houduan/
 │   ├── smart_elderly_care/                     # FastAPI 主后端（AI/健康/用药/语音）
 │   ├── smart_elderly_care_backend/             # Flask 视频监控后端（跌倒检测）
-│   ├── AI-daima-backend/                       # 智谱 GLM 备用后端
+│   ├── AI-daima-backend/                       # 旧版智谱 GLM 后端（未启用，仅作残留补充，主流程使用阿里云通义千问）
 │   └── Fall-Down-Det/                          # YOLO 跌倒检测训练与推理
 ├── screenshots/                                 # 项目截图
 └── 智慧养老微信小程序全栈开发文档-1.0版本.md    # 开发文档
