@@ -62,7 +62,7 @@
 
 ### 环境要求
 
-- Python 3.8+
+- Python 3.8 ~ 3.10（推荐；视频后端 Flask 2.0.x 不兼容 Python 3.11+，高版本 Python 请自行升级 Flask 依赖）
 - 微信开发者工具
 - 阿里云百炼 API Key（大模型 / TTS / ASR / Embedding）
 
