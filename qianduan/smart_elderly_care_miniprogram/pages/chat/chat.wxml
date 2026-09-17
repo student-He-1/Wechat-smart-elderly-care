@@ -1,0 +1,135 @@
+<!-- chat.wxml —— 关爱陪伴首页 -->
+<view class="page companion-page {{dark ? 'dark' : ''}}">
+
+  <!-- 品牌蓝渐变头 -->
+  <view class="companion-hero">
+    <text class="companion-title">关爱陪伴</text>
+    <text class="companion-sub">温暖相伴，乐享时光</text>
+    <view class="companion-meta">
+      <text>{{photoCount}} 张照片</text>
+      <view class="companion-dot"></view>
+      <text>{{diaryCount}} 篇日记</text>
+      <view class="companion-dot"></view>
+      <text>{{musicCount}} 首音乐</text>
+    </view>
+  </view>
+
+  <!-- 今日推荐 -->
+  <view class="recommend-card" bindtap="goMusic" hover-class="recommend--press">
+    <view class="recommend-left">
+      <text class="recommend-tag">♪ 今日推荐</text>
+      <text class="recommend-title">舒缓轻音乐 · 放松身心</text>
+      <text class="recommend-desc">共 6 首内置 · 离线播放 · 收藏常听</text>
+    </view>
+    <view class="recommend-play">▶</view>
+  </view>
+
+  <!-- 每日暖心语录 -->
+  <view class="quote-card">
+    <view class="quote-icon">♡</view>
+    <view class="quote-body">
+      <text class="quote-tag">每日暖心</text>
+      <text class="quote-text">{{dailyQuote}}</text>
+    </view>
+  </view>
+
+  <!-- 精彩内容 -->
+  <view class="sec-head">
+    <text class="sec-title">精彩内容</text>
+  </view>
+  <text class="sec-sub">相册 · 游戏 · 日记 · 音乐 · 听书 · 健康知识</text>
+
+  <!-- 大色块入口 -->
+  <view class="grid">
+    <view class="color-card color-card--rose" bindtap="goAlbum" hover-class="color-card--press">
+      <view class="color-icon"><view class="ic ic-44 ic-doc-b"></view></view>
+      <view class="color-body">
+        <text class="color-title">家庭相册</text>
+        <text class="color-desc">家人照片 · 大图浏览</text>
+      </view>
+      <view class="ic ic-36 ic-chevron color-arrow"></view>
+    </view>
+
+    <view class="color-card color-card--blue" bindtap="goGameSelect" hover-class="color-card--press">
+      <view class="color-icon"><view class="ic ic-44 ic-bot-w"></view></view>
+      <view class="color-body">
+        <text class="color-title">健脑游戏</text>
+        <text class="color-desc">数独 · 翻牌记忆 · 成语接龙</text>
+      </view>
+      <view class="ic ic-36 ic-chevron color-arrow"></view>
+    </view>
+
+    <view class="color-card color-card--pink" bindtap="goDiary" hover-class="color-card--press">
+      <view class="color-icon"><view class="ic ic-44 ic-ask-c"></view></view>
+      <view class="color-body">
+        <text class="color-title">心情日记</text>
+        <text class="color-desc">记录心情 · 按情绪筛选</text>
+      </view>
+      <view class="ic ic-36 ic-chevron color-arrow"></view>
+    </view>
+
+    <view class="color-card color-card--amber" bindtap="goMusic" hover-class="color-card--press">
+      <view class="color-icon"><view class="ic ic-44 ic-mic-b"></view></view>
+      <view class="color-body">
+        <text class="color-title">舒缓音乐</text>
+        <text class="color-desc">放松助眠 · 内置曲目</text>
+      </view>
+      <view class="ic ic-36 ic-chevron color-arrow"></view>
+    </view>
+
+    <view class="color-card color-card--cyan" bindtap="goAudiobook" hover-class="color-card--press">
+      <view class="color-icon"><view class="ic ic-44 ic-doc-b"></view></view>
+      <view class="color-body">
+        <text class="color-title">听书戏曲</text>
+        <text class="color-desc">名著评书 · 经典戏曲</text>
+      </view>
+      <view class="ic ic-36 ic-chevron color-arrow"></view>
+    </view>
+  </view>
+
+  <!-- AI 陪聊入口 -->
+  <view class="ai-entry" bindtap="goToTalk" hover-class="ai-entry--press">
+    <view class="ai-entry-ic"><view class="ic ic-44 ic-bot-w"></view></view>
+    <view class="ai-entry-body">
+      <text class="ai-entry-title">AI 陪聊助手</text>
+      <text class="ai-entry-desc">语音对话 · 方言支持 · 解闷陪伴</text>
+    </view>
+    <view class="ic ic-40 ic-chevron"></view>
+  </view>
+
+  <!-- 悬浮 AI 助手球 -->
+  <movable-area class="float-area">
+    <movable-view class="float-ball" direction="all" x="{{ballX}}" y="{{ballY}}" animation bindchange="onBallMove" bindtouchend="onBallEnd" bindtap="openAiPicker" hover-class="float-ball--press">
+      <image class="float-ball-img" src="/assets/images/robot.png" mode="aspectFit"></image>
+    </movable-view>
+  </movable-area>
+
+  <!-- 居中 AI 选择弹窗 -->
+  <view wx:if="{{showAiPicker}}" class="ai-picker-mask" bindtap="closeAiPicker">
+    <view class="ai-picker-card" catchtap="">
+      <text class="ai-picker-title">选择 AI 助手</text>
+      <view class="ai-picker-option" bindtap="pickCompanion">
+        <view class="ai-picker-ic ai-picker-ic--blue">
+          <view class="ic ic-44 ic-ask-w"></view>
+        </view>
+        <view class="ai-picker-body">
+          <text class="ai-picker-name">陪伴聊天</text>
+          <text class="ai-picker-desc">解闷聊天 · 讲故事 · 聊家常</text>
+        </view>
+        <view class="ic ic-36 ic-chevron"></view>
+      </view>
+      <view class="ai-picker-option" bindtap="pickHealth">
+        <view class="ai-picker-ic ai-picker-ic--green">
+          <view class="ic ic-44 ic-pulse-b"></view>
+        </view>
+        <view class="ai-picker-body">
+          <text class="ai-picker-name">健康咨询</text>
+          <text class="ai-picker-desc">吃药 · 血压 · 指标解读</text>
+        </view>
+        <view class="ic ic-36 ic-chevron"></view>
+      </view>
+      <view class="ai-picker-cancel" bindtap="closeAiPicker">取消</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,59 @@
+/* daughter/order.wxss */
+.order-page { padding: 16rpx 28rpx 60rpx; }
+
+.sec-head { margin: 40rpx 4rpx 20rpx; }
+.sec-title { font-size: 34rpx; font-weight: 600; color: var(--ink-900); }
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+
+.service-cell {
+  background: var(--color-card);
+  border-radius: 20rpx;
+  box-shadow: var(--shadow-card);
+  padding: 28rpx;
+  border: 2rpx solid transparent;
+}
+
+.service-cell--active {
+  border-color: var(--brand-600);
+  background: var(--brand-100);
+}
+
+.service-name { display: block; font-size: 28rpx; font-weight: 600; color: var(--ink-900); }
+.service-price { display: block; margin-top: 8rpx; font-size: 26rpx; color: var(--brand-600); }
+
+.form-card {
+  background: var(--color-card);
+  border-radius: 20rpx;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.form-row--last { border-bottom: none; }
+.form-label { font-size: 26rpx; color: var(--ink-600); }
+.form-value { font-size: 26rpx; color: var(--ink-900); }
+
+.submit-btn {
+  margin-top: 48rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 999rpx;
+  background: var(--brand-600);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.submit-btn--press { opacity: 0.9; }

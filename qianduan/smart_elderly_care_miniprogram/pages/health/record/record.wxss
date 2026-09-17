@@ -1,0 +1,73 @@
+/* record.wxss */
+.page {
+  padding-bottom: 64rpx;
+}
+
+/* 记录列表 */
+.record-list {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 0 32rpx;
+}
+
+.record-item {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-text {
+  display: block;
+  font-size: var(--fs-body);
+  color: var(--ink-800);
+  line-height: 1.65;
+  word-break: break-word;
+  margin-bottom: 12rpx;
+}
+
+.record-time {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-500);
+  text-align: right;
+}
+
+/* 输入方式切换 */
+.input-methods {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.method-label {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--ink-700);
+  margin-right: 24rpx;
+}
+
+.method-pill {
+  min-height: 80rpx;
+  padding: 0 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--ink-600);
+  background: var(--color-canvas-secondary);
+  border-radius: var(--radius-pill);
+}
+
+.method-pill--active {
+  background: var(--brand-soft);
+  color: var(--brand-700);
+}
+
+.method-pill:active {
+  opacity: 0.8;
+}

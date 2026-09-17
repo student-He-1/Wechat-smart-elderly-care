@@ -1,0 +1,51 @@
+<!-- explain.wxml —— 术语解释子对话 -->
+<view class="page page-explain">
+  <!-- 顶部：返回主线 + 当前解释的术语 -->
+  <view class="explain-topbar">
+    <view class="back-btn" bindtap="backToMain" hover-class="back-btn--press">
+      <text class="back-text">‹ 返回主线</text>
+    </view>
+    <view class="term-tag">解释：{{term}}</view>
+  </view>
+
+  <scroll-view scroll-y class="chat-history" scroll-top="{{scrollTop}}" enhanced show-scrollbar="{{false}}">
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <view wx:if="{{item.role === 'system'}}" class="sys-tip">{{item.content}}</view>
+
+      <view wx:elif="{{item.role === 'user'}}" class="chat-row chat-row--user">
+        <view class="bubble bubble-user">
+          <text class="bubble-text">{{item.content}}</text>
+        </view>
+      </view>
+
+      <view wx:else class="chat-row chat-row--assistant">
+        <view class="avatar avatar-ai"><image class="avatar-img" src="/assets/images/robot-2.png" mode="aspectFit"></image></view>
+        <view class="bubble bubble-ai">
+          <!-- 思考过程折叠 -->
+          <view wx:if="{{item.thinking}}" class="think-box">
+            <view class="think-head" bindtap="toggleThink" data-index="{{index}}">
+              <text class="think-title">{{item.thinkingOpen ? '收起思考 ▲' : '思考过程 ▼'}}</text>
+            </view>
+            <text wx:if="{{item.thinkingOpen}}" class="think-text">{{item.thinking}}</text>
+          </view>
+          <!-- 还没出字时显示加载点 -->
+          <text wx:if="{{!item.content}}" class="loading-dots"><text></text><text></text><text></text></text>
+          <text wx:elif="{{item.segments}}" class="bubble-text">
+            <block wx:for="{{item.segments}}" wx:for-item="seg" wx:key="index">
+              <text wx:if="{{seg.type==='term'}}" class="term-chip" hover-class="term-chip--press"
+                    bindtap="openSubBranch" data-term="{{seg.text}}">{{seg.text}}</text>
+              <text wx:else>{{seg.text}}</text>
+            </block>
+          </text>
+          <text wx:else class="bubble-text">{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input class="chat-input" placeholder="就这个词再问问…" placeholder-class="chat-input-placeholder"
+           value="{{inputValue}}" confirm-type="send" bindinput="bindInput" bindconfirm="sendQuestion" />
+    <button class="btn btn-primary send-btn" bindtap="sendQuestion">发送</button>
+  </view>
+</view>

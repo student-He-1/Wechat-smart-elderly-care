@@ -1,0 +1,13 @@
+<!-- community/evaluation.wxml -->
+<view class="e-page {{dark ? 'dark' : ''}}">
+  <view class="e-list">
+    <view wx:for="{{list}}" wx:key="id" class="e-card">
+      <view class="e-head">
+        <text class="e-order">{{item.order}}</text>
+        <text class="e-stars">{{item.score === 5 ? '★★★★★' : '★★★★☆'}}</text>
+      </view>
+      <text class="e-elder">老人：{{item.elder}}</text>
+      <text class="e-note">"{{item.note}}"</text>
+    </view>
+  </view>
+</view>

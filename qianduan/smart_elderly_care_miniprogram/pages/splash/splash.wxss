@@ -1,0 +1,83 @@
+/* splash.wxss */
+.splash-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e0f2fe 0%, #f6f4ef 60%);
+  padding: 120rpx 48rpx 80rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.splash-hero {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.splash-logo {
+  display: block;
+  font-size: 56rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: 1rpx;
+}
+
+.splash-slogan {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  color: var(--ink-600);
+}
+
+.splash-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  margin-bottom: 32rpx;
+}
+
+.role-card {
+  display: flex;
+  align-items: center;
+  padding: 36rpx 32rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(15, 42, 61, 0.06);
+  margin-bottom: 24rpx;
+}
+
+.role-card--press { opacity: 0.85; }
+
+.role-ic {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  background: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.role-card--daughter .role-ic {
+  background: #15803d;
+}
+
+.role-card--community .role-ic {
+  background: #b45309;
+}
+
+.role-ic .ic { filter: brightness(0) invert(1); }
+
+.role-body { flex: 1; margin-left: 28rpx; }
+.role-name { display: block; font-size: 36rpx; font-weight: 600; color: var(--ink-900); }
+.role-desc { display: block; margin-top: 8rpx; font-size: 24rpx; color: var(--ink-500); }
+
+.role-arrow { flex-shrink: 0; opacity: 0.3; }
+
+.splash-foot {
+  margin-top: auto;
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}

@@ -1,0 +1,8 @@
+/* community/profile.wxss */
+.cp-page { padding: 24rpx; }
+.cp-card { background: #fff; border-radius: 20rpx; padding: 0 28rpx; }
+.cp-row { display: flex; align-items: center; padding: 28rpx 0; border-bottom: 1rpx solid #f1f5f9; }
+.cp-row:last-child { border-bottom: none; }
+.cp-label { width: 180rpx; font-size: 28rpx; color: #64748b; }
+.cp-input { flex: 1; font-size: 28rpx; color: #0f172a; }
+.cp-save { margin-top: 40rpx; height: 88rpx; line-height: 88rpx; text-align: center; background: #b45309; color: #fff; border-radius: 999rpx; font-size: 30rpx; }

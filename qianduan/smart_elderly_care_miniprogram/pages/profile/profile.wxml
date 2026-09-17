@@ -1,0 +1,187 @@
+<!-- profile.wxml —— 参考深圳猫网"我的"页骨架 -->
+<view class="page profile-page {{nightMode ? 'dark' : ''}}">
+
+  <!-- 顶部：头像 + 名字（点击进入个人资料二级页） -->
+  <navigator url="/pages/profile/detail/detail" class="profile-hero" hover-class="profile-hero--press">
+    <view class="profile-avatar">
+      <image class="profile-avatar-img" src="/assets/images/6-3.png" mode="aspectFill" />
+    </view>
+    <view class="profile-info">
+      <text class="profile-name">{{profile.name}}</text>
+      <text class="profile-desc">点击查看个人资料</text>
+    </view>
+    <view class="ic ic-40 ic-chevron profile-arrow"></view>
+  </navigator>
+
+  <!-- 身份卡（深蓝渐变，参考 VIP 卡） -->
+  <view class="member-card">
+    <view class="member-left">
+      <view class="member-badge"><view class="ic ic-36 ic-user-w"></view></view>
+      <view class="member-text">
+        <text class="member-title">长辈用户</text>
+        <text class="member-no">已开通 3 项服务</text>
+      </view>
+    </view>
+    <view class="member-action" bindtap="showBenefits" hover-class="member-action--press">服务权益</view>
+  </view>
+
+  <!-- 三列数字统计 -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-value">18</text>
+      <text class="stat-label">本周服药</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">5</text>
+      <text class="stat-label">运动天数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">2</text>
+      <text class="stat-label">待办提醒</text>
+    </view>
+  </view>
+
+  <!-- 我的家人：横滑方块头像 -->
+  <view class="sec-head">
+    <text class="sec-title">我的家人</text>
+  </view>
+
+  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+    <view class="hscroll-row">
+      <view
+        wx:for="{{contacts}}"
+        wx:key="index"
+        class="person"
+        bindtap="callContact"
+        data-phone="{{item.phone}}"
+        hover-class="person--press"
+      >
+        <view class="avatar avatar-blue">
+          <image wx:if="{{item.avatar}}" class="avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+          <text wx:else class="avatar-text">{{item.name[0]}}</text>
+        </view>
+        <text class="person-name">{{item.name}}</text>
+        <text class="person-relation">{{item.relation}}</text>
+      </view>
+      <navigator url="/pages/contact/contact" class="person" hover-class="person--press">
+        <view class="avatar avatar-gray"><view class="ic ic-40 ic-plus-w"></view></view>
+        <text class="person-name">管理</text>
+        <text class="person-relation">联系人</text>
+      </navigator>
+      <view class="person" bindtap="emergencySos" hover-class="person--press">
+        <view class="avatar avatar-red"><view class="ic ic-40 ic-phone-w"></view></view>
+        <text class="person-name">紧急求助</text>
+        <text class="person-relation">一键呼叫</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 我的记录：2 行 3 列数字网格 -->
+  <view class="sec-head">
+    <text class="sec-title">我的记录</text>
+  </view>
+
+  <view class="record-grid">
+    <view class="record-cell">
+      <text class="record-value">28</text>
+      <text class="record-label">血压记录</text>
+    </view>
+    <view class="record-cell">
+      <text class="record-value">12</text>
+      <text class="record-label">血糖记录</text>
+    </view>
+    <view class="record-cell">
+      <text class="record-value">7</text>
+      <text class="record-label">用药打卡</text>
+    </view>
+    <view class="record-cell">
+      <text class="record-value">3</text>
+      <text class="record-label">问诊次数</text>
+    </view>
+    <view class="record-cell">
+      <text class="record-value">0</text>
+      <text class="record-label">未读消息</text>
+    </view>
+    <view class="record-cell">
+      <text class="record-value">5</text>
+      <text class="record-label">活动报名</text>
+    </view>
+  </view>
+
+  <!-- 个人信息：已收起，点击顶部"点击查看个人资料"进入编辑 -->
+  <!--
+  <view class="sec-head">
+    <text class="sec-title">个人信息</text>
+  </view>
+
+  <view class="list-group">
+    <view class="info-row">
+      <text class="info-label">姓名</text>
+      <text class="info-value">{{profile.name}}</text>
+      <text class="info-edit" bindtap="editInfo" data-label="姓名">编辑</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">年龄</text>
+      <text class="info-value">{{profile.age}}</text>
+      <text class="info-edit" bindtap="editInfo" data-label="年龄">编辑</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">联系电话</text>
+      <text class="info-value">{{profile.phone}}</text>
+      <text class="info-edit" bindtap="editInfo" data-label="联系电话">编辑</text>
+    </view>
+  </view>
+  -->
+
+  <!-- 系统设置 -->
+  <view class="sec-head">
+    <text class="sec-title">系统设置</text>
+  </view>
+
+  <view class="list-group">
+    <view class="setting-row" bindtap="navigateToReminderSettings" hover-class="setting-row--press">
+      <view class="svc-iconbox setting-ic setting-ic--blue"><view class="ic ic-40 ic-bell-b"></view></view>
+      <view class="setting-label-group">
+        <text class="setting-label">提醒设置</text>
+        <text class="setting-desc">用药与日常关怀提醒</text>
+      </view>
+      <view class="ic ic-40 ic-chevron setting-arrow"></view>
+    </view>
+    <view class="setting-row" bindtap="navigateToVoiceSettings" hover-class="setting-row--press">
+      <view class="svc-iconbox setting-ic setting-ic--cyan"><view class="ic ic-40 ic-speaker-b"></view></view>
+      <view class="setting-label-group">
+        <text class="setting-label">语音设置</text>
+        <text class="setting-desc">播报音量与开关</text>
+      </view>
+      <view class="ic ic-40 ic-chevron setting-arrow"></view>
+    </view>
+    <view class="setting-row">
+      <view class="svc-iconbox setting-ic setting-ic--gray"><view class="ic ic-40 ic-moon-s"></view></view>
+      <view class="setting-label-group">
+        <text class="setting-label">夜间模式</text>
+      </view>
+      <switch checked="{{nightMode}}" bindchange="toggleNightMode" color="#0369a1" />
+    </view>
+    <view class="setting-row" bindtap="switchRole" hover-class="setting-row--press">
+      <view class="svc-iconbox setting-ic setting-ic--blue"><view class="ic ic-40 ic-user-b"></view></view>
+      <view class="setting-label-group">
+        <text class="setting-label">切换身份</text>
+        <text class="setting-desc">老人端 / 子女端</text>
+      </view>
+      <view class="ic ic-40 ic-chevron setting-arrow"></view>
+    </view>
+    <view class="setting-row" bindtap="navigateToAbout" hover-class="setting-row--press">
+      <view class="svc-iconbox setting-ic setting-ic--gray"><view class="ic ic-40 ic-info-s"></view></view>
+      <view class="setting-label-group">
+        <text class="setting-label">关于我们</text>
+      </view>
+      <view class="ic ic-40 ic-chevron setting-arrow"></view>
+    </view>
+  </view>
+
+  <view class="version-section">
+    <text class="caption">智慧养老系统 · v1.0.0</text>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+/* knowledge/detail.wxss */
+.kd-scroll { height: 100vh; }
+.kd-hero {
+  height: 480rpx;
+  background: #1f2937;
+  overflow: hidden;
+}
+.kd-hero-img { width: 100%; height: 480rpx; }
+
+.kd-body {
+  margin-top: -60rpx;
+  background: #f6f4ef;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 40rpx 36rpx 60rpx;
+  position: relative;
+}
+.kd-title { display: block; font-size: 40rpx; font-weight: 700; color: #0f172a; }
+.kd-sub { display: block; margin-top: 10rpx; font-size: 26rpx; color: #64748b; }
+.kd-h { margin-top: 36rpx; margin-bottom: 14rpx; font-size: 32rpx; font-weight: 600; color: #0f172a; padding-left: 16rpx; border-left: 8rpx solid #0369a1; }
+.kd-p { display: block; margin-top: 12rpx; font-size: 28rpx; color: #334155; line-height: 1.7; }
+.kd-tip { margin-top: 48rpx; padding: 24rpx 28rpx; background: #fef9c3; border-radius: 16rpx; }
+.kd-tip-title { display: block; font-size: 26rpx; font-weight: 600; color: #854d0e; }
+.kd-tip-text { display: block; margin-top: 8rpx; font-size: 24rpx; color: #854d0e; line-height: 1.6; }

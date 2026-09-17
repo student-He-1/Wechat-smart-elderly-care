@@ -1,0 +1,30 @@
+<!-- health/consult/doctor.wxml -->
+<view class="doc-chat-page">
+
+  <scroll-view scroll-y class="dc-list" scroll-into-view="{{lastId}}">
+    <!-- 欢迎语 -->
+    <view class="dc-msg dc-msg--doc">
+      <image wx:if="{{docAvatar}}" class="dc-avatar-img" src="{{docAvatar}}" mode="aspectFill" />
+      <view wx:else class="dc-avatar">{{docName[0]}}</view>
+      <view class="dc-bubble">您好，我是{{docName}}医生。请问您哪里不舒服？</view>
+    </view>
+
+    <view wx:for="{{msgs}}" wx:key="id" id="m-{{item.id}}" class="dc-msg {{item.from === 'me' ? 'dc-msg--me' : 'dc-msg--doc'}}">
+      <image wx:if="{{item.from !== 'me' && docAvatar}}" class="dc-avatar-img" src="{{docAvatar}}" mode="aspectFill" />
+      <view wx:if="{{item.from !== 'me' && !docAvatar}}" class="dc-avatar">{{docName[0]}}</view>
+      <view class="dc-bubble">{{item.text}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 预设问题 -->
+  <scroll-view scroll-x class="dq-scroll">
+    <view class="dq-chip" wx:for="{{quickQs}}" wx:key="*this" bindtap="askQuick" data-q="{{item}}">{{item}}</view>
+  </scroll-view>
+
+  <!-- 输入 -->
+  <view class="dc-input">
+    <input class="dc-field" placeholder="输入您的问题..." value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="send" />
+    <view class="dc-send" bindtap="send">发送</view>
+  </view>
+
+</view>

@@ -1,0 +1,53 @@
+<!--pages/nearby/nearby.wxml-->
+<view class="page page-nearby">
+  <view class="nearby-header">
+    <text class="nearby-title">附近便民</text>
+    <text class="nearby-sub">身边的便利店、药店、菜市场、社区服务</text>
+  </view>
+
+  <!-- 分类tab -->
+  <scroll-view class="cat-bar" scroll-x>
+    <view class="cat-list">
+      <view class="cat-chip {{activeKey === item.key ? 'cat-chip--active' : ''}}"
+            wx:for="{{categories}}" wx:key="key"
+            data-key="{{item.key}}" bindtap="switchCategory">
+        <text class="cat-icon">{{item.icon}}</text>
+        <text class="cat-name">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 店铺列表 -->
+  <view class="shop-list">
+    <view class="shop-card" wx:for="{{shops}}" wx:key="name">
+      <view class="shop-img-wrap">
+        <image wx:if="{{item.img}}" class="shop-img" src="{{item.img}}" mode="aspectFill" />
+        <view wx:else class="shop-img-placeholder">
+          <text class="placeholder-text">图片待补充</text>
+        </view>
+      </view>
+      <view class="shop-info">
+        <text class="shop-name">{{item.name}}</text>
+        <view class="shop-row">
+          <text class="shop-ic">📍</text>
+          <text class="shop-address">{{item.address}}</text>
+        </view>
+        <view class="shop-row">
+          <text class="shop-ic">🚶</text>
+          <text class="shop-distance">{{item.distance}}</text>
+          <text class="shop-dot">·</text>
+          <text class="shop-ic">🕐</text>
+          <text class="shop-hours">{{item.hours}}</text>
+        </view>
+      </view>
+      <view class="shop-call" data-phone="{{item.phone}}" catchtap="callShop">
+        <text class="call-ic">📞</text>
+        <text class="call-text">打电话</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="nearby-footer">
+    <text class="footer-text">📍 数据为模拟展示，后续可接入地图定位和真实商户信息</text>
+  </view>
+</view>

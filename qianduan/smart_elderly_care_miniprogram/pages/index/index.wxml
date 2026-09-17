@@ -1,0 +1,422 @@
+<!-- index.wxml -->
+<view class="page page-index {{dark ? 'dark' : ''}}">
+  <!-- 顶部搜索栏 -->
+  <view class="topbar">
+    <view class="search-pill" bindtap="openSearch" hover-class="search-pill--press">
+      <text class="search-text">搜索服务 / 问医生</text>
+    </view>
+  </view>
+
+  <!-- Banner 轮播（品牌名压图） -->
+  <view class="banner-wrap">
+    <swiper class="banner-swiper" autoplay interval="4000" duration="500" circular indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#fff">
+      <swiper-item wx:for="{{banners}}" wx:key="*this">
+        <image class="banner-img" src="{{item}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+    <view class="banner-scrim"></view>
+    <view class="banner-brand">
+      <text class="brand-name">智慧养老</text>
+      <text class="brand-greet">{{greeting}} · {{dateText}}</text>
+    </view>
+  </view>
+
+  <!-- 公告条：垂直滚动轮播 -->
+  <view class="notice-bar">
+    <view class="ic ic-32 ic-speaker-b notice-icon"></view>
+    <text class="notice-label">公告</text>
+    <view class="notice-divider"></view>
+    <swiper
+      class="notice-swiper"
+      vertical
+      autoplay
+      interval="3000"
+      duration="500"
+      circular
+    >
+      <swiper-item>
+        <text class="notice-text">今日 08:00 降压药已服用 · 10:00 喝水待提醒</text>
+      </swiper-item>
+      <swiper-item>
+        <text class="notice-text">2026 年养老服务补贴申请已开放，本月 30 日截止</text>
+      </swiper-item>
+    </swiper>
+    <view class="bell-btn-sm" bindtap="goToReminders" hover-class="bell-btn--press" aria-label="提醒通知">
+      <view class="ic ic-32 ic-bell"></view>
+      <view class="bell-dot-sm"></view>
+    </view>
+  </view>
+
+  <!-- 未读消息提示 -->
+  <view wx:if="{{unread > 0}}" class="unread-bar" bindtap="goChat" hover-class="unread-bar--press">
+    <text class="unread-ic">💬</text>
+    <text class="unread-text">你有 {{unread}} 条新回复</text>
+    <text class="unread-go">查看 ›</text>
+  </view>
+
+  <!-- 天气+农历节气卡片 -->
+  <view class="weather-card">
+    <image class="weather-bg" src="/assets/images/jieqi.png" mode="aspectFill" />
+    <view class="weather-scrim"></view>
+    <view class="weather-left">
+      <text class="weather-temp">{{weather.temp}}</text>
+      <text class="weather-desc">{{weather.weather}} · {{weather.air}}</text>
+      <text class="weather-tip">{{weather.tip}}</text>
+    </view>
+    <view class="weather-right">
+      <text class="weather-lunar">农历 {{weather.lunar}}</text>
+      <text class="weather-term">{{weather.solarTerm}}</text>
+      <text class="weather-weekday">{{weather.weekday}}</text>
+    </view>
+  </view>
+
+  <!-- 常用服务：4 列宫格 -->
+  <view class="sec-head">
+    <text class="sec-title">常用服务</text>
+  </view>
+
+  <view class="grid-4">
+    <navigator
+      wx:for="{{services}}"
+      wx:key="title"
+      url="{{item.url}}"
+      class="grid-cell"
+      hover-class="grid-cell--press"
+    >
+      <view class="grid-media">
+        <image class="grid-img" src="{{item.img}}" mode="aspectFill" />
+      </view>
+      <text class="grid-label">{{item.title}}</text>
+    </navigator>
+  </view>
+
+  <!-- 今日吃药进度 -->
+  <view class="medicine-progress" bindtap="goMedicine" hover-class="medicine-progress--press">
+    <view class="mp-left">
+      <image class="mp-icon-img" src="/assets/images/8-8.png" mode="aspectFill" />
+      <view class="mp-info">
+        <text class="mp-title">今日吃药</text>
+        <text class="mp-desc">已吃 {{medicineProgress.taken}} / {{medicineProgress.total}} 顿</text>
+      </view>
+    </view>
+    <view class="mp-right">
+      <view class="mp-bar">
+        <view class="mp-bar-fill" style="width: {{medicineProgress.percent}}%;"></view>
+      </view>
+      <text class="mp-percent">{{medicineProgress.percent}}%</text>
+    </view>
+  </view>
+
+  <!-- 常联系的人横滑：家人 + 紧急联系人 -->
+  <view class="sec-head">
+    <text class="sec-title">常联系的人</text>
+    <view class="sec-action" bindtap="goToContacts" hover-class="sec-action--press">
+      <text>全部</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+    <view class="hscroll-row">
+      <view class="person" hover-class="person--press" bindtap="callSon">
+        <image class="avatar" src="/assets/images/6-1.png" mode="aspectFill" />
+        <text class="person-name">儿子</text>
+      </view>
+      <view class="person" hover-class="person--press" bindtap="callDaughter">
+        <image class="avatar" src="/assets/images/6-2.png" mode="aspectFill" />
+        <text class="person-name">女儿</text>
+      </view>
+      <view class="person" hover-class="person--press" bindtap="callDoctor">
+        <image class="avatar" src="/assets/images/2-8.jpg" mode="aspectFill" />
+        <text class="person-name">社区医生</text>
+      </view>
+      <view class="person" hover-class="person--press" bindtap="callWorker">
+        <image class="avatar" src="/assets/images/6-6.png" mode="aspectFill" />
+        <text class="person-name">王师傅</text>
+      </view>
+      <view class="person" hover-class="person--press" bindtap="call120">
+        <view class="avatar avatar-red"><view class="ic ic-44 ic-phone-w"></view></view>
+        <text class="person-name">紧急呼叫</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 在线医生横滑 -->
+  <view class="sec-head">
+    <text class="sec-title">在线医生</text>
+    <view class="sec-action" bindtap="goConsult" hover-class="sec-action--press">
+      <text>更多</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+    <view class="hscroll-row">
+      <view class="doctor-card" bindtap="openDoctor" data-name="王医生" data-avatar="/assets/images/2-1.jpg" hover-class="doctor-card--press">
+        <image class="doctor-avatar" src="/assets/images/2-1.jpg" mode="aspectFill" />
+        <text class="doctor-name">王医生</text>
+        <text class="doctor-title">心内科 · 主任医师</text>
+        <view class="doctor-btn">问诊</view>
+      </view>
+      <view class="doctor-card" bindtap="openDoctor" data-name="李医生" data-avatar="/assets/images/2-2.jpg" hover-class="doctor-card--press">
+        <image class="doctor-avatar" src="/assets/images/2-2.jpg" mode="aspectFill" />
+        <text class="doctor-name">李医生</text>
+        <text class="doctor-title">神经内科</text>
+        <view class="doctor-btn">问诊</view>
+      </view>
+      <view class="doctor-card" bindtap="openDoctor" data-name="陈医生" data-avatar="/assets/images/2-3.jpg" hover-class="doctor-card--press">
+        <image class="doctor-avatar" src="/assets/images/2-3.jpg" mode="aspectFill" />
+        <text class="doctor-name">陈医生</text>
+        <text class="doctor-title">内分泌科</text>
+        <view class="doctor-btn">问诊</view>
+      </view>
+      <view class="doctor-card" bindtap="openDoctor" data-name="刘医生" data-avatar="/assets/images/2-9.png" hover-class="doctor-card--press">
+        <image class="doctor-avatar" src="/assets/images/2-9.png" mode="aspectFill" />
+        <text class="doctor-name">刘医生</text>
+        <text class="doctor-title">骨科</text>
+        <view class="doctor-btn">问诊</view>
+      </view>
+      <view class="doctor-card" bindtap="openDoctor" data-name="赵医生" data-avatar="/assets/images/2-10.png" hover-class="doctor-card--press">
+        <image class="doctor-avatar" src="/assets/images/2-10.png" mode="aspectFill" />
+        <text class="doctor-name">赵医生</text>
+        <text class="doctor-title">呼吸科</text>
+        <view class="doctor-btn">问诊</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 本周健康小趋势 -->
+  <view class="sec-head">
+    <text class="sec-title">本周健康</text>
+  </view>
+
+  <view class="mini-stats">
+    <view class="mini-stat">
+      <text class="mini-value">128/82</text>
+      <text class="mini-label">血压 mmHg</text>
+      <view class="mini-bar"><view class="mini-bar-fill" style="width: 62%"></view></view>
+    </view>
+    <view class="mini-stat">
+      <text class="mini-value">72</text>
+      <text class="mini-label">心率 /分</text>
+      <view class="mini-bar"><view class="mini-bar-fill" style="width: 48%"></view></view>
+    </view>
+    <view class="mini-stat">
+      <text class="mini-value">3200</text>
+      <text class="mini-label">今日步数</text>
+      <view class="mini-bar"><view class="mini-bar-fill" style="width: 75%"></view></view>
+    </view>
+  </view>
+
+  <!-- 安全监护深蓝卡 -->
+  <navigator url="/pages/monitor/monitor" class="panel hero-card" hover-class="panel--press">
+    <view class="hero-top">
+      <view class="svc-iconbox hero-icon">
+        <view class="ic ic-44 ic-shield"></view>
+      </view>
+      <view class="svc-body">
+        <text class="hero-title">安全监护</text>
+        <text class="hero-desc">跌倒检测已开启 · 实时守护中</text>
+      </view>
+      <view class="hero-badge">
+        <view class="hero-dot"></view>
+        <text>正常</text>
+      </view>
+    </view>
+  </navigator>
+
+  <!-- 今日待办 -->
+  <view class="sec-head">
+    <text class="sec-title">今日待办</text>
+    <view class="sec-action" bindtap="goToReminders" hover-class="sec-action--press">
+      <text>全部</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <view class="panel">
+    <view
+      wx:for="{{reminders}}"
+      wx:key="id"
+      class="svc-row todo-row {{item.status === 'done' ? 'is-done' : ''}}"
+      hover-class="panel--press"
+      bindtap="toggleTodo"
+      data-item="{{item}}"
+    >
+      <view class="svc-iconbox ic-box-{{item.status === 'done' ? 'green' : 'amber'}}">
+        <view class="ic ic-40 {{item.status === 'done' ? 'ic-check-g' : 'ic-clock-a'}}"></view>
+      </view>
+      <view class="svc-body">
+        <text class="svc-title">{{item.title}}</text>
+        <text class="svc-desc">{{item.time}} · {{item.status === 'done' ? '已完成' : '待处理'}}</text>
+      </view>
+      <view wx:if="{{item.status !== 'done'}}" class="ic ic-36 ic-chevron"></view>
+    </view>
+    <view wx:if="{{reminders.length === 0}}" class="empty">
+      <text class="empty-title">今日暂无待办</text>
+      <text class="empty-desc">去提醒设置添加用药与关怀提醒</text>
+    </view>
+  </view>
+
+  <!-- 社区活动 -->
+  <view class="sec-head">
+    <text class="sec-title">社区活动</text>
+    <view class="sec-action" bindtap="goActivity" hover-class="sec-action--press">
+      <text>更多</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <view class="panel">
+    <view class="activity-row" bindtap="goActivity" hover-class="panel--press">
+      <image class="activity-img" src="/assets/images/3-1.jpg" mode="aspectFill" />
+      <view class="activity-body">
+        <text class="activity-title">周三上午 · 社区义诊</text>
+        <text class="activity-desc">免费测血压血糖 · 社区活动中心</text>
+        <view class="activity-tag">本周三 09:00</view>
+      </view>
+    </view>
+    <view class="activity-row" bindtap="goActivity" hover-class="panel--press">
+      <image class="activity-img" src="/assets/images/3-2.jpg" mode="aspectFill" />
+      <view class="activity-body">
+        <text class="activity-title">周五下午 · 书法兴趣班</text>
+        <text class="activity-desc">零基础可参加 · 需提前报名</text>
+        <view class="activity-tag">本周五 14:00</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 附近便民 -->
+  <view class="sec-head">
+    <text class="sec-title">附近便民</text>
+    <view class="sec-action" bindtap="goNearby" hover-class="sec-action--press">
+      <text>更多</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <view class="nearby-entry">
+    <view class="nearby-entry-item">
+      <image class="nearby-entry-img" src="/assets/images/8-2.png" mode="aspectFill" />
+      <text class="nearby-entry-name">便利店</text>
+    </view>
+    <view class="nearby-entry-item">
+      <image class="nearby-entry-img" src="/assets/images/8-4.png" mode="aspectFill" />
+      <text class="nearby-entry-name">药店</text>
+    </view>
+    <view class="nearby-entry-item">
+      <image class="nearby-entry-img" src="/assets/images/8-3.png" mode="aspectFill" />
+      <text class="nearby-entry-name">菜市场</text>
+    </view>
+    <view class="nearby-entry-item">
+      <image class="nearby-entry-img" src="/assets/images/8-1.png" mode="aspectFill" />
+      <text class="nearby-entry-name">社区服务</text>
+    </view>
+  </view>
+
+  <!-- 健康知识 -->
+  <view class="sec-head">
+    <text class="sec-title">健康知识</text>
+    <view class="sec-action" bindtap="askKnowledge" hover-class="sec-action--press">
+      <text>查看全部</text>
+      <view class="ic ic-32 ic-chevron"></view>
+    </view>
+  </view>
+
+  <view class="grid">
+    <view
+      wx:for="{{knowledge}}"
+      wx:key="title"
+      class="prod-card"
+      hover-class="prod-card--press"
+      bindtap="openKnowledge"
+      data-key="{{item.key}}"
+    >
+      <view class="prod-media">
+        <image class="prod-img" src="{{item.img}}" mode="aspectFill" />
+      </view>
+      <view class="prod-body">
+        <text class="prod-title">{{item.title}}</text>
+        <text class="prod-desc">{{item.desc}}</text>
+      </view>
+    </view>
+
+    <view class="prod-card more-card" hover-class="prod-card--press" bindtap="askKnowledge">
+      <view class="more-media">
+        <view class="more-badge"><view class="ic ic-48 ic-doc-w"></view></view>
+      </view>
+      <view class="prod-body">
+        <text class="prod-title">更多健康知识</text>
+        <view class="more-link">
+          <text>去看看</text>
+          <view class="ic ic-32 ic-chevron-w"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 养老信息 -->
+  <view class="sec-head">
+    <text class="sec-title sec-title--plain">🔥 养老信息</text>
+    <view class="sec-more" bindtap="goNewsList">更多 ›</view>
+  </view>
+  <view class="news-list">
+    <view wx:for="{{news}}" wx:key="id" class="news-item" bindtap="openNews" data-id="{{item.id}}" hover-class="news-item--press">
+      <text class="news-title">{{item.title}}</text>
+      <text class="news-date">{{item.date}}</text>
+    </view>
+  </view>
+
+  <!-- 悬浮 AI 助手球 -->
+  <movable-area class="float-area">
+    <movable-view class="float-ball" direction="all" x="{{ballX}}" y="{{ballY}}" animation="true" bindchange="onBallMove" bindtouchend="onBallEnd" bindtap="openAiPicker" hover-class="float-ball--press">
+      <image class="float-ball-img" src="/assets/images/robot.png" mode="aspectFit"></image>
+    </movable-view>
+  </movable-area>
+
+  <!-- 居中 AI 选择弹窗 -->
+  <view wx:if="{{showAiPicker}}" class="ai-picker-mask" bindtap="closeAiPicker">
+    <view class="ai-picker-card" catchtap="">
+      <text class="ai-picker-title">选择 AI 助手</text>
+      <view class="ai-picker-option" bindtap="pickCompanion">
+        <view class="ai-picker-ic ai-picker-ic--blue">
+          <view class="ic ic-44 ic-ask-w"></view>
+        </view>
+        <view class="ai-picker-body">
+          <text class="ai-picker-name">陪伴聊天</text>
+          <text class="ai-picker-desc">解闷聊天 · 讲故事 · 聊家常</text>
+        </view>
+        <view class="ic ic-36 ic-chevron"></view>
+      </view>
+      <view class="ai-picker-option" bindtap="pickHealth">
+        <view class="ai-picker-ic ai-picker-ic--green">
+          <view class="ic ic-44 ic-pulse-b"></view>
+        </view>
+        <view class="ai-picker-body">
+          <text class="ai-picker-name">健康咨询</text>
+          <text class="ai-picker-desc">吃药 · 血压 · 指标解读</text>
+        </view>
+        <view class="ic ic-36 ic-chevron"></view>
+      </view>
+      <view class="ai-picker-cancel" bindtap="closeAiPicker">取消</view>
+    </view>
+  </view>
+
+  <!-- 下拉搜索浮层 -->
+  <view wx:if="{{showSearch}}" class="search-mask" bindtap="closeSearch">
+    <view class="search-panel" catchtap="">
+      <view class="search-input-row">
+        <view class="search-input-box">
+          <view class="ic ic-28 ic-ask-c search-input-ic"></view>
+          <input class="search-input" placeholder="搜索服务 / 问医生" value="{{searchKw}}" bindinput="onSearchInput" focus="{{true}}" confirm-type="search" bindconfirm="doSearch" />
+        </view>
+        <text class="search-cancel" bindtap="closeSearch">取消</text>
+      </view>
+      <view class="search-suggest">
+        <view wx:for="{{searchSuggests}}" wx:key="url" class="search-suggest-item" bindtap="goSuggest" data-url="{{item.url}}">
+          <text class="search-suggest-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

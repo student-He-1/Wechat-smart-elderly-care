@@ -1,0 +1,9 @@
+/* community/evaluation.wxss */
+.e-page { padding: 20rpx 28rpx 60rpx; }
+.e-list { display: flex; flex-direction: column; gap: 20rpx; }
+.e-card { background: #fff; border-radius: 20rpx; padding: 28rpx; box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06); }
+.e-head { display: flex; justify-content: space-between; align-items: center; }
+.e-order { font-size: 30rpx; font-weight: 600; color: #0f172a; }
+.e-stars { font-size: 28rpx; color: #f59e0b; }
+.e-elder { display: block; margin-top: 10rpx; font-size: 24rpx; color: #64748b; }
+.e-note { display: block; margin-top: 12rpx; font-size: 26rpx; color: #475569; line-height: 1.5; }

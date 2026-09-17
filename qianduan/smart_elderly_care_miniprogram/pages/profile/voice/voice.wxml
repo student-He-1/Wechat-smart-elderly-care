@@ -1,0 +1,36 @@
+<!-- voice.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 页头 -->
+  <view class="page-header">
+    <text class="section-title">语音设置</text>
+  </view>
+
+  <!-- 设置项 -->
+  <view class="list-group">
+    <view class="volume-row">
+      <view class="volume-label-group">
+        <text class="volume-label">音量大小</text>
+        <text class="volume-value">{{volume}}%</text>
+      </view>
+      <slider
+        class="volume-slider"
+        value="{{volume}}"
+        min="0"
+        max="100"
+        step="1"
+        activeColor="#0369a1"
+        backgroundColor="#e2e8f0"
+        block-size="28"
+        bindchange="adjustVolume"
+      />
+    </view>
+
+    <view class="volume-row volume-row--switch">
+      <text class="volume-label">语音播报</text>
+      <switch checked="{{voiceEnabled}}" bindchange="toggleVoice" color="#0369a1" />
+    </view>
+  </view>
+
+  <!-- 保存 -->
+  <button class="btn btn-primary btn-block save-btn" bindtap="saveSettings">保存设置</button>
+</view>

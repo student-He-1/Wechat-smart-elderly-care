@@ -1,0 +1,56 @@
+/* voice.wxss */
+.page {
+  padding-bottom: 64rpx;
+}
+
+.page-header {
+  padding: 16rpx 4rpx 32rpx;
+}
+
+/* 音量 */
+.volume-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.volume-row--switch {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 104rpx;
+}
+
+.volume-row:last-child {
+  border-bottom: none;
+}
+
+.volume-label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.volume-label {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink-800);
+}
+
+.volume-value {
+  font-size: var(--fs-label);
+  color: var(--brand-700);
+  font-weight: 700;
+}
+
+.volume-slider {
+  margin: 12rpx 0 0;
+}
+
+/* 保存 */
+.save-btn {
+  margin-top: 48rpx;
+}

@@ -1,0 +1,127 @@
+<!-- daughter/home.wxml —— 子女端首页 -->
+<view class="daughter-page {{dark ? 'dark' : ''}}">
+
+  <!-- 顶部 -->
+  <view class="daughter-hero">
+    <view class="daughter-top">
+      <text class="daughter-title">子女端</text>
+      <view class="daughter-back" bindtap="backToParent">返回老人端</view>
+    </view>
+    <text class="daughter-sub">您在远程照护妈妈</text>
+  </view>
+
+  <!-- 老人状态卡 -->
+  <view class="status-card" bindtap="goDetail" hover-class="status-card--press">
+    <view class="status-row">
+      <view class="status-label">今日服药</view>
+      <view class="status-value-wrap">
+        <text class="status-value">{{status.medicineDone}}/{{status.medicineTotal}}</text>
+        <text class="status-unit">顿</text>
+      </view>
+    </view>
+    <view class="status-row">
+      <view class="status-label">最近血压</view>
+      <view class="status-value-wrap">
+        <text class="status-value">{{status.bp}}</text>
+        <text class="status-unit">mmHg</text>
+      </view>
+    </view>
+    <view class="status-row">
+      <view class="status-label">最后活动</view>
+      <view class="status-value-wrap">
+        <text class="status-value">{{status.lastActive}}</text>
+      </view>
+    </view>
+    <view class="status-row status-row--last">
+      <view class="status-label">当前状态</view>
+      <view class="status-badge {{status.alert ? 'status-badge--alert' : 'status-badge--ok'}}">
+        {{status.alert ? '有告警' : '正常'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="sec-head">
+    <text class="sec-title">快捷操作</text>
+  </view>
+  <view class="quick-grid">
+    <view class="quick-cell" bindtap="goMonitor" hover-class="quick-cell--press">
+      <view class="quick-ic quick-ic--blue"><view class="ic ic-44 ic-video-s"></view></view>
+      <text class="quick-label">查看监护</text>
+    </view>
+    <view class="quick-cell" bindtap="callMom" hover-class="quick-cell--press">
+      <view class="quick-ic quick-ic--green"><view class="ic ic-44 ic-phone-b"></view></view>
+      <text class="quick-label">打电话</text>
+    </view>
+    <view class="quick-cell" bindtap="goHealthAssistant" hover-class="quick-cell--press">
+      <view class="quick-ic quick-ic--cyan"><view class="ic ic-44 ic-ask-c"></view></view>
+      <text class="quick-label">健康助手</text>
+    </view>
+    <view class="quick-cell" bindtap="goServices" hover-class="quick-cell--press">
+      <view class="quick-ic quick-ic--amber"><view class="ic ic-44 ic-bell-b"></view></view>
+      <text class="quick-label">找服务</text>
+    </view>
+  </view>
+
+  <!-- 今日告警 -->
+  <view class="sec-head" bindtap="goAlerts">
+    <text class="sec-title">今日告警</text>
+    <text class="sec-count" wx:if="{{alerts.length}}">{{alerts.length}} 条未处理 ›</text>
+    <text class="sec-count" wx:else>查看全部 ›</text>
+  </view>
+
+  <view class="alert-list" wx:if="{{alerts.length}}">
+    <view wx:for="{{alerts}}" wx:key="id" class="alert-card alert-card--{{item.level}}">
+      <view class="alert-ic">
+        <view class="ic ic-36 {{item.level === 'urgent' ? 'ic-sos-r2' : 'ic-bell-b'}}"></view>
+      </view>
+      <view class="alert-body">
+        <text class="alert-title">{{item.title}}</text>
+        <text class="alert-time">{{item.time}}</text>
+      </view>
+      <view class="alert-action" catchtap="handleAlert" data-id="{{item.id}}">处理</view>
+    </view>
+  </view>
+
+  <view wx:else class="alert-empty">
+    <view class="ic ic-56 ic-check-g" style="opacity:0.3"></view>
+    <text class="alert-empty-text">今日暂无告警，妈妈状态良好</text>
+  </view>
+
+  <!-- 老人留言 -->
+  <view class="sec-head"><text class="sec-title">💬 老人留言</text></view>
+  <view class="msg-card" bindtap="goMessages" hover-class="msg-card--press">
+    <text class="msg-preview">{{latestMsg || '妈妈还没有留言'}}</text>
+    <text class="msg-time" wx:if="{{latestMsgTime}}">{{latestMsgTime}}</text>
+  </view>
+
+  <!-- 养老信息 -->
+  <view class="sec-head"><text class="sec-title">🔥 养老信息</text><view class="sec-more" bindtap="goNewsList">更多 ›</view></view>
+  <view class="news-list">
+    <view wx:for="{{news}}" wx:key="id" class="news-item" bindtap="openNews" data-id="{{item.id}}" hover-class="news-item--press">
+      <text class="news-title">{{item.title}}</text>
+      <text class="news-date">{{item.date}}</text>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="d-tabbar">
+    <view class="d-tab d-tab--active">
+      <text class="d-tab-icon">⌂</text>
+      <text class="d-tab-text">首页</text>
+    </view>
+    <view class="d-tab" bindtap="goAlerts">
+      <text class="d-tab-icon">🔔</text>
+      <text class="d-tab-text">告警</text>
+    </view>
+    <view class="d-tab" bindtap="goServices">
+      <text class="d-tab-icon">🏠</text>
+      <text class="d-tab-text">服务</text>
+    </view>
+    <view class="d-tab" bindtap="goMine">
+      <text class="d-tab-icon">👤</text>
+      <text class="d-tab-text">我的</text>
+    </view>
+  </view>
+
+</view>

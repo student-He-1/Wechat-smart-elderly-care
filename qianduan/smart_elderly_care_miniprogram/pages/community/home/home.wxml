@@ -1,0 +1,84 @@
+<!-- community/home.wxml —— 社区端工单首页 -->
+<view class="c-page {{dark ? 'dark' : ''}}">
+
+  <view class="c-hero">
+    <text class="c-title">社区服务站</text>
+    <text class="c-sub">今日待处理工单</text>
+  </view>
+
+  <!-- 状态 tab -->
+  <view class="c-tabs">
+    <view class="c-tab {{tab === 'pending' ? 'c-tab--active' : ''}}" bindtap="setTab" data-t="pending">待接单 {{counts.pending}}</view>
+    <view class="c-tab {{tab === 'active' ? 'c-tab--active' : ''}}" bindtap="setTab" data-t="active">服务中 {{counts.active}}</view>
+    <view class="c-tab {{tab === 'done' ? 'c-tab--active' : ''}}" bindtap="setTab" data-t="done">已完成 {{counts.done}}</view>
+  </view>
+
+  <!-- 工单列表 -->
+  <view class="order-list">
+    <view wx:if="{{urgentCount > 0}}" class="urgent-banner">
+      🔴 {{urgentCount}} 条紧急 SOS 工单待处理
+    </view>
+
+    <view wx:for="{{filtered}}" wx:key="id" class="order-card" bindtap="openOrder" data-id="{{item.id}}" hover-class="order-card--press">
+      <view class="order-head">
+        <text class="order-id">{{item.id}}</text>
+        <text class="order-status order-status--{{item.status}}">{{statusText[item.status]}}</text>
+      </view>
+      <view class="order-body">
+        <text class="order-elder">{{item.elderName}} · {{item.serviceType}}</text>
+        <text class="order-time">🕐 {{item.bookTime}}</text>
+        <text class="order-addr">📍 {{item.address}}</text>
+      </view>
+      <view class="order-foot">
+        <text class="order-price">￥{{item.price}}</text>
+        <text class="order-go">接单 ›</text>
+      </view>
+    </view>
+
+    <view wx:if="{{filtered.length === 0}}" class="empty">
+      <text class="empty-text">暂无{{tab === 'pending' ? '待接单' : tab === 'active' ? '进行中' : '已完成'}}工单</text>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="sec-head"><text class="sec-title">📋 社区工作台</text></view>
+  <view class="tool-grid">
+    <view class="tool-cell" bindtap="goRules" hover-class="tool-cell--press">
+      <text class="tool-icon">📜</text>
+      <text class="tool-label">社区制度</text>
+    </view>
+    <view class="tool-cell" bindtap="goVisit" hover-class="tool-cell--press">
+      <text class="tool-icon">🏠</text>
+      <text class="tool-label">探访记录</text>
+    </view>
+    <view class="tool-cell" bindtap="goEvaluation" hover-class="tool-cell--press">
+      <text class="tool-icon">⭐</text>
+      <text class="tool-label">服务评价</text>
+    </view>
+    <view class="tool-cell" bindtap="goMessages" hover-class="tool-cell--press">
+      <text class="tool-icon">💬</text>
+      <text class="tool-label">老人留言</text>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="c-tabbar">
+    <view class="c-tab-item c-tab-item--active">
+      <text class="c-tab-icon">📋</text>
+      <text class="c-tab-text">工单</text>
+    </view>
+    <view class="c-tab-item" bindtap="goAlert">
+      <text class="c-tab-icon">🔔</text>
+      <text class="c-tab-text">告警</text>
+    </view>
+    <view class="c-tab-item" bindtap="goElders">
+      <text class="c-tab-icon">👴</text>
+      <text class="c-tab-text">老人</text>
+    </view>
+    <view class="c-tab-item" bindtap="goMine">
+      <text class="c-tab-icon">👤</text>
+      <text class="c-tab-text">我的</text>
+    </view>
+  </view>
+
+</view>

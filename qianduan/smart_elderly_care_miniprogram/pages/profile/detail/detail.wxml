@@ -1,0 +1,57 @@
+<!-- detail.wxml —— 个人资料二级页 -->
+<view class="page detail-page {{dark ? 'dark' : ''}}">
+
+  <!-- 顶部头像 -->
+  <view class="detail-hero">
+    <view class="detail-avatar">
+      <view class="ic ic-64 ic-user-w"></view>
+    </view>
+    <text class="detail-name">{{profile.name}}</text>
+  </view>
+
+  <!-- 基本信息列表 -->
+  <view class="sec-label">基本信息</view>
+  <view class="list-group">
+    <view class="info-row" bindtap="editField" data-key="name" data-label="姓名" hover-class="info-row--press">
+      <text class="info-label">姓名</text>
+      <text class="info-value">{{profile.name}}</text>
+      <text class="info-edit">编辑</text>
+    </view>
+    <view class="info-row" bindtap="editField" data-key="age" data-label="年龄" hover-class="info-row--press">
+      <text class="info-label">年龄</text>
+      <text class="info-value">{{profile.age}}</text>
+      <text class="info-edit">编辑</text>
+    </view>
+    <view class="info-row" bindtap="editField" data-key="gender" data-label="性别" hover-class="info-row--press">
+      <text class="info-label">性别</text>
+      <text class="info-value">{{profile.gender}}</text>
+      <text class="info-edit">编辑</text>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="sec-label">联系方式</view>
+  <view class="list-group">
+    <view class="info-row" bindtap="editField" data-key="phone" data-label="联系电话" hover-class="info-row--press">
+      <text class="info-label">联系电话</text>
+      <text class="info-value">{{profile.phone}}</text>
+      <text class="info-edit">编辑</text>
+    </view>
+    <view class="info-row" bindtap="editField" data-key="address" data-label="居住地址" hover-class="info-row--press">
+      <text class="info-label">居住地址</text>
+      <text class="info-value">{{profile.address}}</text>
+      <text class="info-edit">编辑</text>
+    </view>
+  </view>
+
+  <!-- 紧急联系人（跳联系页） -->
+  <view class="sec-label">紧急联系人</view>
+  <view class="list-group">
+    <navigator url="/pages/contact/contact" class="info-row" hover-class="info-row--press">
+      <text class="info-label">家人管理</text>
+      <text class="info-value">2 位已绑定</text>
+      <view class="ic ic-36 ic-chevron info-arrow"></view>
+    </navigator>
+  </view>
+
+</view>

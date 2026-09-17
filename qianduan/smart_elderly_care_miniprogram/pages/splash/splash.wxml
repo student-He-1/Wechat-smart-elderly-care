@@ -1,0 +1,40 @@
+<!-- splash.wxml —— 启动页：选择身份 -->
+<view class="splash-page {{dark ? 'dark' : ''}}">
+  <view class="splash-hero">
+    <text class="splash-logo">智慧养老</text>
+    <text class="splash-slogan">温暖相伴 · 安心守护</text>
+  </view>
+
+  <view class="splash-body">
+    <text class="splash-title">请选择您的身份</text>
+
+    <view class="role-card role-card--parent" bindtap="chooseParent" hover-class="role-card--press">
+      <view class="role-ic"><view class="ic ic-56 ic-user-w"></view></view>
+      <view class="role-body">
+        <text class="role-name">我是老人</text>
+        <text class="role-desc">吃药提醒 · 一键求助 · 健康记录</text>
+      </view>
+      <view class="ic ic-40 ic-chevron-w role-arrow"></view>
+    </view>
+
+    <view class="role-card role-card--daughter" bindtap="chooseDaughter" hover-class="role-card--press">
+      <view class="role-ic"><view class="ic ic-56 ic-user-w"></view></view>
+      <view class="role-body">
+        <text class="role-name">我是子女</text>
+        <text class="role-desc">远程看老人状态 · 接收告警</text>
+      </view>
+      <view class="ic ic-40 ic-chevron-w role-arrow"></view>
+    </view>
+
+    <view class="role-card role-card--community" bindtap="chooseCommunity" hover-class="role-card--press">
+      <view class="role-ic"><view class="ic ic-56 ic-user-w"></view></view>
+      <view class="role-body">
+        <text class="role-name">我是社区服务人员</text>
+        <text class="role-desc">工单接单 · 上门服务 · 告警处理</text>
+      </view>
+      <view class="ic ic-40 ic-chevron-w role-arrow"></view>
+    </view>
+  </view>
+
+  <text class="splash-foot">演示项目 · 所有数据均为模拟</text>
+</view>

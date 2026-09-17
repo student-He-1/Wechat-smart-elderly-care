@@ -1,0 +1,46 @@
+<!-- health/consult.wxml -->
+<view class="consult-page {{dark ? 'dark' : ''}}">
+
+  <!-- 推荐医生 -->
+  <view class="section-head"><text class="section-title">推荐医生</text></view>
+  <scroll-view scroll-x class="doc-scroll">
+    <view class="doc-item" wx:for="{{doctors}}" wx:key="id" bindtap="openDoctor" data-name="{{item.name}}" data-avatar="{{item.avatar}}">
+      <view class="doc-avatar">
+        <image wx:if="{{item.avatar}}" class="doc-avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+        <text wx:else class="doc-avatar-text">{{item.name[0]}}</text>
+      </view>
+      <text class="doc-name">{{item.name}}</text>
+      <text class="doc-title">{{item.title}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 两个大入口 -->
+  <view class="entry-row">
+    <view class="entry-card" bindtap="askNew" hover-class="entry-card--press">
+      <view class="entry-icon entry-icon--blue">💬</view>
+      <text class="entry-text">我要问诊</text>
+    </view>
+    <view class="entry-card" bindtap="askMine" hover-class="entry-card--press">
+      <view class="entry-icon entry-icon--green">📋</view>
+      <text class="entry-text">我的提问</text>
+      <view class="entry-badge">{{myCount}}</view>
+    </view>
+  </view>
+
+  <!-- 问诊大厅 -->
+  <view class="section-head"><text class="section-title">问诊大厅</text></view>
+  <view class="qa-list">
+    <view wx:for="{{qaList}}" wx:key="id" class="qa-card" hover-class="qa-card--press">
+      <view class="qa-avatar">{{item.user[0]}}</view>
+      <view class="qa-body">
+        <text class="qa-text">{{item.text}}</text>
+        <view class="qa-meta">
+          <text class="qa-user">{{item.user}}</text>
+          <text class="qa-time">{{item.time}}</text>
+          <text class="qa-replies">{{item.replies}}位医生回复</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

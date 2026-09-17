@@ -1,0 +1,88 @@
+/* health/consult.wxss */
+.consult-page { padding: 20rpx 28rpx 60rpx; }
+
+.section-head { margin: 32rpx 4rpx 20rpx; }
+.section-title { font-size: 36rpx; font-weight: 600; color: #0f172a; }
+
+.doc-scroll { white-space: nowrap; margin-bottom: 16rpx; }
+.doc-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 28rpx;
+  width: 120rpx;
+}
+.doc-avatar {
+  width: 112rpx; height: 112rpx;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+}
+.doc-avatar-img { width: 100%; height: 100%; }
+.doc-avatar-text { color: rgba(255,255,255,0.5); font-size: 36rpx; }
+.doc-name { font-size: 26rpx; color: #0f172a; font-weight: 500; }
+.doc-title { font-size: 20rpx; color: #94a3b8; margin-top: 4rpx; }
+
+.entry-row { display: flex; gap: 20rpx; margin: 32rpx 0; }
+.entry-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 36rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06);
+  position: relative;
+}
+.entry-card--press { opacity: 0.9; }
+.entry-icon { font-size: 48rpx; }
+.entry-text { font-size: 30rpx; font-weight: 600; color: #0f172a; }
+.entry-badge {
+  position: absolute;
+  top: 20rpx; right: 20rpx;
+  min-width: 32rpx; height: 32rpx;
+  border-radius: 16rpx;
+  background: #dc2626;
+  color: #fff;
+  font-size: 20rpx;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 8rpx;
+}
+
+.qa-list { display: flex; flex-direction: column; gap: 20rpx; }
+.qa-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  display: flex;
+  gap: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06);
+}
+.qa-card--press { opacity: 0.9; }
+.qa-avatar {
+  width: 72rpx; height: 72rpx;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #0369a1;
+  font-size: 32rpx;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.qa-body { flex: 1; min-width: 0; }
+.qa-text {
+  display: block;
+  font-size: 28rpx;
+  color: #0f172a;
+  line-height: 1.5;
+}
+.qa-meta {
+  margin-top: 14rpx;
+  display: flex;
+  gap: 16rpx;
+}
+.qa-user { font-size: 22rpx; color: #94a3b8; }
+.qa-time { font-size: 22rpx; color: #94a3b8; }
+.qa-replies { font-size: 22rpx; color: #15803d; }

@@ -1,0 +1,57 @@
+<!-- contact.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 紧急求助 -->
+  <view class="emergency-card">
+    <text class="emergency-title">紧急求助</text>
+    <text class="emergency-desc">遇到紧急情况，请立即联系我们</text>
+    <button class="emergency-btn" bindtap="emergencyCall"><view class="ic ic-40 ic-phone-r btn-ic"></view>发起紧急呼叫</button>
+  </view>
+
+  <!-- 联系人 -->
+  <view class="section-header">
+    <view class="section-rule"></view>
+    <text class="section-title">联系人</text>
+  </view>
+
+  <view class="contacts-list">
+    <view wx:for="{{contacts}}" wx:key="index" class="contact-item" hover-class="contact-item--press">
+      <view class="contact-avatar {{index === 0 ? 'avatar-blue' : index === 1 ? 'avatar-rose' : 'avatar-emerald'}}">
+        <text class="avatar-text">{{item.name[0]}}</text>
+      </view>
+      <view class="contact-info">
+        <text class="contact-name">{{item.name}} · {{item.relation}}</text>
+        <text class="contact-phone">{{item.phone}}</text>
+      </view>
+      <view class="contact-actions">
+        <button class="action-btn action-call" bindtap="callContact" data-phone="{{item.phone}}" hover-class="action-btn--press"><view class="ic ic-32 ic-phone-b btn-ic"></view>呼叫</button>
+        <button class="action-btn action-message" bindtap="messageContact" data-phone="{{item.phone}}" data-name="{{item.name}}" hover-class="action-btn--press"><view class="ic ic-32 ic-msg-s btn-ic"></view>消息</button>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn btn-ghost btn-block add-btn" bindtap="showAddContactModal" hover-class="none">添加联系人</button>
+
+  <!-- 添加联系人弹窗 -->
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="hideModal"></view>
+  <view class="modal" wx:if="{{showModal}}" catchtap="">
+    <text class="modal-title">添加联系人</text>
+
+    <view class="form-field">
+      <text class="form-label">姓名</text>
+      <input class="input" placeholder="请输入联系人姓名" placeholder-class="input-placeholder" value="{{formData.name}}" bindinput="bindInput" data-field="name" />
+    </view>
+    <view class="form-field">
+      <text class="form-label">关系</text>
+      <input class="input" placeholder="如：儿子 / 女儿" placeholder-class="input-placeholder" value="{{formData.relation}}" bindinput="bindInput" data-field="relation" />
+    </view>
+    <view class="form-field">
+      <text class="form-label">电话</text>
+      <input class="input" type="number" placeholder="请输入联系电话" placeholder-class="input-placeholder" value="{{formData.phone}}" bindinput="bindInput" data-field="phone" />
+    </view>
+
+    <view class="modal-footer">
+      <button class="btn btn-gray" bindtap="hideModal">取消</button>
+      <button class="btn btn-primary" bindtap="addContact">添加</button>
+    </view>
+  </view>
+</view>

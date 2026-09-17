@@ -1,0 +1,7 @@
+<!-- community/rules/detail.wxml -->
+<view class="rd-page {{dark ? 'dark' : ''}}">
+  <text class="rd-title">{{item.title}}</text>
+  <text class="rd-date">{{item.date}}</text>
+  <view class="rd-divider"></view>
+  <text class="rd-content">{{item.content}}</text>
+</view>

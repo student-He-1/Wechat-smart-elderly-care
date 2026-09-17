@@ -1,0 +1,128 @@
+<!-- monitor.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 页头 -->
+  <view class="section-header">
+    <view class="section-rule"></view>
+    <text class="section-title">智能监护</text>
+    <text class="section-subtitle">实时监测老人安全状态</text>
+  </view>
+
+  <!-- 监控画面（深色为视频语义表面，白字保持高对比） -->
+  <view class="monitor-card rise" style="animation-delay:80ms" bindtap="viewMonitorDetail">
+    <image wx:if="{{monitorFrame}}" src="{{monitorFrame}}" class="monitor-image" mode="aspectFill" />
+    <view wx:else class="monitor-placeholder">
+      <view class="ic ic-56 ic-video-s monitor-placeholder-ic"></view>
+      <text class="monitor-text">实时监控画面</text>
+      <text class="monitor-caption">点击查看详情</text>
+    </view>
+    <view class="monitor-badge {{monitorStatus === '正常' ? 'badge-ok' : 'badge-alert'}}">
+      {{monitorStatus === '正常' ? '正常' : '异常'}}
+    </view>
+  </view>
+
+  <!-- 状态概览 -->
+  <view class="list-group status-card rise" style="animation-delay:140ms">
+    <view class="status-row">
+      <view class="svc-iconbox status-icon status-icon--blue"><view class="ic ic-40 ic-clock-b"></view></view>
+      <text class="status-label">监测时间</text>
+      <text class="status-value">{{currentTime}}</text>
+    </view>
+    <view class="status-row">
+      <view class="svc-iconbox status-icon status-icon--green"><view class="ic ic-40 ic-bed-g"></view></view>
+      <text class="status-label">房间状态</text>
+      <text class="status-value">{{roomStatus}}</text>
+    </view>
+    <view class="status-row">
+      <view class="svc-iconbox status-icon status-icon--amber"><view class="ic ic-40 ic-activity-a"></view></view>
+      <text class="status-label">活动状态</text>
+      <text class="status-value">{{activity}}</text>
+    </view>
+    <view class="status-row status-row--last">
+      <view class="svc-iconbox status-icon status-icon--gray"><view class="ic ic-40 ic-video-s"></view></view>
+      <text class="status-label">监控开关</text>
+      <switch checked="{{isMonitorOn}}" bindchange="toggleMonitor" color="#0369a1" />
+    </view>
+  </view>
+
+  <!-- 检测功能 -->
+  <view class="section-header">
+    <view class="section-rule"></view>
+    <text class="section-title">检测功能</text>
+  </view>
+
+  <view class="list-group feature-list">
+    <view class="feature-item">
+      <view class="svc-iconbox feature-ic feature-ic--amber"><view class="ic ic-44 ic-fall-a"></view></view>
+      <view class="feature-info">
+        <text class="feature-title">跌倒检测</text>
+        <text class="feature-desc">实时监测老人跌倒情况</text>
+      </view>
+      <text class="tag tag-success">开启</text>
+    </view>
+    <view class="feature-item">
+      <view class="svc-iconbox feature-ic feature-ic--cyan"><view class="ic ic-44 ic-activity-c"></view></view>
+      <view class="feature-info">
+        <text class="feature-title">活动监测</text>
+        <text class="feature-desc">监测日常活动状态</text>
+      </view>
+      <text class="tag tag-success">开启</text>
+    </view>
+    <view class="feature-item">
+      <view class="svc-iconbox feature-ic feature-ic--blue"><view class="ic ic-44 ic-bed-b"></view></view>
+      <view class="feature-info">
+        <text class="feature-title">睡眠监测</text>
+        <text class="feature-desc">监测夜间睡眠质量</text>
+      </view>
+      <text class="tag tag-success">开启</text>
+    </view>
+    <view class="feature-item">
+      <view class="svc-iconbox feature-ic feature-ic--rose"><view class="ic ic-44 ic-sos-r2"></view></view>
+      <view class="feature-info">
+        <text class="feature-title">紧急求助</text>
+        <text class="feature-desc">一键呼叫紧急联系人</text>
+      </view>
+      <text class="tag tag-muted">待机</text>
+    </view>
+  </view>
+
+  <!-- 跌倒记录（仅子女端显示；后端检测落库，含现场截图） -->
+  <block wx:if="{{showRecords}}">
+  <view class="section-header">
+    <view class="section-rule"></view>
+    <text class="section-title">跌倒记录</text>
+  </view>
+
+  <block wx:if="{{fallRecords.length}}">
+    <view class="fall-record-card">
+      <view wx:for="{{fallRecords}}" wx:key="id" class="fall-record-item {{item.handled ? 'is-handled' : ''}}"
+            data-url="{{item.snapshotUrl}}" bindtap="previewRecord">
+        <image wx:if="{{item.snapshotUrl}}" src="{{item.snapshotUrl}}" class="fall-thumb" mode="aspectFill" />
+        <view wx:else class="fall-thumb fall-thumb--empty"><view class="ic ic-40 ic-fall-a"></view></view>
+        <view class="fall-record-info">
+          <text class="fall-record-title">{{item.handled ? '跌倒告警（已处理）' : '跌倒告警（待处理）'}}</text>
+          <text class="fall-record-time">{{item.time}}</text>
+        </view>
+        <text class="fall-record-arrow">›</text>
+      </view>
+    </view>
+  </block>
+  <view wx:else class="fall-empty">暂无跌倒记录</view>
+  </block>
+
+  <!-- 历史记录（时间轴） -->
+  <view class="section-header">
+    <view class="section-rule"></view>
+    <text class="section-title">历史记录</text>
+  </view>
+
+  <view class="history-card">
+    <view wx:for="{{history}}" wx:key="index" class="timeline-item">
+      <view class="timeline-marker"></view>
+      <view class="timeline-body">
+        <text class="timeline-time">{{item.time}}</text>
+        <text class="timeline-event">{{item.event}}</text>
+        <text class="timeline-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+</view>

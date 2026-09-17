@@ -1,0 +1,8 @@
+/* daughter/profile.wxss */
+.dp-page { padding: 24rpx; }
+.dp-card { background: #fff; border-radius: 20rpx; padding: 0 28rpx; }
+.dp-row { display: flex; align-items: center; padding: 28rpx 0; border-bottom: 1rpx solid #f1f5f9; }
+.dp-row:last-child { border-bottom: none; }
+.dp-label { width: 160rpx; font-size: 28rpx; color: #64748b; }
+.dp-input { flex: 1; font-size: 28rpx; color: #0f172a; }
+.dp-save { margin-top: 40rpx; height: 88rpx; line-height: 88rpx; text-align: center; background: #0369a1; color: #fff; border-radius: 999rpx; font-size: 30rpx; }

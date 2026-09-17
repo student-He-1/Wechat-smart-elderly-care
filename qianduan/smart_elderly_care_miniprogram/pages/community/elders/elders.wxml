@@ -1,0 +1,23 @@
+<!-- community/elders.wxml -->
+<view class="e-page {{dark ? 'dark' : ''}}">
+  <view class="e-list">
+    <view wx:for="{{elders}}" wx:key="id" class="e-card">
+      <view class="e-avatar">
+        <image wx:if="{{item.avatar}}" class="e-avatar-img" src="{{item.avatar}}" mode="aspectFill" />
+        <text wx:else>{{item.name[0]}}</text>
+      </view>
+      <view class="e-body">
+        <text class="e-name">{{item.name}} · {{item.age}}岁</text>
+        <text class="e-meta">慢病：{{item.chronic}} · 子女：{{item.family}}</text>
+      </view>
+      <text class="e-call" catchtap="call" data-phone="{{item.phone}}">联系</text>
+    </view>
+  </view>
+
+  <view class="c-tabbar">
+    <view class="c-tab-item" bindtap="goHome"><text class="c-tab-icon">📋</text><text class="c-tab-text">工单</text></view>
+    <view class="c-tab-item" bindtap="goAlert"><text class="c-tab-icon">🔔</text><text class="c-tab-text">告警</text></view>
+    <view class="c-tab-item c-tab-item--active"><text class="c-tab-icon">👴</text><text class="c-tab-text">老人</text></view>
+    <view class="c-tab-item" bindtap="goMine"><text class="c-tab-icon">👤</text><text class="c-tab-text">我的</text></view>
+  </view>
+</view>

@@ -1,0 +1,229 @@
+/* pages/companion/music/music.wxss */
+.page-music {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 40%);
+  padding: 32rpx 28rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 当前播放 */
+.now-playing {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 20rpx rgba(14, 165, 233, 0.08);
+  margin-bottom: 32rpx;
+}
+.album-cover {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+  margin-right: 28rpx;
+}
+.cover-img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background: #e0f2fe;
+}
+.cover-ring {
+  position: absolute;
+  top: -8rpx; left: -8rpx;
+  width: 196rpx; height: 196rpx;
+  border: 4rpx solid #bae6fd;
+  border-radius: 50%;
+  border-top-color: #0ea5e9;
+}
+.cover-ring--spin {
+  animation: spin 8s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.now-info {
+  flex: 1;
+  min-width: 0;
+}
+.now-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.now-artist {
+  display: block;
+  font-size: 26rpx;
+  color: #64748b;
+  margin-bottom: 16rpx;
+}
+.progress-bar {
+  margin: 0 -10rpx;
+}
+.progress-slider {
+  width: 100%;
+}
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -8rpx;
+}
+.time-text {
+  font-size: 22rpx;
+  color: #94a3b8;
+}
+
+/* 播放控制 */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 16rpx;
+  margin-bottom: 32rpx;
+}
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.ctrl-btn--mode {
+  width: 72rpx;
+  height: 72rpx;
+}
+.ctrl-btn--big {
+  width: 96rpx;
+  height: 96rpx;
+  background: #f0f9ff;
+}
+.ctrl-btn--play {
+  width: 128rpx;
+  height: 128rpx;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  box-shadow: 0 8rpx 24rpx rgba(14, 165, 233, 0.3);
+}
+.ctrl-icon {
+  font-size: 40rpx;
+  color: #0ea5e9;
+}
+.ctrl-icon--large {
+  font-size: 52rpx;
+  color: #fff;
+}
+.ctrl-text {
+  font-size: 24rpx;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* 播放列表 */
+.playlist-section {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 20rpx rgba(14, 165, 233, 0.06);
+}
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.title-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+.title-count {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+.playlist-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 16rpx;
+  border-radius: 16rpx;
+  border-bottom: 1rpx solid #f1f5f9;
+}
+.playlist-item:last-child {
+  border-bottom: none;
+}
+.playlist-item--active {
+  background: #f0f9ff;
+}
+.item-index {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+.index-text {
+  font-size: 28rpx;
+  color: #94a3b8;
+  font-weight: 600;
+}
+.playing-indicator {
+  font-size: 32rpx;
+  color: #0ea5e9;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+.item-title {
+  display: block;
+  font-size: 30rpx;
+  color: #0f172a;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.playlist-item--active .item-title {
+  color: #0ea5e9;
+}
+.item-artist {
+  display: block;
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+.item-fav {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.fav-icon {
+  font-size: 36rpx;
+}
+
+/* 提示 */
+.tip-bar {
+  margin-top: 24rpx;
+  padding: 20rpx 24rpx;
+  background: #fefce8;
+  border-radius: 12rpx;
+}
+.tip-text {
+  font-size: 24rpx;
+  color: #a16207;
+  line-height: 1.5;
+}

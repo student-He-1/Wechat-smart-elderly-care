@@ -1,0 +1,22 @@
+<!-- knowledge/detail.wxml -->
+<scroll-view scroll-y class="kd-scroll" bindscroll="onScroll" style="top: {{navBarHeight}}px;">
+  <!-- 顶部大图，下滑时半隐在文字后面 -->
+  <view class="kd-hero" style="transform: translateY({{heroOffset}}px);">
+    <image wx:if="{{data.hero}}" class="kd-hero-img" src="{{data.hero}}" mode="aspectFill" />
+  </view>
+
+  <view class="kd-body">
+    <text class="kd-title">{{data.title}}</text>
+    <text class="kd-sub">{{data.sub}}</text>
+
+    <block wx:for="{{data.sections}}" wx:key="heading">
+      <view class="kd-h">{{item.heading}}</view>
+      <text class="kd-p" wx:for="{{item.paragraphs}}" wx:for-item="p" wx:key="*this">{{p}}</text>
+    </block>
+
+    <view class="kd-tip">
+      <text class="kd-tip-title">温馨提示</text>
+      <text class="kd-tip-text">本内容仅供日常健康参考，不能替代医生诊断。如身体不适请及时就医。</text>
+    </view>
+  </view>
+</scroll-view>

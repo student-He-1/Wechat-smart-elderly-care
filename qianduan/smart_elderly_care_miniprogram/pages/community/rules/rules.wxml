@@ -1,0 +1,9 @@
+<!-- community/rules.wxml -->
+<view class="r-page {{dark ? 'dark' : ''}}">
+  <view class="r-list">
+    <view wx:for="{{list}}" wx:key="id" class="r-card" bindtap="openDetail" data-id="{{item.id}}" hover-class="r-card--press">
+      <text class="r-title">{{item.title}}</text>
+      <text class="r-date">{{item.date}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+/* community/rules.wxss */
+.r-page { padding: 20rpx 28rpx 60rpx; }
+.r-list { background: #fff; border-radius: 20rpx; box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06); padding: 8rpx 28rpx; }
+.r-card { padding: 28rpx 0; border-bottom: 1rpx solid #f1f5f9; }
+.r-card:last-child { border-bottom: none; }
+.r-card--press { background: #f8fafc; }
+.r-title { display: block; font-size: 30rpx; color: #0f172a; line-height: 1.5; }
+.r-date { display: block; margin-top: 8rpx; font-size: 22rpx; color: #94a3b8; }

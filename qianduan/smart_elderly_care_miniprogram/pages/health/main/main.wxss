@@ -1,0 +1,450 @@
+/* main.wxss */
+.health-header {
+  margin: 8rpx 4rpx 24rpx;
+}
+
+/* ---------- 今日体征卡 ---------- */
+.stat-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 32rpx 16rpx;
+}
+
+/* ---------- 下一条服药提醒 ---------- */
+.next-dose-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  padding: 28rpx;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #075985 0%, #0369a1 55%, #0ea5e9 100%);
+  box-shadow: 0 12rpx 32rpx rgba(3, 105, 161, 0.28);
+}
+
+.next-dose--press {
+  opacity: 0.9;
+}
+
+.next-dose-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.next-dose-ic {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.next-dose-ic .ic {
+  filter: brightness(0) invert(1);
+}
+
+.next-dose-body {
+  margin-left: 22rpx;
+  min-width: 0;
+}
+
+.next-dose-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.next-dose-sub {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.next-dose-count {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 20rpx;
+}
+
+.next-dose-num {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.next-dose-unit {
+  font-size: 24rpx;
+  margin-left: 4rpx;
+}
+
+.next-dose-label {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- 本周血压趋势 ---------- */
+.trend-card {
+  margin-top: 22rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 28rpx;
+}
+
+.trend-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28rpx;
+}
+
+.trend-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.trend-tag {
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+.trend-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 160rpx;
+}
+
+.trend-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.trend-bar-wrap {
+  height: 120rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+.trend-bar {
+  width: 36rpx;
+  border-radius: 8rpx;
+  background: var(--brand-300, #7dd3fc);
+}
+
+.trend-bar--high {
+  background: #f87171;
+}
+
+.trend-day {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+/* ---------- 今日打卡 2×2 ---------- */
+.checkin-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.checkin-cell {
+  background: var(--color-card);
+  border-radius: 20rpx;
+  box-shadow: var(--shadow-card);
+  padding: 24rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkin-ic {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14rpx;
+}
+
+.checkin-ic--blue  { background: var(--brand-100); }
+.checkin-ic--cyan  { background: #cffafe; }
+.checkin-ic--amber { background: var(--warn-soft); }
+.checkin-ic--green { background: var(--safe-soft); }
+
+.checkin-val {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.3rpx;
+}
+
+.checkin-label {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+/* ---------- 风险提示 ---------- */
+.risk-card {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 22rpx;
+  padding: 24rpx 28rpx;
+  border-radius: 20rpx;
+  background: #fef9c3;
+  border: 1rpx solid #fde047;
+}
+
+.risk-ic {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 16rpx;
+  background: #fde047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.risk-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.risk-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #854d0e;
+}
+
+.risk-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #a16207;
+  line-height: 1.6;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-ic {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14rpx;
+}
+
+.stat-ic .ic {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.stat-ic--blue {
+  background: var(--brand-100);
+}
+
+.stat-ic--rose {
+  background: #ffe4e6;
+}
+
+.stat-ic--cyan {
+  background: #cffafe;
+}
+
+.stat-value {
+  font-size: var(--fs-title);
+  font-weight: 800;
+  letter-spacing: -0.8rpx;
+  color: var(--ink-900);
+  line-height: 1.2;
+}
+
+.stat-label {
+  margin-top: 8rpx;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+.stat-divider {
+  width: 1rpx;
+  background: var(--color-hairline);
+}
+
+/* ---------- 功能网格 ---------- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22rpx;
+  margin-top: 32rpx;
+}
+
+.feature-card {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 30rpx 28rpx;
+  transition: opacity 0.15s ease;
+}
+
+.feature-card:active {
+  opacity: 0.75;
+}
+
+.feature-card--press {
+  opacity: 0.75;
+}
+
+.feature-card .svc-iconbox {
+  width: 92rpx;
+  height: 92rpx;
+  margin-bottom: 20rpx;
+}
+
+.svc-iconbox--blue-feat {
+  background: var(--brand-100);
+}
+
+.svc-iconbox--cyan-feat {
+  background: #cffafe;
+}
+
+.svc-iconbox--amber-feat {
+  background: var(--warn-soft);
+}
+
+.svc-iconbox--green-feat {
+  background: var(--safe-soft);
+}
+
+.feature-title {
+  display: block;
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: 8rpx;
+}
+
+.feature-desc {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+/* ---------- 最近提醒（服务行） ---------- */
+.section-header .section-name {
+  font-size: var(--fs-title);
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.svc-list {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 8rpx 28rpx;
+}
+
+.svc-row {
+  display: flex;
+  align-items: center;
+  min-height: 120rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.svc-row:last-child {
+  border-bottom: none;
+}
+
+.svc-row .svc-iconbox {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.svc-body {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.svc-title {
+  display: block;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--ink-800);
+  margin-bottom: 6rpx;
+}
+
+.svc-desc {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+/* ---------- 健康知识 ---------- */
+.knowledge-card {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 32rpx;
+}
+
+.knowledge-head {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.knowledge-head .knowledge-ic {
+  width: 72rpx;
+  height: 72rpx;
+  background: var(--brand-100);
+}
+
+.knowledge-title {
+  flex: 1;
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.knowledge-content {
+  display: block;
+  font-size: var(--fs-label);
+  color: var(--ink-700);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  margin-bottom: 32rpx;
+}

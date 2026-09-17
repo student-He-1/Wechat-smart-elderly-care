@@ -1,0 +1,44 @@
+<!-- health/hospital.wxml -->
+<view class="hosp-page {{dark ? 'dark' : ''}}">
+
+  <!-- 搜索 -->
+  <view class="search-bar">
+    <view class="search-box">
+      <view class="ic ic-32 ic-ask-c search-icon"></view>
+      <text class="search-ph">输入医院名称搜索</text>
+    </view>
+  </view>
+
+  <!-- 城市 -->
+  <scroll-view scroll-x class="city-tabs">
+    <view class="city-tab {{city === '天津' ? 'city-tab--active' : ''}}" bindtap="setCity" data-c="天津">天津</view>
+    <view class="city-tab {{city === '北京' ? 'city-tab--active' : ''}}" bindtap="setCity" data-c="北京">北京</view>
+    <view class="city-tab {{city === '石家庄' ? 'city-tab--active' : ''}}" bindtap="setCity" data-c="石家庄">石家庄</view>
+  </scroll-view>
+
+  <!-- 区域 -->
+  <scroll-view scroll-x class="area-tabs">
+    <view class="area-tab" wx:for="{{areas}}" wx:key="*this" bindtap="setArea" data-a="{{item}}">{{item}}</view>
+  </scroll-view>
+
+  <!-- 医院列表 -->
+  <view class="hosp-list">
+    <view wx:for="{{hospitals}}" wx:key="id" class="hosp-card" bindtap="openDetail" data-id="{{item.id}}" hover-class="hosp-card--press">
+      <view class="hosp-img">
+        <image wx:if="{{item.img}}" class="hosp-img-el" src="{{item.img}}" mode="aspectFill" />
+        <text wx:else class="hosp-img-text">医院图</text>
+      </view>
+      <view class="hosp-body">
+        <text class="hosp-name">{{item.name}}</text>
+        <view class="hosp-loc">📍 {{item.district}} · {{item.area}}</view>
+        <text class="hosp-addr">{{item.address}}</text>
+        <view class="hosp-tags">
+          <text class="hosp-tag hosp-tag--red">{{item.tag}}</text>
+          <text class="hosp-tag hosp-tag--blue">三级甲等</text>
+        </view>
+      </view>
+      <view class="hosp-call" catchtap="callHospital" data-phone="{{item.phone}}">电话</view>
+    </view>
+  </view>
+
+</view>

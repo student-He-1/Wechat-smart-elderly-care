@@ -1,0 +1,59 @@
+<!-- talk.wxml —— AI 聊天二级页 -->
+<view class="chat-page {{dark ? 'dark' : ''}}">
+  <!-- 顶部工具栏 -->
+  <view class="chat-toolbar">
+    <picker range="{{dialects}}" range-key="label" value="{{selectedDialectIndex}}" bindchange="changeDialect">
+      <view class="dialect-pill">
+        <text class="dialect-label">方言</text>
+        <text class="dialect-value">{{selectedDialectLabel}}</text>
+        <view class="ic ic-32 ic-chevron dialect-arrow"></view>
+      </view>
+    </picker>
+    <view class="clear-btn" bindtap="clearChat">清空对话</view>
+  </view>
+
+  <!-- 聊天记录 -->
+  <scroll-view class="chat-history" scroll-y scroll-with-animation>
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <view wx:if="{{item.role === 'user'}}" class="chat-row chat-row--user">
+        <view class="avatar avatar-user"><image class="avatar-img" src="{{userAvatar}}" mode="aspectFill" /></view>
+        <view class="bubble bubble-user bubble-in">
+          <text class="bubble-text">{{item.content}}</text>
+        </view>
+      </view>
+      <view wx:else class="chat-row chat-row--assistant">
+        <view class="avatar avatar-ai"><image class="avatar-img" src="/assets/images/robot.png" mode="aspectFill" /></view>
+        <view class="bubble bubble-ai bubble-in">
+          <text class="bubble-text">{{item.content}}</text>
+          <view class="bubble-play" catchtap="playReply" data-idx="{{index}}">
+            <view class="ic ic-32 ic-speaker-b"></view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{isLoading}}" class="chat-row chat-row--assistant">
+      <view class="avatar avatar-ai"><image class="avatar-img" src="/assets/images/robot.png" mode="aspectFill" /></view>
+      <view class="bubble bubble-ai">
+        <text class="loading-dots"><text></text><text></text><text></text></text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-bar">
+    <input
+      class="chat-input"
+      placeholder="请输入您想说的话…"
+      placeholder-class="chat-input-placeholder"
+      value="{{inputValue}}"
+      confirm-type="send"
+      bindinput="bindInput"
+      bindconfirm="sendMessage"
+    />
+    <button class="voice-btn {{isRecording ? 'is-recording' : ''}}" bindtap="startVoiceRecording" aria-label="语音输入">
+      <view class="ic ic-40 {{isRecording ? 'ic-stop-w' : 'ic-mic-b'}}"></view>
+    </button>
+    <button class="btn btn-primary send-btn" bindtap="sendMessage">发送</button>
+  </view>
+</view>

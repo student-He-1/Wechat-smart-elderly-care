@@ -1,0 +1,59 @@
+<!--pages/companion/game/match/match.wxml-->
+<view class="page page-match">
+  <!-- 顶部信息栏 -->
+  <view class="game-header">
+    <view class="header-item">
+      <text class="header-label">步数</text>
+      <text class="header-value">{{steps}}</text>
+    </view>
+    <view class="header-title">{{levelName}}</view>
+    <view class="header-item">
+      <text class="header-label">已消除</text>
+      <text class="header-value">{{matchedCount}}/{{totalPairs}}</text>
+    </view>
+  </view>
+
+  <view class="game-tip">
+    <text class="tip-text">💡 点两个相同的图案即可消除，全部消除就过关啦</text>
+  </view>
+
+  <!-- 卡片网格 -->
+  <view class="card-grid" style="grid-template-columns: repeat({{cols}}, 1fr);">
+    <view class="card-wrapper {{item.isMatched ? 'card-wrapper--gone' : ''}}"
+          wx:for="{{cards}}" wx:key="id"
+          data-index="{{index}}" bindtap="tapCard">
+      <view class="match-card {{selected === index ? 'match-card--selected' : ''}}">
+        <text class="match-icon">{{item.icon}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="game-footer">
+    <button class="btn btn-secondary footer-btn" bindtap="useHint">💡 提示</button>
+    <button class="btn btn-secondary footer-btn" bindtap="restart">重玩本关</button>
+  </view>
+
+  <!-- 本关完成弹窗 -->
+  <view wx:if="{{isComplete && !isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🎉</text>
+      <text class="complete-title">过关啦！</text>
+      <text class="complete-desc">{{levelName}} 用了 {{steps}} 步</text>
+      <text class="complete-encourage">眼力真好，挑战下一关吧！</text>
+      <button class="btn btn-primary complete-btn" bindtap="nextLevel">进入下一关</button>
+      <button class="btn btn-ghost complete-btn-ghost" bindtap="restart">再玩本关</button>
+    </view>
+  </view>
+
+  <!-- 全部通关弹窗 -->
+  <view wx:if="{{isComplete && isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🏆</text>
+      <text class="complete-title">全部通关！</text>
+      <text class="complete-desc">三关对对消全部完成，太厉害了！</text>
+      <text class="complete-encourage">常玩对对消，有助于锻炼观察力和记忆力哦</text>
+      <button class="btn btn-primary complete-btn" bindtap="restartAll">从头再玩</button>
+    </view>
+  </view>
+</view>

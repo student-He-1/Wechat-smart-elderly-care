@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pyttsx3
+apscheduler
+requests
+dashscope
+python-multipart
+numpy
+imageio-ffmpeg

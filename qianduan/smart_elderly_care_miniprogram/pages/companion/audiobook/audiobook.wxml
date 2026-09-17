@@ -1,0 +1,79 @@
+<!--pages/companion/audiobook/audiobook.wxml-->
+<view class="page page-audiobook">
+  <view class="ab-header">
+    <text class="ab-title">听书戏曲</text>
+    <text class="ab-sub">经典名著 · 评书相声 · 传统戏曲</text>
+  </view>
+
+  <!-- 分类tab -->
+  <scroll-view class="cat-bar" scroll-x>
+    <view class="cat-list">
+      <view class="cat-chip {{activeKey === item.key ? 'cat-chip--active' : ''}}"
+            wx:for="{{categories}}" wx:key="key"
+            data-key="{{item.key}}" bindtap="switchCategory">
+        <text class="cat-icon">{{item.icon}}</text>
+        <text class="cat-name">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 当前播放 -->
+  <view class="now-playing">
+    <view class="np-cover">
+      <text class="np-cover-icon">🎧</text>
+    </view>
+    <view class="np-info">
+      <text class="np-title">{{list[currentIndex].title}}</text>
+      <text class="np-author">{{list[currentIndex].author}}</text>
+      <view class="np-progress">
+        <slider class="np-slider" min="0" max="100" value="{{progress}}"
+                activeColor="#0d9488" backgroundColor="#ccfbf1" block-size="20"
+                bindchanging="onSliderChanging" bindchange="onSliderChange" />
+      </view>
+      <view class="np-time">
+        <text class="time-text">{{currentTimeText}}</text>
+        <text class="time-text">{{durationText || list[currentIndex].duration}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 播放控制 -->
+  <view class="controls">
+    <view class="ctrl-btn ctrl-btn--big" bindtap="prevTrack">
+      <text class="ctrl-icon">⏮</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--play" bindtap="togglePlay">
+      <text class="ctrl-icon ctrl-icon--large">{{isPlaying ? '⏸' : '▶'}}</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--big" bindtap="nextTrack">
+      <text class="ctrl-icon">⏭</text>
+    </view>
+  </view>
+
+  <!-- 曲目列表 -->
+  <view class="track-list">
+    <view class="sec-head">
+      <text class="sec-title">曲目列表</text>
+      <text class="sec-count">共 {{list.length}} 集</text>
+    </view>
+    <view class="track-item {{currentIndex === index ? 'track-item--active' : ''}}"
+          wx:for="{{list}}" wx:key="id"
+          data-index="{{index}}" bindtap="playTrack">
+      <view class="track-index">
+        <text wx:if="{{currentIndex === index && isPlaying}}" class="playing-indicator">♪</text>
+        <text wx:else class="index-text">{{index + 1}}</text>
+      </view>
+      <view class="track-info">
+        <text class="track-title">{{item.title}}</text>
+        <text class="track-author">{{item.author}} · {{item.duration}}</text>
+      </view>
+      <view class="track-play">
+        <text class="track-play-ic">{{currentIndex === index && isPlaying ? '⏸' : '▶'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tip-bar">
+    <text class="tip-text">💡 把音频文件放到 assets/audiobook/ 目录，文件名对应 novel1.mp3 / pingshu1.mp3 / opera1.mp3 等</text>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+<!--pages/companion/album/album.wxml-->
+<view class="page page-album">
+  <view class="album-header">
+    <text class="album-title">家庭相册</text>
+    <text class="album-count">共 {{photos.length}} 张照片</text>
+  </view>
+
+  <view class="album-tip">
+    <text class="tip-text">💡 点击照片可放大查看，左右滑动浏览</text>
+  </view>
+
+  <!-- 照片网格 2列 -->
+  <view class="photo-grid">
+    <view class="photo-card" wx:for="{{photos}}" wx:key="id"
+          data-index="{{index}}" bindtap="previewPhoto"
+          hover-class="photo-card--press">
+      <image class="photo-img" src="{{item.url}}" mode="aspectFill"></image>
+      <view class="photo-info">
+        <text class="photo-name">{{item.name}}</text>
+        <text class="photo-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="album-footer">
+    <text class="footer-text">📷 后续可添加更多家人照片，记录美好时光</text>
+  </view>
+
+  <!-- 全屏大图预览 -->
+  <view wx:if="{{showPreview}}" class="preview-mask" bindtap="closePreview">
+    <view class="preview-close" catchtap="closePreview">✕</view>
+    <swiper class="preview-swiper" current="{{previewIndex}}" bindchange="onSwiperChange" catchtap="stopPropagation">
+      <swiper-item wx:for="{{photos}}" wx:key="id">
+        <view class="preview-item">
+          <image class="preview-img" src="{{item.url}}" mode="aspectFit"></image>
+          <view class="preview-caption">
+            <text class="preview-name">{{item.name}}</text>
+            <text class="preview-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="preview-indicator" catchtap="stopPropagation">
+      <text class="indicator-text">{{previewIndex + 1}} / {{photos.length}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/companion/game/index/index.wxml-->
+<view class="page page-game-select">
+  <view class="hero">
+    <text class="hero-title">健脑游戏</text>
+    <text class="hero-sub">动动脑筋，保持活力</text>
+  </view>
+
+  <view class="game-list">
+    <view class="game-card game-card--{{item.color}}"
+          wx:for="{{games}}" wx:key="id"
+          data-url="{{item.url}}" bindtap="goGame"
+          hover-class="game-card--press">
+      <view class="game-icon">{{item.icon}}</view>
+      <view class="game-body">
+        <text class="game-title">{{item.title}}</text>
+        <text class="game-desc">{{item.desc}}</text>
+      </view>
+      <view class="game-arrow">›</view>
+    </view>
+  </view>
+
+  <view class="tip-bar">
+    <text class="tip-text">💡 每天玩一会儿，有助于锻炼记忆力和思维能力</text>
+  </view>
+</view>

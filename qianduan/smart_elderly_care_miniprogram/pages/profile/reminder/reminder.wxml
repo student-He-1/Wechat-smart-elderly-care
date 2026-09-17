@@ -1,0 +1,32 @@
+<!-- reminder.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 页头 -->
+  <view class="page-header">
+    <text class="section-title">提醒设置</text>
+    <button class="btn btn-primary btn-mini" bindtap="addReminder">添加提醒</button>
+  </view>
+
+  <!-- 提醒列表 -->
+  <view wx:for="{{reminders}}" wx:key="id" class="reminder-card">
+    <view class="reminder-head">
+      <text class="reminder-name">{{item.name}}</text>
+      <view class="reminder-actions">
+        <switch checked="{{item.enabled}}" color="#0369a1" bindchange="toggleReminder" data-id="{{item.id}}" data-enabled="{{item.enabled}}" />
+        <text class="delete-reminder" bindtap="deleteReminder" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+
+    <view class="reminder-times">
+      <view wx:for="{{item.times}}" wx:key="index" class="time-row">
+        <text class="time-text">{{item}}</text>
+        <text class="delete-time" bindtap="deleteTime" data-id="{{item.id}}" data-time="{{item}}">删除</text>
+      </view>
+      <view class="add-time" bindtap="addTime" data-id="{{item.id}}">
+        <text class="add-time-text">+ 添加提醒时间</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存 -->
+  <button class="btn btn-primary btn-block save-btn" bindtap="saveSettings">保存设置</button>
+</view>

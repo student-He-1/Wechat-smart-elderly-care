@@ -1,0 +1,12 @@
+<!-- news/index.wxml —— 养老资讯列表 -->
+<view class="news-page {{dark ? 'dark' : ''}}">
+  <view class="news-list">
+    <view wx:for="{{list}}" wx:key="id" class="news-card" bindtap="openDetail" data-id="{{item.id}}" hover-class="news-card--press">
+      <text class="news-title">{{item.title}}</text>
+      <view class="news-meta">
+        <text class="news-date">{{item.date}}</text>
+        <text class="news-source">{{item.source}}</text>
+      </view>
+    </view>
+  </view>
+</view>

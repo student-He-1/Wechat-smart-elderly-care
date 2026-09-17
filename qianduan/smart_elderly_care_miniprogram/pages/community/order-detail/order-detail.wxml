@@ -1,0 +1,33 @@
+<!-- community/order-detail.wxml -->
+<view class="d-page {{dark ? 'dark' : ''}}">
+
+  <view class="d-card">
+    <view class="d-row"><text class="d-label">工单编号</text><text class="d-value">{{order.id}}</text></view>
+    <view class="d-row"><text class="d-label">老人</text><text class="d-value">{{order.elderName}}</text></view>
+    <view class="d-row"><text class="d-label">联系电话</text><text class="d-value">{{order.elderPhone}}</text></view>
+    <view class="d-row"><text class="d-label">服务类型</text><text class="d-value">{{order.serviceType}}</text></view>
+    <view class="d-row"><text class="d-label">预约时间</text><text class="d-value">{{order.bookTime}}</text></view>
+    <view class="d-row"><text class="d-label">地址</text><text class="d-value">{{order.address}}</text></view>
+    <view class="d-row" wx:if="{{order.remark}}"><text class="d-label">备注</text><text class="d-value">{{order.remark}}</text></view>
+  </view>
+
+  <!-- 状态进度 -->
+  <view class="step-box">
+    <view class="step {{order.status !== 'pending' ? 'step--done' : ''}}">1. 接单</view>
+    <view class="step-line"></view>
+    <view class="step {{order.status === 'ontheway' || order.status === 'serving' || order.status === 'done' ? 'step--done' : ''}}">2. 出发</view>
+    <view class="step-line"></view>
+    <view class="step {{order.status === 'serving' || order.status === 'done' ? 'step--done' : ''}}">3. 服务中</view>
+    <view class="step-line"></view>
+    <view class="step {{order.status === 'done' ? 'step--done' : ''}}">4. 完成</view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <button wx:if="{{order.status === 'pending'}}" class="btn-primary" bindtap="accept">接单</button>
+    <button wx:elif="{{order.status === 'ontheway'}}" class="btn-primary" bindtap="arrive">到达，开始服务</button>
+    <button wx:elif="{{order.status === 'serving'}}" class="btn-primary" bindtap="finish">完成服务</button>
+    <button wx:else class="btn-done" disabled>已完成</button>
+  </view>
+
+</view>

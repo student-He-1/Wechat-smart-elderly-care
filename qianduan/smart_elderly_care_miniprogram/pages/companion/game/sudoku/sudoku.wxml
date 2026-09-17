@@ -1,0 +1,63 @@
+<!--pages/companion/game/sudoku/sudoku.wxml-->
+<view class="page page-sudoku">
+  <!-- 顶部说明 -->
+  <view class="sudoku-header">
+    <text class="sudoku-title">{{levelName}}</text>
+    <text class="sudoku-desc">每行、每列、每个色块里，数字 1-4 不能重复</text>
+  </view>
+
+  <!-- 数独棋盘 4x4 -->
+  <view class="sudoku-board">
+    <view class="sudoku-row" wx:for="{{[0,1,2,3]}}" wx:for-item="row" wx:key="row">
+      <view class="sudoku-cell
+            {{(row * 4 + index) % 2 === (row % 2) ? 'cell--light' : 'cell--dark'}}
+            {{selectedIndex === row * 4 + index ? 'cell--selected' : ''}}
+            {{fixed[row * 4 + index] ? 'cell--fixed' : ''}}
+            {{errors[row * 4 + index] ? 'cell--error' : ''}}"
+            wx:for="{{[0,1,2,3]}}" wx:for-item="col" wx:key="col"
+            data-index="{{row * 4 + col}}" bindtap="selectCell">
+        <text class="cell-num {{fixed[row * 4 + index] ? 'num--fixed' : 'num--user'}}">{{board[row * 4 + col] || ''}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数字键盘 -->
+  <view class="num-pad">
+    <view class="num-btn" wx:for="{{numbers}}" wx:key="*this"
+          data-num="{{item}}" bindtap="fillNumber">
+      <text class="num-btn-text">{{item}}</text>
+    </view>
+    <view class="num-btn num-btn--clear" bindtap="clearCell">
+      <text class="num-btn-text">清除</text>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="sudoku-footer">
+    <button class="btn btn-secondary footer-btn" bindtap="useHint">💡 提示</button>
+    <button class="btn btn-secondary footer-btn" bindtap="restart">换一题</button>
+  </view>
+
+  <!-- 本关完成弹窗 -->
+  <view wx:if="{{isComplete && !isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🎉</text>
+      <text class="complete-title">过关啦！</text>
+      <text class="complete-desc">{{levelName}} 完成</text>
+      <text class="complete-encourage">逻辑思维真棒，挑战下一关吧！</text>
+      <button class="btn btn-primary complete-btn" bindtap="nextLevel">进入下一关</button>
+      <button class="btn btn-ghost complete-btn-ghost" bindtap="restart">再玩本关</button>
+    </view>
+  </view>
+
+  <!-- 全部通关弹窗 -->
+  <view wx:if="{{isComplete && isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🏆</text>
+      <text class="complete-title">全部通关！</text>
+      <text class="complete-desc">三关数独全部完成，太厉害了！</text>
+      <text class="complete-encourage">常玩数独，有助于锻炼逻辑思维哦</text>
+      <button class="btn btn-primary complete-btn" bindtap="restartAll">从头再玩</button>
+    </view>
+  </view>
+</view>

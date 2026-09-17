@@ -1,0 +1,109 @@
+/* reminder.wxss */
+.page {
+  padding-bottom: 64rpx;
+}
+
+/* 提醒卡片 */
+.reminder-card {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 24rpx;
+  overflow: hidden;
+}
+
+.reminder-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 104rpx;
+  padding: 20rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.reminder-name {
+  flex: 1;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.reminder-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.delete-reminder {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--danger-700);
+  padding: 12rpx 24rpx;
+  border-radius: var(--radius-pill);
+  background: var(--danger-soft);
+}
+
+.delete-reminder:active {
+  opacity: 0.75;
+}
+
+.reminder-times {
+  padding: 8rpx 32rpx 24rpx;
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 96rpx;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.time-row:last-of-type {
+  border-bottom: none;
+}
+
+.time-text {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--ink-800);
+}
+
+.delete-time {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--danger-700);
+  padding: 12rpx 24rpx;
+  border-radius: var(--radius-pill);
+  background: var(--danger-soft);
+}
+
+.delete-time:active {
+  opacity: 0.75;
+}
+
+.add-time {
+  margin-top: 16rpx;
+  min-height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-50);
+  border-radius: var(--radius-md);
+}
+
+.add-time:active {
+  background: var(--brand-100);
+}
+
+.add-time-text {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--brand-700);
+}
+
+/* 保存 */
+.save-btn {
+  margin-top: 24rpx;
+}

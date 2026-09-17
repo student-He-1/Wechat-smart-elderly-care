@@ -1,0 +1,46 @@
+/* community/order-detail.wxss */
+.d-page { padding: 20rpx 28rpx 60rpx; }
+
+.d-card {
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06);
+  padding: 16rpx 28rpx;
+}
+
+.d-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+}
+.d-row:last-child { border-bottom: none; }
+.d-label { font-size: 26rpx; color: #64748b; }
+.d-value { font-size: 26rpx; color: #0f172a; font-weight: 500; max-width: 60%; text-align: right; }
+
+.step-box {
+  display: flex;
+  align-items: center;
+  margin: 32rpx 0;
+  padding: 32rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.step {
+  font-size: 22rpx;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+.step--done { color: #b45309; font-weight: 600; }
+.step-line { flex: 1; height: 1rpx; background: #e2e8f0; margin: 0 12rpx; }
+
+.action-bar { margin-top: 40rpx; }
+.btn-primary {
+  background: #b45309; color: #fff;
+  border-radius: 999rpx; font-size: 30rpx;
+}
+.btn-done {
+  background: #f1f5f9; color: #94a3b8;
+  border-radius: 999rpx; font-size: 30rpx;
+}

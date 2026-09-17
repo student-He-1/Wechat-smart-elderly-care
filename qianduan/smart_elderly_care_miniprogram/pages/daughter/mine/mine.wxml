@@ -1,0 +1,47 @@
+<!-- daughter/mine.wxml —— 子女端我的 -->
+<view class="m-page {{dark ? 'dark' : ''}}">
+
+  <!-- 头像名字 -->
+  <view class="m-head" bindtap="goProfile" hover-class="m-head--press">
+    <image class="m-avatar" src="/assets/images/6-2.png" mode="aspectFill" />
+    <view class="m-head-body">
+      <text class="m-name">李女士</text>
+      <text class="m-sub">点击查看个人资料 ›</text>
+    </view>
+  </view>
+
+  <!-- 身份卡 -->
+  <view class="m-card">
+    <view class="m-card-top">
+      <text class="m-card-title">子女端 · 远程照护</text>
+      <text class="m-card-no">绑定：张奶奶</text>
+    </view>
+    <view class="m-stats">
+      <view class="m-stat"><text class="m-stat-num">12</text><text class="m-stat-label">今日告警</text></view>
+      <view class="m-stat"><text class="m-stat-num">3</text><text class="m-stat-label">待处理</text></view>
+      <view class="m-stat"><text class="m-stat-num">98%</text><text class="m-stat-label">在线率</text></view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="list-group">
+    <view class="m-row" bindtap="switchRole" hover-class="m-row--press">
+      <text class="m-label">切换身份</text><text class="m-value">老人/社区端 ›</text>
+    </view>
+    <view class="m-row" bindtap="resetData" hover-class="m-row--press">
+      <text class="m-label">重置演示数据</text><text class="m-value">›</text>
+    </view>
+    <view class="m-row m-row--last" bindtap="showAbout" hover-class="m-row--press">
+      <text class="m-label">关于</text><text class="m-value">v1.0.0 ›</text>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="d-tabbar">
+    <view class="d-tab" bindtap="goHome"><text class="d-tab-icon">⌂</text><text class="d-tab-text">首页</text></view>
+    <view class="d-tab" bindtap="goAlerts"><text class="d-tab-icon">🔔</text><text class="d-tab-text">告警</text></view>
+    <view class="d-tab" bindtap="goServices"><text class="d-tab-icon">🏠</text><text class="d-tab-text">服务</text></view>
+    <view class="d-tab d-tab--active"><text class="d-tab-icon">👤</text><text class="d-tab-text">我的</text></view>
+  </view>
+
+</view>

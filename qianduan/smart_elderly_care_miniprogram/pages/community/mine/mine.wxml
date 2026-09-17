@@ -1,0 +1,47 @@
+<!-- community/mine.wxml —— 社区端我的 -->
+<view class="m-page {{dark ? 'dark' : ''}}">
+
+  <!-- 头像名字 -->
+  <view class="m-head" bindtap="goProfile" hover-class="m-head--press">
+    <image class="m-avatar" src="/assets/images/6-6.png" mode="aspectFill" />
+    <view class="m-head-body">
+      <text class="m-name">王师傅</text>
+      <text class="m-sub">点击查看个人资料 ›</text>
+    </view>
+  </view>
+
+  <!-- 身份卡 -->
+  <view class="m-card">
+    <view class="m-card-top">
+      <text class="m-card-title">社区工作者</text>
+      <text class="m-card-no">工号 C10339</text>
+    </view>
+    <view class="m-stats">
+      <view class="m-stat"><text class="m-stat-num">128</text><text class="m-stat-label">服务工单</text></view>
+      <view class="m-stat"><text class="m-stat-num">356h</text><text class="m-stat-label">服务时长</text></view>
+      <view class="m-stat"><text class="m-stat-num">98%</text><text class="m-stat-label">好评率</text></view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="list-group">
+    <view class="m-row" bindtap="switchRole" hover-class="m-row--press">
+      <text class="m-label">切换身份</text><text class="m-value">老人/子女端 ›</text>
+    </view>
+    <view class="m-row" bindtap="resetData" hover-class="m-row--press">
+      <text class="m-label">重置演示数据</text><text class="m-value">›</text>
+    </view>
+    <view class="m-row m-row--last" bindtap="showAbout" hover-class="m-row--press">
+      <text class="m-label">关于</text><text class="m-value">v1.0.0 ›</text>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="c-tabbar">
+    <view class="c-tab-item" bindtap="goHome"><text class="c-tab-icon">📋</text><text class="c-tab-text">工单</text></view>
+    <view class="c-tab-item" bindtap="goAlert"><text class="c-tab-icon">🔔</text><text class="c-tab-text">告警</text></view>
+    <view class="c-tab-item" bindtap="goElders"><text class="c-tab-icon">👴</text><text class="c-tab-text">老人</text></view>
+    <view class="c-tab-item c-tab-item--active"><text class="c-tab-icon">👤</text><text class="c-tab-text">我的</text></view>
+  </view>
+
+</view>

@@ -1,0 +1,66 @@
+<!-- daughter/services.wxml —— 服务机构列表 -->
+<view class="svc-page {{dark ? 'dark' : ''}}">
+
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">输入机构名称搜索</text>
+    </view>
+  </view>
+
+  <!-- 服务类型 -->
+  <scroll-view scroll-x class="type-tabs">
+    <view class="type-tab {{type === 'all' ? 'type-tab--active' : ''}}" bindtap="setType" data-t="all">全部</view>
+    <view class="type-tab {{type === 'elder' ? 'type-tab--active' : ''}}" bindtap="setType" data-t="elder">养老机构</view>
+    <view class="type-tab {{type === 'clean' ? 'type-tab--active' : ''}}" bindtap="setType" data-t="clean">保洁</view>
+    <view class="type-tab {{type === 'care' ? 'type-tab--active' : ''}}" bindtap="setType" data-t="care">护理</view>
+    <view class="type-tab {{type === 'escort' ? 'type-tab--active' : ''}}" bindtap="setType" data-t="escort">陪诊</view>
+  </scroll-view>
+
+  <!-- 区域筛选 -->
+  <scroll-view scroll-x class="area-tabs">
+    <view class="area-tab" wx:for="{{areas}}" wx:key="*this" bindtap="setArea" data-a="{{item}}">{{item}}</view>
+  </scroll-view>
+
+  <!-- 机构列表 -->
+  <view class="org-list">
+    <view wx:for="{{orgs}}" wx:key="id" class="org-card">
+      <view class="org-img">
+        <image wx:if="{{item.img}}" class="org-img-el" src="{{item.img}}" mode="aspectFill" />
+        <text wx:else class="org-img-text">机构图</text>
+      </view>
+      <view class="org-body">
+        <text class="org-name">{{item.name}}</text>
+        <view class="org-tags">
+          <text class="org-tag">{{item.type}}</text>
+          <text class="org-tag org-tag--green">{{item.score}}分</text>
+        </view>
+        <text class="org-addr">📍 {{item.address}}</text>
+        <text class="org-area">{{item.area}} · 距您 1.2km</text>
+      </view>
+      <view class="org-call" catchtap="callOrg" data-phone="{{item.phone}}">电话</view>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="d-tabbar">
+    <view class="d-tab" bindtap="goHome">
+      <text class="d-tab-icon">⌂</text>
+      <text class="d-tab-text">首页</text>
+    </view>
+    <view class="d-tab" bindtap="goAlerts">
+      <text class="d-tab-icon">🔔</text>
+      <text class="d-tab-text">告警</text>
+    </view>
+    <view class="d-tab d-tab--active">
+      <text class="d-tab-icon">🏠</text>
+      <text class="d-tab-text">服务</text>
+    </view>
+    <view class="d-tab" bindtap="goMine">
+      <text class="d-tab-icon">👤</text>
+      <text class="d-tab-text">我的</text>
+    </view>
+  </view>
+
+</view>

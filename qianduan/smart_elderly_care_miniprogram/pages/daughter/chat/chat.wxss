@@ -1,0 +1,13 @@
+/* daughter/chat.wxss */
+.chat-page { display: flex; flex-direction: column; height: 100vh; background: #f6f4ef; }
+.chat-list { flex: 1; padding: 24rpx 28rpx; box-sizing: border-box; }
+.msg-row { margin-bottom: 24rpx; display: flex; flex-direction: column; align-items: flex-start; }
+.msg-row--me { align-items: flex-end; }
+.msg-bubble { max-width: 70%; padding: 20rpx 28rpx; border-radius: 20rpx; background: #fff; font-size: 30rpx; color: #0f172a; line-height: 1.5; }
+.msg-row--me .msg-bubble { background: #0369a1; color: #fff; }
+.msg-time { margin-top: 8rpx; font-size: 20rpx; color: #94a3b8; }
+.chat-empty { padding: 120rpx 0; text-align: center; }
+.chat-empty-text { font-size: 26rpx; color: #94a3b8; }
+.chat-input { display: flex; align-items: center; padding: 16rpx 24rpx; padding-bottom: calc(16rpx + env(safe-area-inset-bottom)); background: #fff; gap: 16rpx; }
+.chat-field { flex: 1; height: 80rpx; padding: 0 28rpx; background: #f1f5f9; border-radius: 999rpx; font-size: 28rpx; }
+.chat-send { padding: 0 36rpx; height: 80rpx; line-height: 80rpx; background: #0369a1; color: #fff; border-radius: 999rpx; font-size: 28rpx; }

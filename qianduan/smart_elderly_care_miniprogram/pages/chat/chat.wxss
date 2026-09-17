@@ -1,0 +1,411 @@
+/* chat.wxss —— 关爱陪伴首页 */
+.companion-page {
+  padding: 16rpx 28rpx;
+  padding-bottom: calc(150rpx + env(safe-area-inset-bottom));
+}
+
+/* 渐变头 → 浅蓝氛围 */
+.companion-hero {
+  margin: 8rpx -28rpx 24rpx;
+  padding: 48rpx 48rpx 56rpx;
+  background: linear-gradient(180deg, var(--brand-100) 0%, rgba(224, 242, 254, 0) 100%);
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.companion-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.3rpx;
+}
+
+.companion-sub {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: var(--ink-600);
+}
+
+.companion-meta {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+.companion-dot {
+  width: 4rpx;
+  height: 4rpx;
+  border-radius: 50%;
+  background: var(--ink-300, #cbd5e1);
+}
+
+/* 今日推荐 → 白卡 */
+.recommend-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx;
+  border-radius: 24rpx;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.recommend--press {
+  opacity: 0.85;
+}
+
+/* 每日暖心语录 */
+.quote-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx 28rpx;
+  border-radius: 20rpx;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+  margin-top: 16rpx;
+  margin-bottom: 28rpx;
+}
+.quote-icon {
+  font-size: 44rpx;
+  color: #93c5fd;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+  margin-top: 2rpx;
+  line-height: 1;
+}
+.quote-body {
+  flex: 1;
+  min-width: 0;
+}
+.quote-tag {
+  display: block;
+  font-size: 22rpx;
+  color: #60a5fa;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+}
+.quote-text {
+  display: block;
+  font-size: 28rpx;
+  color: var(--ink-700);
+  line-height: 1.6;
+}
+
+.recommend-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.recommend-tag {
+  font-size: 24rpx;
+  color: var(--brand-600);
+}
+
+.recommend-title {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.recommend-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+.recommend-play {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: var(--brand-100);
+  color: var(--brand-600);
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 24rpx;
+}
+
+/* 分区标题 */
+.sec-head {
+  margin: 40rpx 4rpx 8rpx;
+}
+
+.sec-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.sec-sub {
+  display: block;
+  margin: 8rpx 4rpx 0;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+/* 大色块入口 */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.color-card {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  border-radius: 24rpx;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.color-card--press {
+  opacity: 0.85;
+}
+
+.color-icon {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 24rpx;
+  background: var(--brand-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.color-icon .ic-bot-w {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(85%) saturate(1800%) hue-rotate(190deg);
+}
+
+.color-body {
+  flex: 1;
+  margin-left: 24rpx;
+  min-width: 0;
+}
+
+.color-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.color-desc {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+.color-arrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.color-card--rose,
+.color-card--blue,
+.color-card--pink,
+.color-card--amber {
+  background: var(--color-card);
+}
+
+.color-card--cyan {
+  background: var(--color-card);
+}
+
+/* AI 陪聊入口 */
+.ai-entry {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  padding: 28rpx;
+  border-radius: 24rpx;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.ai-entry--press {
+  opacity: 0.85;
+}
+
+.ai-entry-ic {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 24rpx;
+  background: var(--brand-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ai-entry-body {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.ai-entry-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.ai-entry-desc {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+/* 悬浮 AI 球 */
+/* 悬浮 AI 球 */
+.float-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.float-ball {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2rpx solid #bae6fd;
+  box-shadow: 0 4rpx 16rpx rgba(3, 105, 161, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.float-ball-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0369a1;
+  letter-spacing: 0;
+}
+.float-ball-img {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+}
+
+.float-ball--press {
+  opacity: 0.85;
+  transform: scale(0.92);
+}
+
+.ai-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: maskIn 0.2s ease both;
+}
+
+@keyframes maskIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ai-picker-card {
+  width: 600rpx;
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 40rpx 32rpx 32rpx;
+  animation: cardIn 0.25s ease both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20rpx); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ai-picker-title {
+  display: block;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  margin-bottom: 32rpx;
+}
+
+.ai-picker-option {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background: var(--color-canvas);
+  margin-bottom: 20rpx;
+}
+
+.ai-picker-option:active {
+  background: var(--color-canvas-secondary);
+}
+
+.ai-picker-ic {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ai-picker-ic--blue {
+  background: var(--brand-100);
+}
+
+.ai-picker-ic--green {
+  background: var(--safe-soft);
+}
+
+.ai-picker-body {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.ai-picker-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.ai-picker-desc {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+.ai-picker-cancel {
+  margin-top: 12rpx;
+  text-align: center;
+  padding: 24rpx;
+  font-size: 30rpx;
+  color: var(--ink-500);
+}

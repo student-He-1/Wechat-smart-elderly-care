@@ -1,0 +1,91 @@
+/* detail.wxss —— 个人资料二级页 */
+.detail-page {
+  padding: 32rpx;
+}
+
+/* 顶部头像 */
+.detail-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 48rpx;
+}
+
+.detail-avatar {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 32rpx;
+  background: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-avatar .ic {
+  filter: brightness(0) invert(1);
+}
+
+.detail-name {
+  margin-top: 20rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+/* 分区小标签 */
+.sec-label {
+  margin: 32rpx 8rpx 16rpx;
+  font-size: 24rpx;
+  color: var(--ink-500);
+}
+
+/* 列表 */
+.list-group {
+  background: var(--color-card);
+  border-radius: 24rpx;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  min-height: 112rpx;
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row--press {
+  background: var(--color-canvas-secondary);
+}
+
+.info-label {
+  font-size: var(--fs-body);
+  color: var(--ink-600);
+  width: 168rpx;
+  flex-shrink: 0;
+}
+
+.info-value {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--ink-800);
+}
+
+.info-edit {
+  flex-shrink: 0;
+  font-size: var(--fs-caption);
+  color: var(--brand-600);
+  font-weight: 600;
+}
+
+.info-arrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+}

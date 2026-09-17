@@ -1,0 +1,19 @@
+<!-- contact/chat.wxml —— 老人端发消息给子女 -->
+<view class="chat-page {{dark ? 'dark' : ''}}">
+
+  <scroll-view scroll-y class="chat-list" scroll-into-view="{{lastMsgId}}">
+    <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}" class="msg-row {{item.from === 'parent' ? 'msg-row--me' : ''}}">
+      <view class="msg-bubble">{{item.text}}</view>
+      <text class="msg-time">{{item.time}}</text>
+    </view>
+    <view wx:if="{{messages.length === 0}}" class="chat-empty">
+      <text class="chat-empty-text">开始和家人聊天吧</text>
+    </view>
+  </scroll-view>
+
+  <view class="chat-input">
+    <input class="chat-field" placeholder="输入消息" value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="send" />
+    <view class="chat-send" bindtap="send">发送</view>
+  </view>
+
+</view>

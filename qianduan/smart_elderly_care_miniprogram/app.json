@@ -1,0 +1,90 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/news/index",
+    "pages/news/detail/detail",
+    "pages/knowledge/detail/detail",
+    "pages/activity/activity",
+    "pages/index/index",
+    "pages/health/main/main",
+    "pages/health/consult/consult",
+    "pages/health/consult/doctor/doctor",
+    "pages/health/hospital/hospital",
+    "pages/health/medicine/medicine",
+    "pages/health/assistant/assistant",
+    "pages/health/explain/explain",
+    "pages/health/record/record",
+    "pages/chat/chat",
+    "pages/chat/talk/talk",
+    "pages/companion/music/music",
+    "pages/companion/album/album",
+    "pages/companion/diary/diary",
+    "pages/nearby/nearby",
+    "pages/companion/audiobook/audiobook",
+    "pages/companion/game/memory/memory",
+    "pages/companion/game/index/index",
+    "pages/companion/game/sudoku/sudoku",
+    "pages/companion/game/idiom/idiom",
+    "pages/companion/game/match/match",
+    "pages/companion/game/math/math",
+    "pages/monitor/monitor",
+    "pages/contact/contact",
+    "pages/contact/chat/chat",
+    "pages/contact/worker/worker",
+    "pages/profile/profile",
+    "pages/profile/detail/detail",
+    "pages/profile/reminder/reminder",
+    "pages/profile/voice/voice",
+    "pages/daughter/home/home",
+    "pages/daughter/detail/detail",
+    "pages/daughter/alerts/alerts",
+    "pages/daughter/order/order",
+    "pages/daughter/services/services",
+    "pages/daughter/chat/chat",
+    "pages/daughter/profile/profile",
+    "pages/daughter/mine/mine",
+    "pages/community/messages/messages",
+    "pages/community/home/home",
+    "pages/community/order-detail/order-detail",
+    "pages/community/alert/alert",
+    "pages/community/elders/elders",
+    "pages/community/profile/profile",
+    "pages/community/mine/mine",
+    "pages/community/rules/rules",
+    "pages/community/rules/detail/detail",
+    "pages/community/visit/visit",
+    "pages/community/evaluation/evaluation"
+  ],
+  "window": {
+    "backgroundColor": "#f6f4ef",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "智慧养老",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#94a3b8",
+    "selectedColor": "#0369a1",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/health/main/main",
+        "text": "健康"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "陪伴"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

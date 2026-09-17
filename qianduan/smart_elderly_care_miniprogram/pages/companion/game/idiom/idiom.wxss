@@ -1,0 +1,185 @@
+/* pages/companion/game/idiom/idiom.wxss */
+.page-idiom {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fdf4ff 0%, #ffffff 40%);
+  padding: 32rpx 28rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 顶部进度 */
+.idiom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(168, 85, 247, 0.08);
+  margin-bottom: 28rpx;
+}
+.header-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6rpx;
+}
+.header-label {
+  font-size: 26rpx;
+  color: #94a3b8;
+}
+.header-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+.header-value--score {
+  color: #a855f7;
+}
+
+/* 当前成语卡片 */
+.current-idiom-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 20rpx rgba(168, 85, 247, 0.1);
+  margin-bottom: 32rpx;
+  border: 4rpx solid #f3e8ff;
+}
+.current-label {
+  display: block;
+  font-size: 26rpx;
+  color: #a855f7;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+.current-idiom {
+  display: block;
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 8rpx;
+  margin-bottom: 20rpx;
+}
+.current-tip {
+  display: block;
+  font-size: 26rpx;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* 选项 */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 28rpx;
+}
+.option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110rpx;
+  background: #fff;
+  border: 4rpx solid #e9d5ff;
+  border-radius: 20rpx;
+  position: relative;
+  transition: all 0.15s;
+}
+.option-btn:active {
+  transform: scale(0.97);
+  background: #faf5ff;
+}
+.option-text {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #6b21a8;
+  letter-spacing: 4rpx;
+}
+.option--correct {
+  background: #f0fdf4 !important;
+  border-color: #4ade80 !important;
+}
+.option--correct .option-text {
+  color: #16a34a;
+}
+.option--wrong {
+  background: #fef2f2 !important;
+  border-color: #f87171 !important;
+}
+.option--wrong .option-text {
+  color: #ef4444;
+}
+.option-mark {
+  position: absolute;
+  right: 28rpx;
+  font-size: 40rpx;
+  color: #16a34a;
+  font-weight: 700;
+}
+.option-mark--wrong {
+  color: #ef4444;
+}
+
+/* 答题反馈 */
+.feedback {
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+.feedback-text {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.feedback--correct { color: #16a34a; }
+.feedback--wrong { color: #ef4444; }
+
+/* 下一题 */
+.next-wrap {
+  display: flex;
+  justify-content: center;
+}
+.next-btn {
+  min-width: 320rpx;
+  height: 96rpx;
+  font-size: 34rpx;
+  border-radius: 48rpx;
+  background: linear-gradient(135deg, #c084fc, #a855f7);
+  color: #fff;
+}
+
+/* 结果弹窗 */
+.complete-mask {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.complete-card {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.complete-emoji { font-size: 96rpx; margin-bottom: 16rpx; }
+.complete-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #a855f7;
+  margin-bottom: 16rpx;
+}
+.complete-desc { font-size: 30rpx; color: #475569; margin-bottom: 8rpx; }
+.complete-encourage { font-size: 28rpx; color: #94a3b8; margin-bottom: 32rpx; text-align: center; line-height: 1.5; }
+.complete-btn {
+  width: 100%;
+  height: 96rpx;
+  font-size: 34rpx;
+  border-radius: 48rpx;
+  background: linear-gradient(135deg, #c084fc, #a855f7);
+  color: #fff;
+}

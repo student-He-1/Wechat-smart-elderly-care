@@ -1,0 +1,88 @@
+/* medicine.wxss */
+.page {
+  padding-bottom: 64rpx;
+}
+
+/* 药品列表 */
+.medicine-list {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 0 32rpx;
+}
+
+.medicine-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 128rpx;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.medicine-item:last-child {
+  border-bottom: none;
+}
+
+.medicine-info {
+  flex: 1;
+  min-width: 0;
+  padding-right: 24rpx;
+}
+
+.medicine-name {
+  display: block;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: 8rpx;
+}
+
+.medicine-meta {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+  line-height: 1.6;
+}
+
+.medicine-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  flex-shrink: 0;
+}
+
+.medicine-btn {
+  min-height: 80rpx;
+  min-width: 120rpx;
+  padding: 0 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+}
+
+.medicine-btn:active {
+  opacity: 0.75;
+}
+
+.btn-edit {
+  background: var(--brand-soft);
+  color: var(--brand-700);
+}
+
+.btn-delete {
+  background: var(--danger-soft);
+  color: var(--danger-700);
+}
+
+
+/* ===== 图标化补充（v3） ===== */
+.row-ic {
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 22rpx;
+  background: var(--brand-100);
+}

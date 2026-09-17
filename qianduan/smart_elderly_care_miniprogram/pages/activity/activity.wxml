@@ -1,0 +1,27 @@
+<!-- activity.wxml -->
+<view class="act-page {{dark ? 'dark' : ''}}">
+
+  <view class="act-list">
+    <view wx:for="{{list}}" wx:key="id" class="act-card">
+      <view class="act-img">
+        <image wx:if="{{item.img}}" class="act-img-el" src="{{item.img}}" mode="aspectFill" />
+        <text wx:else class="act-img-text">活动图</text>
+      </view>
+      <view class="act-body">
+        <text class="act-title">{{item.title}}</text>
+        <text class="act-desc">{{item.desc}}</text>
+        <view class="act-meta">
+          <text class="act-time">🕐 {{item.time}}</text>
+          <text class="act-loc">📍 {{item.location}}</text>
+        </view>
+        <view class="act-foot">
+          <text class="act-tag">{{item.tag}}</text>
+          <view class="act-btn {{item.joined ? 'act-btn--joined' : ''}}" catchtap="join" data-id="{{item.id}}">
+            {{item.joined ? '已报名 ✓' : '立即报名'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

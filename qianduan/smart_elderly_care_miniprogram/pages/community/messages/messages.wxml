@@ -1,0 +1,17 @@
+<!-- community/messages.wxml —— 老人留言（聊天样式） -->
+<view class="cm-page">
+  <scroll-view scroll-y class="cm-list" scroll-into-view="{{lastId}}">
+    <view wx:for="{{list}}" wx:key="id" id="m-{{item.id}}" class="cm-row {{item.from === 'community' ? 'cm-row--me' : ''}}">
+      <view class="cm-bubble">{{item.text}}</view>
+      <text class="cm-time">{{item.time}}</text>
+    </view>
+    <view wx:if="{{list.length === 0}}" class="cm-empty">
+      <text class="cm-empty-text">暂无老人留言</text>
+    </view>
+  </scroll-view>
+
+  <view class="cm-input">
+    <input class="cm-field" placeholder="回复张奶奶..." value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="send" />
+    <view class="cm-send" bindtap="send">发送</view>
+  </view>
+</view>

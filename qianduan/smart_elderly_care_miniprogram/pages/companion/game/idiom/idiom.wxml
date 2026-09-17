@@ -1,0 +1,57 @@
+<!--pages/companion/game/idiom/idiom.wxml-->
+<view class="page page-idiom">
+  <!-- 顶部进度 -->
+  <view class="idiom-header">
+    <view class="header-item">
+      <text class="header-label">第</text>
+      <text class="header-value">{{currentIndex + 1}}</text>
+      <text class="header-label">/ {{questions.length}} 题</text>
+    </view>
+    <view class="header-item">
+      <text class="header-label">得分</text>
+      <text class="header-value header-value--score">{{score}}</text>
+    </view>
+  </view>
+
+  <!-- 当前成语 -->
+  <view class="current-idiom-card">
+    <text class="current-label">上一个成语</text>
+    <text class="current-idiom">{{currentQuestion.current}}</text>
+    <text class="current-tip">请选出以「{{currentQuestion.current[currentQuestion.current.length - 1]}}」字开头的成语</text>
+  </view>
+
+  <!-- 选项 -->
+  <view class="options">
+    <view class="option-btn
+          {{isAnswered && selectedIndex === index ? (currentQuestion.options[index] === currentQuestion.answer ? 'option--correct' : 'option--wrong') : ''}}
+          {{isAnswered && currentQuestion.options[index] === currentQuestion.answer ? 'option--correct' : ''}}"
+          wx:for="{{currentQuestion.options}}" wx:key="*this"
+          data-index="{{index}}" bindtap="selectOption">
+      <text class="option-text">{{item}}</text>
+      <text wx:if="{{isAnswered && currentQuestion.options[index] === currentQuestion.answer}}" class="option-mark">✓</text>
+      <text wx:if="{{isAnswered && selectedIndex === index && currentQuestion.options[index] !== currentQuestion.answer}}" class="option-mark option-mark--wrong">✗</text>
+    </view>
+  </view>
+
+  <!-- 答题反馈 -->
+  <view wx:if="{{isAnswered}}" class="feedback">
+    <text wx:if="{{currentQuestion.options[selectedIndex] === currentQuestion.answer}}" class="feedback-text feedback--correct">🎉 回答正确！</text>
+    <text wx:else class="feedback-text feedback--wrong">😅 正确答案是「{{currentQuestion.answer}}」</text>
+  </view>
+
+  <!-- 下一题按钮 -->
+  <view wx:if="{{isAnswered}}" class="next-wrap">
+    <button class="btn btn-primary next-btn" bindtap="nextQuestion">{{currentIndex + 1 >= questions.length ? '查看结果' : '下一题'}}</button>
+  </view>
+
+  <!-- 结果弹窗 -->
+  <view wx:if="{{isFinished}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">{{score >= 8 ? '🏆' : score >= 5 ? '🎉' : '💪'}}</text>
+      <text class="complete-title">{{score >= 8 ? '太棒了！' : score >= 5 ? '不错哦！' : '继续加油！'}}</text>
+      <text class="complete-desc">本轮 {{questions.length}} 题，答对 {{score}} 题</text>
+      <text class="complete-encourage">{{score >= 8 ? '成语积累真丰富，记忆力真好！' : score >= 5 ? '多玩几次，成语会越来越熟！' : '没关系，多玩玩就能记住更多成语啦'}}</text>
+      <button class="btn btn-primary complete-btn" bindtap="restart">再玩一轮</button>
+    </view>
+  </view>
+</view>

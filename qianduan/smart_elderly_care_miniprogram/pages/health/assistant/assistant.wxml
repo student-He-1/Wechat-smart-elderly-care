@@ -1,0 +1,120 @@
+<!-- assistant.wxml -->
+<view class="page page-assistant {{dark ? 'dark' : ''}}">
+  <!-- 页头 + 方言 + 清空 -->
+  <view class="assistant-header">
+    <view>
+      <text class="section-title">健康小助手</text>
+      <text class="section-subtitle">AI 智能健康问答</text>
+    </view>
+    <view class="header-actions">
+      <view class="clear-btn" bindtap="clearChat" hover-class="clear-btn--press">清空对话</view>
+      <picker range="{{dialects}}" range-key="label" value="{{selectedDialectIndex}}" bindchange="changeDialect">
+        <view class="dialect-pill">
+          <text class="dialect-label">方言</text>
+          <text class="dialect-value">{{selectedDialectLabel}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 常见问题 -->
+  <view class="questions-wrap">
+    <!-- 第一行 -->
+    <view class="marquee">
+      <view class="marquee-track">
+        <button
+          wx:for="{{commonRow1}}"
+          wx:key="index"
+          class="question-chip"
+          bindtap="selectQuestion"
+          data-question="{{item}}"
+          hover-class="question-chip--press"
+        >{{item}}</button>
+        <button
+          wx:for="{{commonRow1}}"
+          wx:key="index"
+          class="question-chip"
+          bindtap="selectQuestion"
+          data-question="{{item}}"
+          hover-class="question-chip--press"
+        >{{item}}</button>
+      </view>
+    </view>
+    <!-- 第二行 -->
+    <view class="marquee">
+      <view class="marquee-track">
+        <button
+          wx:for="{{commonRow2}}"
+          wx:key="index"
+          class="question-chip"
+          bindtap="selectQuestion"
+          data-question="{{item}}"
+          hover-class="question-chip--press"
+        >{{item}}</button>
+        <button
+          wx:for="{{commonRow2}}"
+          wx:key="index"
+          class="question-chip"
+          bindtap="selectQuestion"
+          data-question="{{item}}"
+          hover-class="question-chip--press"
+        >{{item}}</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 聊天记录 -->
+  <scroll-view scroll-y class="chat-history" scroll-top="{{scrollTop}}" enhanced show-scrollbar="{{false}}">
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <!-- 用户消息（头像在最右） -->
+      <view wx:if="{{item.role === 'user'}}" class="chat-row chat-row--user">
+        <view class="avatar avatar-user"><image class="avatar-img" src="{{userAvatar}}" mode="aspectFill" /></view>
+        <view class="bubble bubble-user bubble-in">
+          <text class="bubble-text">{{item.content}}</text>
+        </view>
+      </view>
+      <!-- 助手消息 -->
+      <view wx:else class="chat-row chat-row--assistant">
+        <view class="avatar avatar-ai"><image class="avatar-img" src="/assets/images/robot.png" mode="aspectFill" /></view>
+        <view class="bubble bubble-ai bubble-in">
+          <!-- 思考过程（子女端折叠展示） -->
+          <view wx:if="{{item.thinking}}" class="think-box">
+            <view class="think-head" bindtap="toggleThink" data-index="{{index}}">
+              <text class="think-title">{{item.thinkingOpen ? '收起思考 ▲' : '思考过程 ▼'}}</text>
+            </view>
+            <text wx:if="{{item.thinkingOpen}}" class="think-text">{{item.thinking}}</text>
+          </view>
+          <!-- 还没出字时显示加载点；出字后渲染分段 -->
+          <text wx:if="{{!item.content}}" class="loading-dots"><text></text><text></text><text></text></text>
+          <text wx:else class="bubble-text">
+            <block wx:for="{{item.segments}}" wx:for-item="seg" wx:key="index">
+              <text wx:if="{{seg.type==='term'}}" class="term-chip" hover-class="term-chip--press"
+                    bindtap="openBranch" data-term="{{seg.text}}" data-index="{{index}}">{{seg.text}}</text>
+              <text wx:else>{{seg.text}}</text>
+            </block>
+          </text>
+          <button wx:if="{{item.content}}" class="speak-btn" bindtap="speakAnswer" data-index="{{index}}">
+            <view class="ic ic-32 ic-speaker-b speak-ic"></view>语音播报
+          </button>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-bar">
+    <input
+      class="chat-input"
+      placeholder="请输入您的健康问题…"
+      placeholder-class="chat-input-placeholder"
+      value="{{inputValue}}"
+      confirm-type="send"
+      bindinput="bindInput"
+      bindconfirm="sendQuestion"
+    />
+    <button class="voice-btn {{isRecording ? 'is-recording' : ''}}" bindtap="startVoiceRecording" aria-label="语音输入">
+      <view class="ic ic-40 {{isRecording ? 'ic-stop-w' : 'ic-mic-b'}}"></view>
+    </button>
+    <button class="btn btn-primary send-btn" bindtap="sendQuestion">发送</button>
+  </view>
+</view>

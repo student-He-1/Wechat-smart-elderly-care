@@ -1,0 +1,45 @@
+<!-- daughter/order.wxml —— 服务代付页 -->
+<view class="order-page {{dark ? 'dark' : ''}}">
+
+  <!-- 服务选择 -->
+  <view class="sec-head"><text class="sec-title">选择服务</text></view>
+  <view class="service-grid">
+    <view wx:for="{{services}}" wx:key="id"
+          class="service-cell {{selectedService === item.id ? 'service-cell--active' : ''}}"
+          bindtap="selectService" data-id="{{item.id}}">
+      <text class="service-name">{{item.name}}</text>
+      <text class="service-price">¥{{item.price}}</text>
+    </view>
+  </view>
+
+  <!-- 预约时间 -->
+  <view class="sec-head"><text class="sec-title">预约时间</text></view>
+  <view class="form-card">
+    <picker mode="date" value="{{date}}" bindchange="onDateChange">
+      <view class="form-row">
+        <text class="form-label">日期</text>
+        <text class="form-value">{{date}}</text>
+      </view>
+    </picker>
+    <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+      <view class="form-row form-row--last">
+        <text class="form-label">时间</text>
+        <text class="form-value">{{time}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 服务地址 -->
+  <view class="sec-head"><text class="sec-title">服务地址</text></view>
+  <view class="form-card">
+    <view class="form-row form-row--last">
+      <text class="form-value" style="color:var(--ink-900)">天津市和平区XX小区 3-2-501</text>
+    </view>
+  </view>
+
+  <!-- 提交 -->
+  <button class="submit-btn" bindtap="submitOrder" hover-class="submit-btn--press">
+    代付下单 ¥{{selectedPrice}}
+  </button>
+
+</view>

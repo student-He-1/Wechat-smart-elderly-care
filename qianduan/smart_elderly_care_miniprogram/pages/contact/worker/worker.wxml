@@ -1,0 +1,17 @@
+<!-- contact/worker.wxml -->
+<view class="chat-page">
+  <scroll-view scroll-y class="chat-list" scroll-into-view="{{lastMsgId}}">
+    <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}" class="msg-row {{item.from === 'parent' ? 'msg-row--me' : ''}}">
+      <view class="msg-bubble">{{item.text}}</view>
+      <text class="msg-time">{{item.time}}</text>
+    </view>
+    <view wx:if="{{messages.length === 0}}" class="chat-empty">
+      <text class="chat-empty-text">和王师傅说点什么吧</text>
+    </view>
+  </scroll-view>
+
+  <view class="chat-input">
+    <input class="chat-field" placeholder="留言给王师傅..." value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="send" />
+    <view class="chat-send" bindtap="send">发送</view>
+  </view>
+</view>

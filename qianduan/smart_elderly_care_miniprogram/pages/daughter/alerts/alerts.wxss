@@ -1,0 +1,90 @@
+/* daughter/alerts.wxss */
+.alerts-page { padding: 16rpx 28rpx 200rpx; }
+
+.filter-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin: 8rpx 0 24rpx;
+}
+
+.filter-tab {
+  padding: 12rpx 28rpx;
+  border-radius: 999rpx;
+  background: var(--color-card);
+  font-size: 26rpx;
+  color: var(--ink-600);
+}
+
+.filter-tab--active {
+  background: var(--brand-600);
+  color: #fff;
+  font-weight: 600;
+}
+
+.alert-list { display: flex; flex-direction: column; gap: 16rpx; }
+
+.alert-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 28rpx;
+  border-radius: 20rpx;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.alert-card--urgent { border-left: 8rpx solid #dc2626; }
+.alert-card--normal { border-left: 8rpx solid #f59e0b; }
+
+.alert-ic {
+  width: 64rpx; height: 64rpx;
+  border-radius: 18rpx;
+  background: #fee2e2;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.alert-card--normal .alert-ic { background: #fef3c7; }
+
+.alert-body { flex: 1; margin-left: 20rpx; }
+.alert-title { display:block; font-size: 28rpx; font-weight: 600; color: var(--ink-900); }
+.alert-time { display:block; margin-top: 4rpx; font-size: 22rpx; color: var(--ink-500); }
+.alert-shot { display: block; width: 220rpx; height: 150rpx; margin-top: 12rpx; border-radius: 12rpx; background: var(--color-canvas-secondary, #f1f5f9); }
+.alert-status { display:inline-block; margin-top: 8rpx; font-size: 22rpx; padding: 2rpx 14rpx; border-radius: 999rpx; }
+.alert-status--done { background: var(--safe-soft); color: #15803d; }
+.alert-status--pending { background: #fef3c7; color: #b45309; }
+
+.alert-action {
+  padding: 12rpx 28rpx;
+  border-radius: 999rpx;
+  background: var(--brand-600);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.empty { padding: 120rpx 0; text-align: center; }
+.empty-text { font-size: 26rpx; color: var(--ink-500); }
+
+.d-tabbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 999;
+  display: flex;
+  height: calc(104rpx + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: #ffffff;
+  box-shadow: 0 -4rpx 24rpx rgba(15,42,61,0.06);
+}
+
+.d-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rpx;
+}
+
+.d-tab-icon { font-size: 40rpx; }
+.d-tab-text { font-size: 24rpx; color: #94a3b8; }
+.d-tab--active .d-tab-text { color: #0369a1; font-weight: 700; }

@@ -1,0 +1,560 @@
+@import "/assets/icons.wxss";
+
+/* =====================================================
+   智慧养老 · 安心照护设计系统 v2
+   设计依据：ui-ux-pro-max「Accessible & Ethical」
+   原则：高对比 / 大字号 / 宽热区 / 单一信任蓝主色
+   全部令牌基于 375 宽度设计稿（1px = 2rpx）
+   ===================================================== */
+
+/* ---------- 设计令牌 ---------- */
+page {
+  /* 品牌色：信任蓝 */
+  --brand-700: #075985;            /* 按压态 / 深底 */
+  --brand-600: #0369a1;            /* 主色：按钮/选中/链接 */
+  --brand-500: #0ea5e9;            /* 渐变浅端 */
+  --brand-100: #e0f2fe;            /* 浅蓝底 */
+  --brand-50:  #f0f9ff;            /* 页面底色 */
+  --brand-soft: rgba(3, 105, 161, 0.10);
+
+  /* 语义色（深字均满足白底 4.5:1） */
+  --safe: #15803d;                 /* 安全/正常 */
+  --safe-soft: #dcfce7;
+  --warn: #b45309;                 /* 待处理/提醒 */
+  --warn-soft: #fef3c7;
+  --danger: #dc2626;               /* 紧急/删除 */
+  --danger-700: #b91c1c;
+  --danger-soft: #fee2e2;
+
+  /* 文字（深蓝灰，不用纯黑，更柔和） */
+  --ink-900: #0f2a3d;              /* 大标题 */
+  --ink-800: #1e3a4f;              /* 卡片标题 */
+  --ink-700: #334155;              /* 正文 */
+  --ink-600: #475569;              /* 次要文字 */
+  --ink-500: #64748b;              /* 辅助文字（仅 ≥26rpx 使用） */
+
+  /* 表面 */
+  --color-canvas: #f6f4ef;            /* 暖白纸感底 */
+  --color-canvas-secondary: #f2efe8;  /* 暖灰填充 */
+  --color-card: #ffffff;
+  --color-hairline: #ebe7de;          /* 暖白分隔线 */
+
+  /* 兼容旧令牌名（过渡期，新代码请使用上方语义名） */
+  --color-accent: var(--brand-600);
+  --color-accent-press: var(--brand-700);
+  --color-ink: var(--ink-800);
+  --color-ink-secondary: var(--ink-600);
+  --color-ink-tertiary: var(--ink-500);
+  --color-success: var(--safe);
+  --color-warning: #d97706;
+  --color-danger: var(--danger);
+
+  /* 字号阶梯（适老：正文 ≥32rpx，最小 26rpx 仅作辅助） */
+  --fs-hero: 48rpx;
+  --fs-title: 40rpx;
+  --fs-card-title: 34rpx;
+  --fs-body: 32rpx;
+  --fs-label: 28rpx;
+  --fs-caption: 26rpx;
+
+  /* 圆角 */
+  --radius-xl: 28rpx;
+  --radius-lg: 24rpx;
+  --radius-md: 18rpx;
+  --radius-sm: 12rpx;
+  --radius-pill: 999rpx;
+
+  /* 阴影：蓝调柔光，层级克制 */
+  --shadow-card: 0 6rpx 20rpx rgba(35, 33, 28, 0.05);
+  --shadow-float: 0 12rpx 32rpx rgba(35, 33, 28, 0.10);
+  --shadow-modal: 0 24rpx 64rpx rgba(35, 33, 28, 0.16);
+
+  background: linear-gradient(180deg, #fbf9f4 0%, #f6f4ef 260rpx, #f6f4ef 100%);
+  color: var(--ink-800);
+  font-family: "PingFang SC", "DengXian", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 原生组件重置 ---------- */
+button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  line-height: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+button::after {
+  border: none;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+/* ---------- 布局基座 ---------- */
+.page {
+  padding: 32rpx;
+  padding-bottom: calc(150rpx + env(safe-area-inset-bottom));
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 子页面页头：标题在左，操作在右 */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 4rpx 32rpx;
+  gap: 24rpx;
+}
+
+/* ---------- 文本层级 ---------- */
+.section-title {
+  display: block;
+  font-size: var(--fs-title);
+  font-weight: 600;
+  letter-spacing: -0.3rpx;
+  color: var(--ink-900);
+}
+
+.section-subtitle {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+  margin-top: 10rpx;
+}
+
+.body-text {
+  font-size: var(--fs-body);
+  color: var(--ink-700);
+  line-height: 1.7;
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+/* ---------- 分区头 ---------- */
+.section-header {
+  display: block;
+  margin: 48rpx 4rpx 24rpx;
+}
+
+.section-rule {
+  display: block;
+  width: 56rpx;
+  height: 8rpx;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
+  margin-bottom: 16rpx;
+}
+
+/* ---------- 共享图标盒（服务行/功能卡） ---------- */
+.svc-iconbox{display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:22rpx;}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: 32rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.card-surface {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* 分组列表容器（设置类页面） */
+.list-group {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ---------- 按钮（适老：主按钮高 96rpx） ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 96rpx;
+  box-sizing: border-box;
+  padding: 0 44rpx;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  transition: opacity 0.15s ease;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background: var(--brand-600);
+  color: #ffffff;
+}
+
+.btn-ghost {
+  background: var(--brand-soft);
+  color: var(--brand-700);
+}
+
+.btn-gray {
+  background: var(--color-canvas-secondary);
+  color: var(--ink-700);
+}
+
+.btn-danger-text {
+  background: var(--danger-soft);
+  color: var(--danger-700);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* 紧凑按钮：高 80rpx + 宽内边距，保证实际热区 */
+.btn-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80rpx;
+  padding: 0 32rpx;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* ---------- 输入 ---------- */
+.input {
+  width: 100%;
+  min-height: 96rpx;
+  box-sizing: border-box;
+  padding: 0 32rpx;
+  font-size: var(--fs-body);
+  background: var(--color-canvas-secondary);
+  border-radius: var(--radius-md);
+  color: var(--ink-800);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 220rpx;
+  box-sizing: border-box;
+  padding: 28rpx 32rpx;
+  font-size: var(--fs-body);
+  background: var(--color-canvas-secondary);
+  border-radius: var(--radius-md);
+  color: var(--ink-800);
+  line-height: 1.6;
+}
+
+.input-placeholder {
+  color: var(--ink-500);
+}
+
+/* ---------- 状态标签（颜色 + 文字双通道） ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8rpx 24rpx;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.tag-success {
+  background: var(--safe-soft);
+  color: var(--safe);
+}
+
+.tag-warning {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.tag-danger {
+  background: var(--danger-soft);
+  color: var(--danger-700);
+}
+
+.tag-accent {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+
+.tag-muted {
+  background: var(--color-canvas-secondary);
+  color: var(--ink-600);
+}
+
+/* ---------- 分割线 ---------- */
+.hairline {
+  height: 1rpx;
+  background: var(--color-hairline);
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 32rpx;
+}
+
+.empty-title {
+  font-size: var(--fs-card-title);
+  font-weight: 600;
+  color: var(--ink-800);
+  margin-bottom: 12rpx;
+}
+
+.empty-desc {
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+/* ---------- 表单 ---------- */
+.form-field {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--ink-800);
+  margin-bottom: 16rpx;
+}
+
+/* ---------- 弹窗 ---------- */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(15, 42, 61, 0.45);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 86%;
+  box-sizing: border-box;
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  z-index: 1001;
+  padding: 44rpx 32rpx 36rpx;
+}
+
+.modal-title {
+  display: block;
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 36rpx;
+  color: var(--ink-900);
+}
+
+.modal-footer {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 44rpx;
+}
+
+.modal-footer .btn {
+  flex: 1;
+}
+
+/* ---------- 汉字徽标（统一的结构图标体系，非 emoji） ---------- */
+.tile {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--brand-700);
+  background: var(--brand-100);
+  flex-shrink: 0;
+}
+
+.tile-accent {
+  background: var(--brand-600);
+  color: #ffffff;
+}
+
+/* 同级功能入口：浅底 + 深字，全部页面复用 */
+.tile-blue {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+
+.tile-cyan {
+  background: #cffafe;
+  color: #0e7490;
+}
+
+.tile-amber {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.tile-rose {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.tile-emerald {
+  background: var(--safe-soft);
+  color: var(--safe);
+}
+
+/* ---------- 列表行箭头 ---------- */
+.row-arrow {
+  font-size: 40rpx;
+  color: var(--ink-500);
+  margin-left: 16rpx;
+  font-weight: 300;
+}
+
+/* =====================================================
+   动效系统 —— 克制、可被系统「减弱动态效果」关闭
+   ===================================================== */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.45s ease both;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(16rpx) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bubble-in {
+  animation: bubble-in 0.3s ease both;
+}
+
+/* 「正在思考」三连点 */
+@keyframes blink-dot {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 10rpx;
+  align-items: center;
+}
+
+.loading-dots text {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: var(--ink-500);
+  animation: blink-dot 1.4s infinite both;
+}
+
+.loading-dots text:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots text:nth-child(3) { animation-delay: 0.4s; }
+
+/* 尊重系统减弱动态效果设置 */
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .bubble-in,
+  .loading-dots text {
+    animation: none;
+  }
+}
+
+/* ================= 夜间模式 ================= */
+/* 根 view 加 class="dark" 后，所有变量自动切换 */
+.dark {
+  --brand-700: #0ea5e9;
+  --brand-600: #38bdf8;
+  --brand-500: #0ea5e9;
+  --brand-100: #0c4a6e;
+  --brand-50: #082f49;
+  --brand-soft: rgba(56, 189, 248, 0.15);
+
+  --ink-900: #f1f5f9;
+  --ink-800: #e2e8f0;
+  --ink-700: #cbd5e1;
+  --ink-600: #94a3b8;
+  --ink-500: #64748b;
+
+  --color-canvas: #0f172a;
+  --color-canvas-secondary: #1e293b;
+  --color-card: #1e293b;
+  --color-hairline: #334155;
+}
+
+.dark page { background: #0f172a; }
+
+/* 夜间模式：硬编码白色/深色的全局覆盖 */
+.dark, .dark view, .dark text { color: #e2e8f0; }
+.dark .prod-card, .dark .order-card, .dark .m-card, .dark .msg-card,
+.dark .news-list, .dark .list-group, .dark .search-box,
+.dark .org-card, .dark .r-card, .dark .v-card, .dark .e-card,
+.dark .tool-cell, .dark .contact-item, .dark .alert-item,
+.dark .order-card, .dark .news-item, .dark .elder-card {
+  background: #1e293b !important;
+  color: #e2e8f0;
+}
+.dark .m-row, .dark .news-item, .dark .order-head, .dark .order-foot {
+  border-color: #334155 !important;
+}
+.dark .c-tabbar, .dark .d-tabbar, .dark .tabbar {
+  background: #1e293b !important;
+  box-shadow: 0 -4rpx 24rpx rgba(0,0,0,0.4);
+}
+.dark .d-tab-text, .dark .c-tab-text, .dark .tab-text { color: #64748b !important; }
+.dark .d-tab--active .d-tab-text, .dark .c-tab-item--active .c-tab-text, .dark .tab-item.is-active .tab-text { color: #38bdf8 !important; }
+.dark .search-placeholder { color: #64748b !important; }
+.dark .sec-title, .dark .prod-title, .dark .order-elder, .dark .e-name,
+.dark .v-elder, .dark .r-title, .dark .news-title, .dark .m-name,
+.dark .m-card-title, .dark .c-title, .dark .d-title { color: #f1f5f0 !important; }
+.dark .contact-name, .dark .contact-relation, .dark .order-id,
+.dark .order-addr, .dark .order-time, .dark .v-note, .dark .e-note,
+.dark .news-date, .dark .msg-time, .dark .m-sub, .dark .c-sub,
+.dark .alert-title, .dark .m-label { color: #94a3b8 !important; }
+.dark .search-box { background: #1e293b !important; }
+.dark .quick-cell, .dark .service-card { background: #1e293b !important; }
+.dark .hero-card, .dark .stat-card, .dark .health-card { background: #1e293b !important; color: #e2e8f0; }
+.dark .avatar-blue, .dark .avatar-rose, .dark .avatar-emerald { opacity: 0.85; }

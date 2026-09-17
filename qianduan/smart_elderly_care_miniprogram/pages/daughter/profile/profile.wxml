@@ -1,0 +1,10 @@
+<!-- daughter/profile.wxml -->
+<view class="dp-page">
+  <view class="dp-card">
+    <view class="dp-row" wx:for="{{fields}}" wx:key="key">
+      <text class="dp-label">{{item.label}}</text>
+      <input class="dp-input" value="{{item.value}}" bindinput="onEdit" data-key="{{item.key}}" placeholder="{{item.placeholder}}" />
+    </view>
+  </view>
+  <view class="dp-save" bindtap="save">保存</view>
+</view>

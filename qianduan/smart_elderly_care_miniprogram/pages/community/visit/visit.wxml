@@ -1,0 +1,14 @@
+<!-- community/visit.wxml -->
+<view class="v-page {{dark ? 'dark' : ''}}">
+  <view class="v-list">
+    <view wx:for="{{list}}" wx:key="id" class="v-card">
+      <view class="v-head">
+        <text class="v-elder">{{item.elder}}</text>
+        <text class="v-type">{{item.type}}</text>
+      </view>
+      <text class="v-date">{{item.date}}</text>
+      <text class="v-note">{{item.note}}</text>
+    </view>
+  </view>
+  <button class="v-add" bindtap="addVisit">+ 新增探访记录</button>
+</view>

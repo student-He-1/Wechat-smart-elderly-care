@@ -1,0 +1,46 @@
+/* health/consult/doctor.wxss */
+.doc-chat-page { display: flex; flex-direction: column; height: 100vh; background: #f6f4ef; }
+
+.dc-list { flex: 1; padding: 24rpx 28rpx; box-sizing: border-box; }
+
+.dc-msg { display: flex; margin-bottom: 24rpx; align-items: flex-start; }
+.dc-avatar {
+  width: 72rpx; height: 72rpx;
+  border-radius: 50%;
+  background: #0369a1; color: #fff;
+  font-size: 32rpx;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.dc-avatar-img { width: 72rpx; height: 72rpx; border-radius: 50%; flex-shrink: 0; }
+.dc-bubble {
+  max-width: 70%;
+  margin-left: 16rpx;
+  padding: 20rpx 28rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  font-size: 30rpx; color: #0f172a; line-height: 1.5;
+}
+.dc-msg--me { flex-direction: row-reverse; }
+.dc-msg--me .dc-bubble { margin-left: 0; margin-right: 16rpx; background: #0369a1; color: #fff; }
+
+.dq-scroll { white-space: nowrap; padding: 12rpx 24rpx; background: #fff; }
+.dq-chip {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  border-radius: 999rpx;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 26rpx;
+}
+
+.dc-input {
+  display: flex; align-items: center;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: #fff; gap: 16rpx;
+}
+.dc-field { flex: 1; height: 80rpx; padding: 0 28rpx; background: #f1f5f9; border-radius: 999rpx; font-size: 28rpx; }
+.dc-send { padding: 0 36rpx; height: 80rpx; line-height: 80rpx; background: #0369a1; color: #fff; border-radius: 999rpx; font-size: 28rpx; }

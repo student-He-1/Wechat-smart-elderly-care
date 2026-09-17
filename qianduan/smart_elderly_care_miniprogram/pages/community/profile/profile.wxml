@@ -1,0 +1,10 @@
+<!-- community/profile.wxml -->
+<view class="cp-page">
+  <view class="cp-card">
+    <view class="cp-row" wx:for="{{fields}}" wx:key="key">
+      <text class="cp-label">{{item.label}}</text>
+      <input class="cp-input" value="{{item.value}}" bindinput="onEdit" data-key="{{item.key}}" placeholder="{{item.placeholder}}" />
+    </view>
+  </view>
+  <view class="cp-save" bindtap="save">保存</view>
+</view>

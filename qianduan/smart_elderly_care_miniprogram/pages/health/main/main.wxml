@@ -1,0 +1,168 @@
+<!-- main.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 页头 -->
+  <view class="section-header health-header">
+    <text class="section-title">健康管理</text>
+    <text class="section-subtitle">用药提醒 · 健康记录 · AI 问答</text>
+  </view>
+
+  <!-- 今日体征 -->
+  <view class="stat-card rise">
+    <view class="stat-item">
+      <view class="stat-ic stat-ic--blue"><view class="ic ic-40 ic-gauge-b"></view></view>
+      <text class="stat-value">{{healthData.bloodPressure}}</text>
+      <text class="stat-label">血压 mmHg</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-ic stat-ic--rose"><view class="ic ic-40 ic-pulse-b"></view></view>
+      <text class="stat-value">{{healthData.heartRate}}</text>
+      <text class="stat-label">心率 次/分</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-ic stat-ic--cyan"><view class="ic ic-40 ic-droplet-b"></view></view>
+      <text class="stat-value">{{healthData.bloodSugar}}</text>
+      <text class="stat-label">血糖 mmol/L</text>
+    </view>
+  </view>
+
+  <!-- 下一条服药提醒 -->
+  <view class="next-dose-card" bindtap="goToMedicine" hover-class="next-dose--press">
+    <view class="next-dose-left">
+      <view class="next-dose-ic"><view class="ic ic-44 ic-pill-b"></view></view>
+      <view class="next-dose-body">
+        <text class="next-dose-title">缬沙坦 80mg</text>
+        <text class="next-dose-sub">今天 18:00 · 饭后服用 · 剩半板</text>
+      </view>
+    </view>
+    <view class="next-dose-count">
+      <text class="next-dose-num">2<text class="next-dose-unit">h</text></text>
+      <text class="next-dose-label">后服药</text>
+    </view>
+  </view>
+
+  <!-- 本周血压趋势 -->
+  <view class="trend-card">
+    <view class="trend-head">
+      <text class="trend-title">本周血压趋势</text>
+      <text class="trend-tag">收缩压 mmHg</text>
+    </view>
+    <view class="trend-bars">
+      <view class="trend-col" wx:for="{{bpTrend}}" wx:key="day">
+        <view class="trend-bar-wrap">
+          <view class="trend-bar {{item.high ? 'trend-bar--high' : ''}}" style="height: {{item.height}}rpx;"></view>
+        </view>
+        <text class="trend-day">{{item.day}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日打卡 -->
+  <view class="checkin-grid">
+    <view class="checkin-cell">
+      <view class="checkin-ic checkin-ic--blue"><view class="ic ic-36 ic-activity-a"></view></view>
+      <text class="checkin-val">4,521</text>
+      <text class="checkin-label">步数</text>
+    </view>
+    <view class="checkin-cell">
+      <view class="checkin-ic checkin-ic--cyan"><view class="ic ic-36 ic-bed-g"></view></view>
+      <text class="checkin-val">7.2h</text>
+      <text class="checkin-label">睡眠</text>
+    </view>
+    <view class="checkin-cell">
+      <view class="checkin-ic checkin-ic--amber"><view class="ic ic-36 ic-droplet-b"></view></view>
+      <text class="checkin-val">6/8</text>
+      <text class="checkin-label">喝水杯</text>
+    </view>
+    <view class="checkin-cell">
+      <view class="checkin-ic checkin-ic--green"><view class="ic ic-36 ic-info-s"></view></view>
+      <text class="checkin-val">62.4</text>
+      <text class="checkin-label">体重 kg</text>
+    </view>
+  </view>
+
+  <!-- 风险提示 -->
+  <view class="risk-card">
+    <view class="risk-ic"><view class="ic ic-36 ic-info-s"></view></view>
+    <view class="risk-body">
+      <text class="risk-title">血压偏高提醒</text>
+      <text class="risk-desc">近 3 天收缩压均高于 140 mmHg，建议今日加测一次，必要时联系医生。</text>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="features-grid">
+    <navigator url="/pages/health/medicine/medicine" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--blue-feat"><view class="ic ic-48 ic-pill-b"></view></view>
+      <text class="feature-title">智能用药</text>
+      <text class="feature-desc">定时提醒 · 漏服通知</text>
+    </navigator>
+
+    <navigator url="/pages/health/assistant/assistant" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--cyan-feat"><view class="ic ic-48 ic-ask-c"></view></view>
+      <text class="feature-title">健康小助手</text>
+      <text class="feature-desc">AI 智能健康问答</text>
+    </navigator>
+
+    <navigator url="/pages/health/record/record" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--amber-feat"><view class="ic ic-48 ic-record-a"></view></view>
+      <text class="feature-title">健康记录</text>
+      <text class="feature-desc">记录状况 · 随时查看</text>
+    </navigator>
+
+    <navigator url="/pages/health/consult/consult" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--blue-feat"><view class="ic ic-48 ic-ask-b"></view></view>
+      <text class="feature-title">在线问诊</text>
+      <text class="feature-desc">医生答疑 · 问诊大厅</text>
+    </navigator>
+
+    <navigator url="/pages/health/hospital/hospital" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--amber-feat"><view class="ic ic-48 ic-hospital-a"></view></view>
+      <text class="feature-title">医院攻略</text>
+      <text class="feature-desc">附近医院 · 就医指南</text>
+    </navigator>
+
+    <navigator url="/pages/profile/reminder/reminder" class="feature-card" hover-class="feature-card--press">
+      <view class="svc-iconbox svc-iconbox--green-feat"><view class="ic ic-48 ic-bell-g"></view></view>
+      <text class="feature-title">日常关怀</text>
+      <text class="feature-desc">喝水 · 活动 · 通风</text>
+    </navigator>
+  </view>
+
+  <!-- 最近提醒 -->
+  <view class="section-header">
+    <text class="section-name">最近提醒</text>
+  </view>
+
+  <view class="svc-list reminder-list">
+    <view wx:for="{{reminders}}" wx:key="id" class="svc-row">
+      <view class="svc-iconbox svc-iconbox--{{item.status === 'done' ? 'green' : 'amber'}}">
+        <view class="ic ic-40 {{item.status === 'done' ? 'ic-check-g' : 'ic-clock-a'}}"></view>
+      </view>
+      <view class="svc-body">
+        <text class="svc-title">{{item.title}}</text>
+        <text class="svc-desc">{{item.time}}</text>
+      </view>
+      <text class="tag {{item.status === 'done' ? 'tag-success' : 'tag-warning'}}">{{item.status === 'done' ? '已完成' : '待处理'}}</text>
+    </view>
+  </view>
+
+  <!-- 健康知识 -->
+  <view class="section-header">
+    <text class="section-name">健康知识</text>
+  </view>
+
+  <view class="knowledge-card">
+    <view class="knowledge-head">
+      <view class="svc-iconbox knowledge-ic"><view class="ic ic-40 ic-doc-b"></view></view>
+      <text class="knowledge-title">高血压患者的日常护理</text>
+    </view>
+    <text class="knowledge-content">1. 定期测量血压，保持血压稳定
+2. 合理饮食，减少盐分摄入
+3. 适量运动，保持健康体重
+4. 遵医嘱服药，不可擅自停药
+5. 保持心情舒畅，避免情绪波动</text>
+    <button class="btn btn-ghost btn-block" bindtap="readMore">查看更多</button>
+  </view>
+</view>

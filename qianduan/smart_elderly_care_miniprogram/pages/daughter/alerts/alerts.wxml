@@ -1,0 +1,52 @@
+<!-- daughter/alerts.wxml —— 告警列表页 -->
+<view class="alerts-page {{dark ? 'dark' : ''}}">
+
+  <!-- 状态筛选 -->
+  <view class="filter-tabs">
+    <view class="filter-tab {{tab === 'unhandled' ? 'filter-tab--active' : ''}}" bindtap="switchTab" data-tab="unhandled">未处理</view>
+    <view class="filter-tab {{tab === 'handled' ? 'filter-tab--active' : ''}}" bindtap="switchTab" data-tab="handled">已处理</view>
+    <view class="filter-tab {{tab === 'all' ? 'filter-tab--active' : ''}}" bindtap="switchTab" data-tab="all">全部</view>
+  </view>
+
+  <view class="alert-list" wx:if="{{filtered.length}}">
+    <view wx:for="{{filtered}}" wx:key="id" class="alert-card alert-card--{{item.level}}"
+          data-id="{{item.id}}" bindtap="openAlert">
+      <view class="alert-ic">
+        <view class="ic ic-36 {{item.level === 'urgent' ? 'ic-sos-r2' : 'ic-bell-b'}}"></view>
+      </view>
+      <view class="alert-body">
+        <text class="alert-title">{{item.title}}</text>
+        <text class="alert-time">{{item.time}}</text>
+        <image wx:if="{{item.snapshotUrl}}" class="alert-shot" src="{{item.snapshotUrl}}" mode="aspectFill"
+               catchtap="previewShot" data-url="{{item.snapshotUrl}}" />
+        <text class="alert-status alert-status--{{item.handled ? 'done' : 'pending'}}">{{item.handled ? '已处理' : '未处理'}}</text>
+      </view>
+      <view wx:if="{{!item.handled}}" class="alert-action" catchtap="handleOne" data-id="{{item.id}}">处理</view>
+    </view>
+  </view>
+
+  <view wx:else class="empty">
+    <text class="empty-text">暂无告警</text>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="d-tabbar">
+    <view class="d-tab" bindtap="goHome">
+      <text class="d-tab-icon">⌂</text>
+      <text class="d-tab-text">首页</text>
+    </view>
+    <view class="d-tab d-tab--active">
+      <text class="d-tab-icon">🔔</text>
+      <text class="d-tab-text">告警</text>
+    </view>
+    <view class="d-tab" bindtap="goServices">
+      <text class="d-tab-icon">🏠</text>
+      <text class="d-tab-text">服务</text>
+    </view>
+    <view class="d-tab" bindtap="goMine">
+      <text class="d-tab-icon">👤</text>
+      <text class="d-tab-text">我的</text>
+    </view>
+  </view>
+
+</view>

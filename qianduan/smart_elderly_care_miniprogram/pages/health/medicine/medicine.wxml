@@ -1,0 +1,53 @@
+<!-- medicine.wxml -->
+<view class="page {{dark ? 'dark' : ''}}">
+  <!-- 页头 -->
+  <view class="page-header">
+    <text class="section-title">药品管理</text>
+    <button class="btn btn-primary btn-mini" bindtap="showAddMedicineModal">添加药品</button>
+  </view>
+
+  <!-- 药品列表 -->
+  <view wx:if="{{medicines.length > 0}}" class="medicine-list">
+    <view wx:for="{{medicines}}" wx:key="id" class="medicine-item">
+      <view class="svc-iconbox row-ic row-ic--blue"><view class="ic ic-44 ic-pill-b"></view></view>
+      <view class="medicine-info">
+        <text class="medicine-name">{{item.name}}</text>
+        <text class="medicine-meta">剂量：{{item.dosage}}</text>
+        <text class="medicine-meta">服用时间：{{item.time}}</text>
+      </view>
+      <view class="medicine-actions">
+        <button class="medicine-btn btn-edit" bindtap="editMedicine" data-id="{{item.id}}" hover-class="none">编辑</button>
+        <button class="medicine-btn btn-delete" bindtap="deleteMedicine" data-id="{{item.id}}" hover-class="none">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty">
+    <text class="empty-title">暂无药品信息</text>
+    <text class="empty-desc">点击右上角添加你的常用药品</text>
+  </view>
+
+  <!-- 添加/编辑药品弹窗 -->
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="hideModal"></view>
+  <view class="modal" wx:if="{{showModal}}" catchtap="">
+    <text class="modal-title">{{isEdit ? '编辑药品' : '添加药品'}}</text>
+
+    <view class="form-field">
+      <text class="form-label">药品名称</text>
+      <input class="input" placeholder="请输入药品名称" placeholder-class="input-placeholder" value="{{formData.name}}" bindinput="bindInput" data-field="name" />
+    </view>
+    <view class="form-field">
+      <text class="form-label">服用剂量</text>
+      <input class="input" placeholder="如：每日 1 次，每次 1 片" placeholder-class="input-placeholder" value="{{formData.dosage}}" bindinput="bindInput" data-field="dosage" />
+    </view>
+    <view class="form-field">
+      <text class="form-label">服用时间</text>
+      <input class="input" placeholder="如：08:00" placeholder-class="input-placeholder" value="{{formData.time}}" bindinput="bindInput" data-field="time" />
+    </view>
+
+    <view class="modal-footer">
+      <button class="btn btn-gray" bindtap="hideModal">取消</button>
+      <button class="btn btn-primary" bindtap="submitForm">{{isEdit ? '保存' : '添加'}}</button>
+    </view>
+  </view>
+</view>

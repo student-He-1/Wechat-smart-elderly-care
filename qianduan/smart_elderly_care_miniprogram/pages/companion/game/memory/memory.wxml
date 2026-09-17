@@ -1,0 +1,67 @@
+<!--pages/companion/game/memory/memory.wxml-->
+<view class="page page-memory">
+  <!-- 顶部信息栏 -->
+  <view class="game-header">
+    <view class="header-item">
+      <text class="header-label">步数</text>
+      <text class="header-value">{{steps}}</text>
+    </view>
+    <view class="header-title-wrap">
+      <text class="header-title">{{levelName}}</text>
+    </view>
+    <view class="header-item">
+      <text class="header-label">已配对</text>
+      <text class="header-value">{{matchedCount}}/{{totalPairs}}</text>
+    </view>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-tip">
+    <text class="tip-text">💡 点开两张相同的卡片即可配对消除，全部消除就过关啦</text>
+  </view>
+
+  <!-- 卡片网格（列数随关卡变化） -->
+  <view class="card-grid" style="grid-template-columns: repeat({{cols}}, 1fr);">
+    <view class="card-wrapper" wx:for="{{cards}}" wx:key="id"
+          data-index="{{index}}" bindtap="flipCard">
+      <view class="card {{item.isFlipped || item.isMatched ? 'card--flipped' : ''}} {{item.isMatched ? 'card--matched' : ''}}">
+        <!-- 卡片背面 -->
+        <view class="card-face card-face--back">
+          <text class="card-back-icon">❓</text>
+        </view>
+        <!-- 卡片正面 -->
+        <view class="card-face card-face--front">
+          <text class="card-front-icon">{{item.icon}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="game-footer">
+    <button class="btn btn-secondary restart-btn" bindtap="restart">重玩本关</button>
+  </view>
+
+  <!-- 本关完成弹窗 -->
+  <view wx:if="{{isComplete && !isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🎉</text>
+      <text class="complete-title">过关啦！</text>
+      <text class="complete-desc">{{levelName}} 用了 {{steps}} 步</text>
+      <text class="complete-encourage">记忆力真棒，挑战下一关吧！</text>
+      <button class="btn btn-primary complete-btn" bindtap="nextLevel">进入下一关</button>
+      <button class="btn btn-ghost complete-btn-ghost" bindtap="restart">再玩本关</button>
+    </view>
+  </view>
+
+  <!-- 全部通关弹窗 -->
+  <view wx:if="{{isComplete && isAllClear}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🏆</text>
+      <text class="complete-title">全部通关！</text>
+      <text class="complete-desc">三关全部完成，太厉害了！</text>
+      <text class="complete-encourage">常玩翻牌游戏，有助于保持记忆力哦</text>
+      <button class="btn btn-primary complete-btn" bindtap="restartAll">从头再玩</button>
+    </view>
+  </view>
+</view>

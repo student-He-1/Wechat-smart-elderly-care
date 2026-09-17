@@ -1,0 +1,151 @@
+/* explain.wxss —— 术语解释子对话样式（与健康助手主页一致的设计语言） */
+.page-explain {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 24rpx 32rpx 0;
+  background: var(--color-canvas);
+}
+
+.explain-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20rpx;
+  gap: 20rpx;
+}
+
+.back-btn {
+  min-height: 64rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  background: var(--color-card);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+}
+
+.back-btn--press { background: var(--brand-100); }
+
+.back-text {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--brand-700);
+}
+
+.term-tag {
+  flex: 1;
+  text-align: right;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: 32rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.sys-tip {
+  font-size: var(--fs-caption);
+  color: var(--ink-500);
+  text-align: center;
+  margin-bottom: 28rpx;
+  line-height: 1.5;
+}
+
+.chat-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 36rpx;
+}
+
+.chat-row--user { flex-direction: row-reverse; }
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-ai { background: #fff; color: #fff; margin-right: 20rpx; overflow: hidden; }
+.avatar-img { width: 100%; height: 100%; border-radius: 50%; }
+
+.bubble {
+  max-width: 78%;
+  padding: 26rpx 30rpx;
+  border-radius: var(--radius-xl);
+}
+
+.bubble-user { background: var(--brand-600); border-bottom-right-radius: 8rpx; }
+.bubble-ai { background: var(--brand-50); border-bottom-left-radius: 8rpx; }
+
+.bubble-text {
+  display: block;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--ink-800);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubble-user .bubble-text { color: #fff; }
+
+.term-chip {
+  display: inline;
+  color: var(--brand-700);
+  background: var(--brand-100);
+  padding: 2rpx 14rpx;
+  border-radius: 10rpx;
+  margin: 0 4rpx;
+  font-weight: 600;
+  border-bottom: 4rpx solid var(--brand-400, var(--brand-600));
+}
+
+.term-chip--press { opacity: 0.7; }
+
+.loading-dots { display: inline-flex; gap: 8rpx; }
+.loading-dots text {
+  width: 14rpx; height: 14rpx; border-radius: 50%;
+  background: var(--brand-400, var(--brand-600));
+}
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 0;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+}
+
+.chat-input {
+  flex: 1;
+  min-height: 96rpx;
+  padding: 0 32rpx;
+  font-size: var(--fs-body);
+  background: var(--color-canvas-secondary);
+  border-radius: var(--radius-pill);
+  color: var(--ink-800);
+}
+
+.chat-input-placeholder { color: var(--ink-500); }
+
+.send-btn { min-height: 96rpx; padding: 0 44rpx; flex-shrink: 0; }
+
+.think-box{margin-bottom:16rpx;padding:14rpx 18rpx;background:rgba(0,0,0,.04);border-left:6rpx solid rgba(0,0,0,.15);border-radius:10rpx;}
+.think-head{display:flex;align-items:center;}
+.think-title{font-size:22rpx;color:#999;}
+.think-text{display:block;margin-top:10rpx;font-size:24rpx;color:#999;font-style:italic;line-height:1.6;white-space:pre-wrap;}

@@ -1,0 +1,470 @@
+/* profile.wxss —— 参考深圳猫网"我的"页 */
+
+.profile-page {
+  padding: 16rpx 28rpx;
+  /* 保留全局给 tabbar 预留的底部间距 */
+  padding-bottom: calc(150rpx + env(safe-area-inset-bottom));
+  /* 顶部浅蓝氛围，和导航栏连成一片 */
+  background: linear-gradient(180deg, var(--brand-100) 0%, rgba(224, 242, 254, 0) 360rpx);
+}
+
+/* ================= 顶部头像 + 名字 ================= */
+.profile-hero {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 4rpx 32rpx;
+}
+
+.profile-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 28rpx;
+  background: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.profile-avatar-img { width: 100%; height: 120rpx; }
+
+.profile-avatar .ic {
+  filter: brightness(0) invert(1);
+}
+
+.profile-info {
+  margin-left: 28rpx;
+  flex: 1;
+}
+
+.profile-hero--press {
+  opacity: 0.7;
+}
+
+.profile-arrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.profile-name {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.3rpx;
+}
+
+.profile-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: var(--fs-label);
+  color: var(--ink-600);
+}
+
+/* ================= 身份卡（深蓝渐变） ================= */
+.member-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #075985 0%, #0369a1 55%, #0ea5e9 100%);
+  box-shadow: 0 12rpx 32rpx rgba(3, 105, 161, 0.28);
+}
+
+.member-left {
+  display: flex;
+  align-items: center;
+}
+
+.member-badge {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-badge .ic {
+  filter: brightness(0) invert(1);
+}
+
+.member-text {
+  margin-left: 20rpx;
+}
+
+.member-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.member-no {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.member-action {
+  padding: 12rpx 28rpx;
+  border-radius: var(--radius-pill);
+  background: #fde047;
+  color: #713f12;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+/* ================= 三列数字统计 ================= */
+.stats-card {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  padding: 36rpx 20rpx;
+  background: var(--color-card);
+  border-radius: 24rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.3rpx;
+  line-height: 1.1;
+}
+
+.stat-label {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 56rpx;
+  background: var(--color-hairline);
+}
+
+/* ================= 分区标题（和首页一致） ================= */
+.sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40rpx 4rpx 22rpx;
+}
+
+.sec-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.3rpx;
+}
+
+.sec-title::after {
+  content: '';
+  display: inline-block;
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 4rpx;
+  background: var(--brand-500);
+  margin-left: 14rpx;
+  vertical-align: middle;
+}
+
+/* ================= 横滑容器 ================= */
+.hscroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.hscroll-row {
+  display: inline-flex;
+  gap: 32rpx;
+  padding: 8rpx 4rpx;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+
+.person--press {
+  opacity: 0.7;
+}
+
+.avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.avatar-img { width: 100%; height: 112rpx; }
+.avatar-text {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.avatar .ic {
+  filter: brightness(0) invert(1);
+}
+
+.avatar-blue {
+  background: var(--brand-600);
+}
+
+.avatar-gray {
+  background: #e2e8f0;
+}
+
+.avatar-gray .ic {
+  filter: none;
+}
+
+.avatar-red {
+  background: var(--danger);
+}
+
+.person-name {
+  margin-top: 14rpx;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--ink-800);
+}
+
+.person-relation {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+/* ================= 我的记录：2 行 3 列数字网格 ================= */
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--color-card);
+  border-radius: 24rpx;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.record-cell {
+  padding: 32rpx 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1rpx solid var(--color-hairline);
+  border-bottom: 1rpx solid var(--color-hairline);
+}
+
+.record-cell:nth-child(3n) {
+  border-right: none;
+}
+
+.record-cell:nth-last-child(-n+3) {
+  border-bottom: none;
+}
+
+.record-value {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: var(--ink-900);
+  line-height: 1.1;
+}
+
+.record-label {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--ink-500);
+}
+
+/* ================= 信息列表 ================= */
+.list-group {
+  background: var(--color-card);
+  border-radius: 24rpx;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.info-row,
+.setting-row {
+  display: flex;
+  align-items: center;
+  min-height: 112rpx;
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-hairline);
+  box-sizing: border-box;
+}
+
+.info-row:last-child,
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row--press {
+  background: var(--color-canvas-secondary);
+}
+
+.info-label {
+  font-size: var(--fs-body);
+  color: var(--ink-600);
+  width: 168rpx;
+  flex-shrink: 0;
+}
+
+.info-value {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--ink-800);
+}
+
+.info-edit {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64rpx;
+  padding: 0 28rpx;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--brand-700);
+  background: var(--brand-soft);
+  border-radius: var(--radius-pill);
+}
+
+.setting-ic {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.setting-ic--blue {
+  background: var(--brand-100);
+}
+
+.setting-ic--cyan {
+  background: var(--brand-100);
+}
+
+.setting-ic--gray {
+  background: var(--brand-100);
+}
+
+.setting-label-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.setting-label {
+  display: block;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink-800);
+}
+
+.setting-desc {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-500);
+  margin-top: 6rpx;
+}
+
+.setting-arrow {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 8rpx;
+}
+
+.version-section {
+  text-align: center;
+  margin-top: 48rpx;
+  padding-bottom: 40rpx;
+}
+
+/* ================= 夜间模式（本页） ================= */
+.profile-page.is-night {
+  background: #0f172a;
+}
+
+.profile-page.is-night .profile-name {
+  color: #f1f5f9;
+}
+
+.profile-page.is-night .profile-desc {
+  color: #94a3b8;
+}
+
+.profile-page.is-night .sec-title {
+  color: #f1f5f9;
+}
+
+.profile-page.is-night .stats-card,
+.profile-page.is-night .list-group,
+.profile-page.is-night .record-grid {
+  background: #1e293b;
+}
+
+.profile-page.is-night .stat-value,
+.profile-page.is-night .record-value {
+  color: #f1f5f9;
+}
+
+.profile-page.is-night .stat-label,
+.profile-page.is-night .record-label,
+.profile-page.is-night .person-relation {
+  color: #94a3b8;
+}
+
+.profile-page.is-night .info-label {
+  color: #94a3b8;
+}
+
+.profile-page.is-night .info-value {
+  color: #e2e8f0;
+}
+
+.profile-page.is-night .setting-label {
+  color: #e2e8f0;
+}
+
+.profile-page.is-night .setting-desc {
+  color: #94a3b8;
+}
+
+.profile-page.is-night .info-row,
+.profile-page.is-night .setting-row,
+.profile-page.is-night .record-cell {
+  border-color: #334155;
+}
+
+.profile-page.is-night .setting-ic {
+  background: #334155;
+}
+
+.profile-page.is-night .version-section .caption {
+  color: #64748b;
+}

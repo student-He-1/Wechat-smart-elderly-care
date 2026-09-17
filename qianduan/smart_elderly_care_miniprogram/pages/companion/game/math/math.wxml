@@ -1,0 +1,68 @@
+<!--pages/companion/game/math/math.wxml-->
+<view class="page page-math">
+  <!-- 顶部进度 -->
+  <view class="math-header">
+    <view class="header-item">
+      <text class="header-label">第</text>
+      <text class="header-value">{{currentIndex + 1}}</text>
+      <text class="header-label">/ {{questions.length}} 题</text>
+    </view>
+    <view class="header-level">{{levelName}}</view>
+    <view class="header-item">
+      <text class="header-label">得分</text>
+      <text class="header-value header-value--score">{{score}}</text>
+    </view>
+  </view>
+
+  <!-- 题目卡片 -->
+  <view class="question-card">
+    <text class="question-text">{{currentQuestion.text}}</text>
+  </view>
+
+  <!-- 选项 -->
+  <view class="options">
+    <view class="option-btn
+          {{isAnswered && selectedIndex === index ? (currentQuestion.options[index] === currentQuestion.answer ? 'option--correct' : 'option--wrong') : ''}}
+          {{isAnswered && currentQuestion.options[index] === currentQuestion.answer ? 'option--correct' : ''}}"
+          wx:for="{{currentQuestion.options}}" wx:key="*this"
+          data-index="{{index}}" bindtap="selectOption">
+      <text class="option-num">{{item}}</text>
+      <text wx:if="{{isAnswered && currentQuestion.options[index] === currentQuestion.answer}}" class="option-mark">✓</text>
+      <text wx:if="{{isAnswered && selectedIndex === index && currentQuestion.options[index] !== currentQuestion.answer}}" class="option-mark option-mark--wrong">✗</text>
+    </view>
+  </view>
+
+  <!-- 反馈 -->
+  <view wx:if="{{isAnswered}}" class="feedback">
+    <text wx:if="{{currentQuestion.options[selectedIndex] === currentQuestion.answer}}" class="feedback-text feedback--correct">🎉 算对啦！</text>
+    <text wx:else class="feedback-text feedback--wrong">😅 正确答案是 {{currentQuestion.answer}}</text>
+  </view>
+
+  <!-- 下一题 -->
+  <view wx:if="{{isAnswered}}" class="next-wrap">
+    <button class="btn btn-primary next-btn" bindtap="nextQuestion">{{currentIndex + 1 >= questions.length ? '查看结果' : '下一题'}}</button>
+  </view>
+
+  <!-- 本关完成弹窗 -->
+  <view wx:if="{{isFinished && currentLevel < 3}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">{{score >= 8 ? '🏆' : score >= 5 ? '🎉' : '💪'}}</text>
+      <text class="complete-title">本关完成！</text>
+      <text class="complete-desc">{{levelName}} 答对 {{score}} / {{questions.length}} 题</text>
+      <text class="complete-encourage">{{score >= 8 ? '算得又快又准，真厉害！' : '多练几次，会越来越熟练！'}}</text>
+      <button class="btn btn-primary complete-btn" bindtap="nextLevel">进入下一关</button>
+      <button class="btn btn-ghost complete-btn-ghost" bindtap="restart">再玩本关</button>
+    </view>
+  </view>
+
+  <!-- 全部通关弹窗 -->
+  <view wx:if="{{isFinished && currentLevel >= 3}}" class="complete-mask" catchtap="">
+    <view class="complete-card">
+      <text class="complete-emoji">🏆</text>
+      <text class="complete-title">全部通关！</text>
+      <text class="complete-desc">三关算术全部完成，太厉害了！</text>
+      <text class="complete-encourage">常做算术题，有助于保持大脑活力哦</text>
+      <button class="btn btn-primary complete-btn" bindtap="restartAll">从头再玩</button>
+    </view>
+  </view>
+</view>

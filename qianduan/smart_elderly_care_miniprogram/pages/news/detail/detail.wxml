@@ -1,0 +1,10 @@
+<!-- news/detail.wxml —— 资讯详情 -->
+<view class="nd-page {{dark ? 'dark' : ''}}">
+  <text class="nd-title">{{item.title}}</text>
+  <view class="nd-meta">
+    <text class="nd-date">{{item.date}}</text>
+    <text class="nd-source">{{item.source}}</text>
+  </view>
+  <view class="nd-divider"></view>
+  <text class="nd-content">{{item.content}}</text>
+</view>

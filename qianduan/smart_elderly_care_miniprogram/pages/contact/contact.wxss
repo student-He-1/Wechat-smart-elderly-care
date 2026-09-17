@@ -1,0 +1,185 @@
+/* contact.wxss */
+.page {
+  padding-bottom: 64rpx;
+}
+
+/* 紧急求助（红色语义区） */
+.emergency-card {
+  position: relative;
+  background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+  border-radius: var(--radius-xl);
+  padding: 56rpx 40rpx;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.emergency-card::after {
+  content: '';
+  position: absolute;
+  width: 360rpx;
+  height: 360rpx;
+  border-radius: 50%;
+  top: -180rpx;
+  right: -120rpx;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.emergency-title {
+  position: relative;
+  display: block;
+  font-size: var(--fs-title);
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+.emergency-desc {
+  position: relative;
+  display: block;
+  font-size: var(--fs-caption);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 40rpx;
+}
+
+.emergency-btn {
+  position: relative;
+  min-height: 104rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--danger-700);
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+}
+
+.emergency-btn:active {
+  opacity: 0.85;
+}
+
+/* 联系人列表 */
+.contacts-list {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 0 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  min-height: 128rpx;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid var(--color-hairline);
+  transition: opacity 0.15s ease;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item--press {
+  opacity: 0.7;
+}
+
+.contact-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar-blue {
+  background: var(--brand-100);
+}
+
+.avatar-blue .avatar-text { color: var(--brand-700); }
+
+.avatar-rose {
+  background: #ffe4e6;
+}
+
+.avatar-rose .avatar-text { color: #be123c; }
+
+.avatar-emerald {
+  background: var(--safe-soft);
+}
+
+.avatar-emerald .avatar-text { color: var(--safe); }
+
+.avatar-text {
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-name {
+  display: block;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: 6rpx;
+}
+
+.contact-phone {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+}
+
+.contact-actions {
+  display: flex;
+  gap: 16rpx;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  min-height: 80rpx;
+  min-width: 120rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+}
+
+.action-btn--press {
+  opacity: 0.75;
+}
+
+.action-call {
+  background: var(--brand-soft);
+  color: var(--brand-700);
+}
+
+.action-message {
+  background: var(--color-canvas-secondary);
+  color: var(--ink-700);
+}
+
+.add-btn {
+  margin-top: 12rpx;
+}
+
+
+/* ===== 图标化补充（v3） ===== */
+.btn-ic {
+  margin-right: 10rpx;
+}
+.emergency-btn .btn-ic {
+  margin-right: 14rpx;
+}

@@ -1,0 +1,83 @@
+<!--pages/companion/diary/diary.wxml-->
+<view class="page page-diary">
+  <view class="diary-header">
+    <view class="header-left">
+      <text class="diary-title">心情日记</text>
+      <text class="diary-count">共 {{diaries.length}} 篇记录</text>
+    </view>
+    <button class="btn btn-primary write-btn" bindtap="openEditor">✏️ 写日记</button>
+  </view>
+
+  <!-- 筛选栏 -->
+  <scroll-view class="filter-bar" scroll-x>
+    <view class="filter-list">
+      <view class="filter-chip {{filterKey === item.key ? 'filter-chip--active' : ''}}"
+            wx:for="{{filterOptions}}" wx:key="key"
+            data-key="{{item.key}}" bindtap="changeFilter">
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 日记列表 -->
+  <view wx:if="{{filteredDiaries.length > 0}}" class="diary-list">
+    <view class="diary-card" wx:for="{{filteredDiaries}}" wx:key="id">
+      <view class="diary-top">
+        <view class="diary-mood">
+          <text class="diary-emoji">{{item.emoji}}</text>
+          <text class="diary-mood-text">{{item.moodText}}</text>
+        </view>
+        <view class="diary-date">
+          <text class="date-text">{{item.date}}</text>
+          <text class="time-text">{{item.time}}</text>
+        </view>
+      </view>
+      <text class="diary-content">{{item.content}}</text>
+      <view class="diary-actions">
+        <text class="delete-btn" data-id="{{item.id}}" catchtap="deleteDiary">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty-state">
+    <text class="empty-emoji">📝</text>
+    <text class="empty-text">还没有日记</text>
+    <text class="empty-desc">点击右上角"写日记"，记录今天的心情吧</text>
+  </view>
+
+  <!-- 写日记弹窗 -->
+  <view wx:if="{{showEditor}}" class="editor-mask" bindtap="closeEditor">
+    <view class="editor-card" catchtap="stopPropagation">
+      <view class="editor-header">
+        <text class="editor-title">今天心情怎么样？</text>
+        <text class="editor-close" bindtap="closeEditor">✕</text>
+      </view>
+
+      <!-- 心情选择 -->
+      <view class="mood-grid">
+        <view class="mood-item {{selectedMood === item.key ? 'mood-item--active' : ''}}"
+              wx:for="{{moods}}" wx:key="key"
+              data-key="{{item.key}}" bindtap="selectMood"
+              style="border-color: {{selectedMood === item.key ? item.color : '#e2e8f0'}};">
+          <text class="mood-emoji">{{item.emoji}}</text>
+          <text class="mood-text">{{item.text}}</text>
+        </view>
+      </view>
+
+      <!-- 内容输入 -->
+      <textarea class="diary-textarea"
+                placeholder="写点什么吧，今天发生了什么事？"
+                placeholder-class="textarea-placeholder"
+                value="{{diaryContent}}"
+                bindinput="bindInput"
+                maxlength="500"
+                auto-height />
+
+      <view class="editor-footer">
+        <button class="btn btn-ghost cancel-btn" bindtap="closeEditor">取消</button>
+        <button class="btn btn-primary save-btn" bindtap="saveDiary">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

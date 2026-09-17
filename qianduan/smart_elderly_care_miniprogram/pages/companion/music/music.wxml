@@ -1,0 +1,70 @@
+<!--pages/companion/music/music.wxml-->
+<view class="page page-music">
+  <!-- 顶部当前播放 -->
+  <view class="now-playing">
+    <view class="album-cover">
+      <image class="cover-img" src="/assets/images/robot.png" mode="aspectFit"></image>
+      <view class="cover-ring {{isPlaying ? 'cover-ring--spin' : ''}}"></view>
+    </view>
+    <view class="now-info">
+      <text class="now-title">{{musicList[currentIndex].title}}</text>
+      <text class="now-artist">{{musicList[currentIndex].artist}}</text>
+      <view class="progress-bar">
+        <slider class="progress-slider" min="0" max="100" value="{{progress}}"
+                activeColor="#0ea5e9" backgroundColor="#e0f2fe" block-size="20"
+                bindchanging="onSliderChanging" bindchange="onSliderChange" />
+      </view>
+      <view class="time-row">
+        <text class="time-text">{{currentTimeText}}</text>
+        <text class="time-text">{{durationText || musicList[currentIndex].duration}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 播放控制 -->
+  <view class="controls">
+    <view class="ctrl-btn ctrl-btn--mode" bindtap="toggleMode">
+      <text class="ctrl-text">{{playMode === 'single' ? '单曲' : '顺序'}}</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--big" bindtap="prevMusic">
+      <text class="ctrl-icon">⏮</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--play" bindtap="togglePlay">
+      <text class="ctrl-icon ctrl-icon--large">{{isPlaying ? '⏸' : '▶'}}</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--big" bindtap="nextMusic">
+      <text class="ctrl-icon">⏭</text>
+    </view>
+    <view class="ctrl-btn ctrl-btn--mode" bindtap="toggleFavorite" data-index="{{currentIndex}}">
+      <text class="ctrl-icon">{{musicList[currentIndex].favorite ? '❤️' : '🤍'}}</text>
+    </view>
+  </view>
+
+  <!-- 播放列表 -->
+  <view class="playlist-section">
+    <view class="section-title">
+      <text class="title-text">播放列表</text>
+      <text class="title-count">共 {{musicList.length}} 首</text>
+    </view>
+    <view class="playlist">
+      <view class="playlist-item {{currentIndex === index ? 'playlist-item--active' : ''}}"
+            wx:for="{{musicList}}" wx:key="id" data-index="{{index}}" bindtap="playMusic">
+        <view class="item-index">
+          <text wx:if="{{currentIndex === index && isPlaying}}" class="playing-indicator">♪</text>
+          <text wx:else class="index-text">{{index + 1}}</text>
+        </view>
+        <view class="item-info">
+          <text class="item-title">{{item.title}}</text>
+          <text class="item-artist">{{item.artist}} · {{item.duration}}</text>
+        </view>
+        <view class="item-fav" catchtap="toggleFavorite" data-index="{{index}}">
+          <text class="fav-icon">{{item.favorite ? '❤️' : '🤍'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tip-bar">
+    <text class="tip-text">💡 把喜欢的音乐文件放到 assets/music/ 目录，文件名对应 1.mp3 ~ 6.mp3</text>
+  </view>
+</view>

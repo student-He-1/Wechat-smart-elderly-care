@@ -1,0 +1,61 @@
+/* community/mine.wxss */
+.m-page { padding: 16rpx 28rpx 200rpx; }
+
+.m-head {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 8rpx;
+}
+.m-head--press { opacity: 0.85; }
+
+.m-avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 24rpx;
+  background: #b45309;
+  color: #fff;
+  font-size: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.m-head-body { margin-left: 24rpx; }
+.m-name { display: block; font-size: 40rpx; font-weight: 600; color: #0f172a; }
+.m-sub { display: block; margin-top: 8rpx; font-size: 24rpx; color: #94a3b8; }
+
+.m-card {
+  background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.m-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+
+.m-card-title { font-size: 32rpx; font-weight: 600; color: #fff; }
+.m-card-no { font-size: 22rpx; color: rgba(255,255,255,0.8); }
+
+.m-stats { display: flex; }
+.m-stat { flex: 1; text-align: center; }
+.m-stat-num { display: block; font-size: 40rpx; font-weight: 600; color: #fff; }
+.m-stat-label { display: block; margin-top: 6rpx; font-size: 22rpx; color: rgba(255,255,255,0.8); }
+
+.list-group { background: #fff; border-radius: 24rpx; box-shadow: 0 4rpx 16rpx rgba(15,42,61,0.06); overflow: hidden; }
+.m-row { display: flex; justify-content: space-between; padding: 32rpx; border-bottom: 1rpx solid #f1f5f9; }
+.m-row--last { border-bottom: none; }
+.m-row--press { background: #f8fafc; }
+.m-label { font-size: 28rpx; color: #0f172a; }
+.m-value { font-size: 26rpx; color: #94a3b8; }
+
+.c-tabbar { position: fixed; left:0; right:0; bottom:0; z-index:999; display:flex; height: calc(104rpx + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); background:#fff; box-shadow: 0 -4rpx 24rpx rgba(15,42,61,0.06); }
+.c-tab-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4rpx; }
+.c-tab-icon { font-size:40rpx; }
+.c-tab-text { font-size:24rpx; color:#94a3b8; }
+.c-tab-item--active .c-tab-text { color:#b45309; font-weight:700; }
