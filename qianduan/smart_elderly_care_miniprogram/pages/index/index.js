@@ -147,9 +147,10 @@ Page({
     else greeting = '夜深了';
 
     const week = ['日', '一', '二', '三', '四', '五', '六'];
-    const dateText = `${now.getMonth() + 1}月${now.getDate()}日 星期${week[now.getDay()]}`;
+    const weekday = `星期${week[now.getDay()]}`;
+    const dateText = `${now.getMonth() + 1}月${now.getDate()}日 ${weekday}`;
 
-    this.setData({ greeting, dateText });
+    this.setData({ greeting, dateText, 'weather.weekday': weekday });
     this.loadHealthData();
     this.loadReminders();
   },

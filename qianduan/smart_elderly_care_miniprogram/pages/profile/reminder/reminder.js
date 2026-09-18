@@ -78,7 +78,7 @@ Page({
     });
   },
 
-  // 切换提醒开关
+  // 切换提醒开关（自动保存到后端）
   toggleReminder(e) {
     const { id, enabled } = e.currentTarget.dataset;
     const reminders = this.data.reminders.map(reminder => {
@@ -88,7 +88,8 @@ Page({
       return reminder;
     });
     this.setData({ reminders });
-    
+    this.saveSettings(true);
+
     wx.showToast({
       title: !enabled ? '已开启提醒' : '已关闭提醒',
       icon: 'success'
@@ -173,7 +174,7 @@ Page({
     });
   },
 
-  // 删除提醒项目
+  // 删除提醒项目（自动保存到后端）
   deleteReminder(e) {
     const { id } = e.currentTarget.dataset;
     wx.showModal({
@@ -183,6 +184,7 @@ Page({
         if (res.confirm) {
           const reminders = this.data.reminders.filter(reminder => reminder.id !== id);
           this.setData({ reminders });
+          this.saveSettings(true);
           wx.showToast({ title: '删除成功', icon: 'success' });
         }
       }
@@ -195,8 +197,8 @@ Page({
     return regex.test(time);
   },
 
-  // 保存设置
-  saveSettings() {
+  // 保存设置（silent=true 时不弹 toast，供 toggle/delete 自动保存调用）
+  saveSettings(silent) {
     // 转换为后端需要的格式
     const reminders = this.data.reminders.map(reminder => ({
       reminder_type: reminder.id,
@@ -204,18 +206,18 @@ Page({
       enabled: reminder.enabled,
       times: reminder.times
     }));
-    
+
     wx.request({
       url: 'http://localhost:8000/api/health/reminder-settings',
       method: 'POST',
       data: { reminders },
       success: (res) => {
         console.log('保存提醒设置成功:', res.data);
-        wx.showToast({ title: '设置已保存', icon: 'success' });
+        if (!silent) wx.showToast({ title: '设置已保存', icon: 'success' });
       },
       fail: (err) => {
         console.error('保存提醒设置失败:', err);
-        wx.showToast({ title: '保存失败，请重试', icon: 'none' });
+        if (!silent) wx.showToast({ title: '保存失败，请重试', icon: 'none' });
       }
     });
   }
