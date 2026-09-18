@@ -23,13 +23,13 @@ class TTSError(Exception):
     """语音合成失败"""
 
 
-def synthesize(text: str, dialect: str = "mandarin", timeout: int = 12) -> dict:
+def synthesize(text: str, dialect: str = "mandarin", timeout: int = 30) -> dict:
     """把文字合成为语音。
 
     Args:
         text: 待合成文本
         dialect: mandarin/sichuan/northeast（未知方言自动回退普通话）
-        timeout: 请求超时秒数
+        timeout: 请求超时秒数（长文本合成较慢，默认30秒）
 
     Returns:
         {"audio_url": str, "expires_at": int, "audio_id": str, "dialect": str}
@@ -39,6 +39,8 @@ def synthesize(text: str, dialect: str = "mandarin", timeout: int = 12) -> dict:
         raise TTSError("待合成文本为空")
     if not MODEL_API_KEY:
         raise TTSError("未配置 DashScope API Key")
+
+    logger.info("TTS开始: dialect=%s 字符数=%d", dialect, len(text))
 
     # 取该方言的音色方案；不支持的方言回退普通话而不是报错
     profile = TTS_VOICE_PROFILES.get(dialect) or TTS_VOICE_PROFILES[TTS_DEFAULT_DIALECT]
@@ -69,8 +71,8 @@ def synthesize(text: str, dialect: str = "mandarin", timeout: int = 12) -> dict:
             resp = requests.post(TTS_API_URL, headers=headers, json=payload, timeout=timeout)
             if resp.status_code != 200:
                 logger.error("TTS失败 dialect=%s status=%s body=%s",
-                             dialect, resp.status_code, resp.text[:300])
-                raise TTSError(f"语音合成服务返回 {resp.status_code}")
+                             dialect, resp.status_code, resp.text[:500])
+                raise TTSError(f"语音合成服务返回 {resp.status_code}: {resp.text[:200]}")
             result = resp.json()
             audio = result.get("output", {}).get("audio", {})
             audio_url = audio.get("url", "")
@@ -88,5 +90,5 @@ def synthesize(text: str, dialect: str = "mandarin", timeout: int = 12) -> dict:
             last_err = e
             logger.warning("TTS网络异常（第%d次）: %s", attempt + 1, e)
             if attempt < 2:
-                _time.sleep(0.8)
+                _time.sleep(1.5)
     raise TTSError(f"语音合成网络异常: {last_err}") from last_err
