@@ -17,9 +17,9 @@
     </view>
 
     <view class="reminder-times">
-      <view wx:for="{{item.times}}" wx:key="index" class="time-row">
-        <text class="time-text">{{item}}</text>
-        <text class="delete-time" bindtap="deleteTime" data-id="{{item.id}}" data-time="{{item}}">删除</text>
+      <view wx:for="{{item.times}}" wx:for-item="timeItem" wx:key="index" class="time-row">
+        <text class="time-text">{{timeItem}}</text>
+        <text class="delete-time" bindtap="deleteTime" data-id="{{item.id}}" data-time="{{timeItem}}">删除</text>
       </view>
       <view class="add-time" bindtap="addTime" data-id="{{item.id}}">
         <text class="add-time-text">+ 添加提醒时间</text>
