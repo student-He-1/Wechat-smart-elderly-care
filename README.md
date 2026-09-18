@@ -26,8 +26,6 @@
 | :---: | :---: | :---: | :---: |
 | ![娱乐中心](screenshots/entertainment.png) | ![游戏音乐](screenshots/game-music.png) | ![子女端首页](screenshots/home-daughter.png) | ![双端回复对比](screenshots/dual-end-compare.jpg) |
 
-> 将截图放入 `screenshots/` 目录，并替换上方文件名即可。没有的截图位可自行删除对应列。
-
 ## ✨ 核心功能
 
 - **AI 双智能体（健康助手 + 陪伴助手）**：基于通义千问大模型，两个智能体共用同一个阿里云 DashScope API，通过 system prompt 强力约束各自角色——健康助手负责健康咨询、用药解读、指标分析；陪伴助手负责日常聊天、讲故事、情感陪伴。支持方言切换（普通话 / 四川话 / 东北话）
