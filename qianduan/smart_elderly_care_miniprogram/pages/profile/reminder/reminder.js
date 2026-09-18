@@ -96,25 +96,25 @@ Page({
     });
   },
 
-  // 添加提醒时间
+  // 添加提醒时间（自动保存到后端）
   addTime(e) {
     const { id } = e.currentTarget.dataset;
-    this.setData({ 
+    this.setData({
       currentReminderId: id,
       newTime: ''
     });
-    
+
     wx.showModal({
       title: '添加提醒时间',
       content: '请输入提醒时间（格式：HH:MM）',
-      inputPlaceholder: '例如：08:30',
+      editable: true,
+      placeholderText: '例如：08:30',
       success: (res) => {
         if (res.confirm) {
           const newTime = res.content;
           if (this.validateTime(newTime)) {
             const reminders = this.data.reminders.map(reminder => {
               if (reminder.id === id) {
-                // 检查时间是否已存在
                 if (!reminder.times.includes(newTime)) {
                   return { ...reminder, times: [...reminder.times, newTime].sort() };
                 }
@@ -122,6 +122,7 @@ Page({
               return reminder;
             });
             this.setData({ reminders });
+            this.saveSettings(true);
             wx.showToast({ title: '添加成功', icon: 'success' });
           } else {
             wx.showToast({ title: '时间格式错误', icon: 'none' });
@@ -131,7 +132,7 @@ Page({
     });
   },
 
-  // 删除提醒时间
+  // 删除提醒时间（自动保存到后端）
   deleteTime(e) {
     const { id, time } = e.currentTarget.dataset;
     const reminders = this.data.reminders.map(reminder => {
@@ -141,20 +142,21 @@ Page({
       return reminder;
     });
     this.setData({ reminders });
+    this.saveSettings(true);
     wx.showToast({ title: '删除成功', icon: 'success' });
   },
 
-  // 添加新提醒项目
+  // 添加新提醒项目（自动保存到后端）
   addReminder() {
     wx.showModal({
       title: '添加提醒项目',
       content: '请输入提醒项目名称',
-      inputPlaceholder: '例如：吃药提醒',
+      editable: true,
+      placeholderText: '例如：吃药提醒',
       success: (res) => {
         if (res.confirm) {
           const newName = res.content.trim();
           if (newName) {
-            // 生成唯一ID
             const newId = 'reminder_' + Date.now();
             const newReminder = {
               id: newId,
@@ -162,9 +164,10 @@ Page({
               enabled: true,
               times: []
             };
-            
+
             const reminders = [...this.data.reminders, newReminder];
             this.setData({ reminders });
+            this.saveSettings(true);
             wx.showToast({ title: '添加成功', icon: 'success' });
           } else {
             wx.showToast({ title: '名称不能为空', icon: 'none' });
@@ -217,7 +220,7 @@ Page({
       },
       fail: (err) => {
         console.error('保存提醒设置失败:', err);
-        if (!silent) wx.showToast({ title: '保存失败，请重试', icon: 'none' });
+        wx.showToast({ title: '保存失败，请启动后端服务', icon: 'none' });
       }
     });
   }
