@@ -52,6 +52,10 @@ Page({
     this._paused = false
     this._audio.onEnded(() => { this._playingIndex = -1; this._paused = false })
     this._audio.onStop(() => { this._playingIndex = -1; this._paused = false })
+    this._audio.onError((err) => {
+      console.error('语音播放错误:', err)
+      wx.showToast({ title: '语音播放失败，请检查网络', icon: 'none' })
+    })
     // 当前身份（老人 elder / 子女 daughter），决定 Agent 视角与缓存隔离
     const identity = currentIdentity()
     this.askerRole = identity.backendRole

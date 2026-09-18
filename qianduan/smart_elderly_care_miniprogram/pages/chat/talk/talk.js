@@ -28,6 +28,10 @@ Page({
     this._paused = false;
     this._audio.onEnded(() => { this._playingIdx = -1; this._paused = false; });
     this._audio.onStop(() => { this._playingIdx = -1; this._paused = false; });
+    this._audio.onError((err) => {
+      console.error('语音播放错误:', err);
+      wx.showToast({ title: '语音播放失败，请检查网络', icon: 'none' });
+    });
     this._cacheKey = type === 'health' ? null : 'companion_chat_history';
     this.setData({
       assistantType: type,
@@ -203,7 +207,10 @@ Page({
       if (idx != null) this.setData({ [`chatHistory[${idx}].audioUrl`]: url });
       this._audio.src = url;
       this._audio.play();
-    }).catch((err) => console.warn('语音合成失败:', err));
+    }).catch((err) => {
+      console.warn('语音合成失败:', err);
+      wx.showToast({ title: '语音合成失败，请检查后端', icon: 'none' });
+    });
   },
 
   // 点某条回复的小喇叭：播放/暂停/继续切换

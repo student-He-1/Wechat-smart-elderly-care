@@ -22,7 +22,7 @@ async def list_dialects():
 
 
 @router.post("", summary="文字转语音，返回可播放的音频URL")
-async def text_to_speech(req: TTSRequest):
+def text_to_speech(req: TTSRequest):
     """把文字合成为方言/普通话语音，返回 24 小时有效的 mp3 URL。
 
     前端拿到 audio_url 后用 wx.createInnerAudioContext() 播放。
@@ -37,7 +37,6 @@ async def text_to_speech(req: TTSRequest):
         )
         return {"message": "语音合成成功", "data": data}
     except TTSError as e:
-        # 参数/服务类错误返回 502，前端可据此提示或降级
         raise HTTPException(status_code=502, detail=str(e))
     except Exception as e:
         logger.error("TTS路由异常: %s", e)
