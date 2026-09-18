@@ -4,9 +4,9 @@
 
 ## 🎬 演示视频
 
-[![演示视频封面](screenshots/video-cover.png)](https://www.bilibili.com/你的视频BV号)
+[![演示视频封面](screenshots/video-cover.png)](https://pan.baidu.com/s/1GNaqjqRSdKtUwzZzh0aYZg)
 
-> 点击上方封面跳转 B 站观看完整演示（替换为你的视频链接）。
+> 点击上方封面跳转百度网盘观看完整演示，提取码：`Q3R7`
 
 ## 📱 功能截图
 
