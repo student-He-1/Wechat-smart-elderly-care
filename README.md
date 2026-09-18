@@ -10,15 +10,23 @@
 
 ## 📱 功能截图
 
-| 首页 | AI 陪伴聊天 | 健康管理 |
-| :---: | :---: | :---: |
-| ![首页](screenshots/home.png) | ![AI聊天](screenshots/chat.png) | ![健康管理](screenshots/health.png) |
+### 核心功能
 
-| 用药提醒 | 跌倒监测 | 语音交互 |
+| 老人端首页 | AI 陪伴聊天 | 健康助手 |
 | :---: | :---: | :---: |
-| ![用药提醒](screenshots/medicine.png) | ![跌倒监测](screenshots/fall-detect.png) | ![语音交互](screenshots/voice.png) |
+| ![老人端首页](screenshots/home-elder.png) | ![AI陪伴聊天](screenshots/chat-companion.png) | ![健康助手](screenshots/health-assistant.png) |
 
-> 将截图放入 `screenshots/` 目录，并替换上方文件名即可。
+| 健康数据记录 | 用药提醒 | 跌倒监测预警 |
+| :---: | :---: | :---: |
+| ![健康数据记录](screenshots/health-record.png) | ![用药提醒](screenshots/medicine-reminder.png) | ![跌倒监测预警](screenshots/fall-alert.png) |
+
+### 娱乐陪伴与多端
+
+| 娱乐中心 | 游戏 / 音乐播放 | 子女端首页 | 双端回复对比 |
+| :---: | :---: | :---: | :---: |
+| ![娱乐中心](screenshots/entertainment.png) | ![游戏音乐](screenshots/game-music.png) | ![子女端首页](screenshots/home-daughter.png) | ![双端回复对比](screenshots/dual-end-compare.png) |
+
+> 将截图放入 `screenshots/` 目录，并替换上方文件名即可。没有的截图位可自行删除对应列。
 
 ## ✨ 核心功能
 
