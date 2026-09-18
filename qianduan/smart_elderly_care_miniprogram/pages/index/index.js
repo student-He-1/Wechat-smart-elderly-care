@@ -161,6 +161,8 @@ Page({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 0 });
     }
+    // 从后端刷新今日待办（提醒设置页删除/修改后回来同步）
+    this.loadReminders();
     this.checkDueReminders();
   },
 
@@ -293,6 +295,12 @@ Page({
       r.id === id ? { ...r, status: 'done' } : r
     );
     this.setData({ reminders });
+    // 完成状态持久化，避免从提醒设置页回来后被重置
+    const doneIds = wx.getStorageSync('doneTodoIds') || [];
+    if (!doneIds.includes(id)) {
+      doneIds.push(id);
+      wx.setStorageSync('doneTodoIds', doneIds);
+    }
     wx.showToast({ title: '已完成', icon: 'success' });
   },
 
@@ -304,12 +312,38 @@ Page({
     }, 1000);
   },
 
-  // 加载最近提醒
+  // 从后端加载今日待办（与提醒设置页联动，删除/修改后回首页自动刷新）
   loadReminders() {
-    // 模拟API调用
-    setTimeout(() => {
-      console.log('提醒数据加载完成');
-    }, 1000);
+    wx.request({
+      url: 'http://localhost:8000/api/health/reminder-settings',
+      method: 'GET',
+      success: (res) => {
+        if (res.data.code === 200 && res.data.data && res.data.data.length > 0) {
+          const doneIds = wx.getStorageSync('doneTodoIds') || [];
+          const reminders = res.data.data
+            .filter(s => s.enabled && s.times && s.times.length > 0)
+            .map(setting => {
+              const t = setting.times[0];
+              const parts = t.split(':');
+              return {
+                id: setting.reminder_type,
+                title: setting.reminder_name,
+                time: '今天 ' + t,
+                hour: parseInt(parts[0], 10),
+                minute: parseInt(parts[1], 10),
+                type: setting.reminder_type,
+                status: doneIds.includes(setting.reminder_type) ? 'done' : 'pending'
+              };
+            });
+          if (reminders.length > 0) {
+            this.setData({ reminders });
+          }
+        }
+      },
+      fail: () => {
+        // 后端不可用时保持 data 里的默认数据
+      }
+    });
   },
 
   // 点击待办/铃铛 → 提醒设置页

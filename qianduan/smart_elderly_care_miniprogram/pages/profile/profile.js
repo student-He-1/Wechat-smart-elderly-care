@@ -27,6 +27,10 @@ Page({
     if (saved) {
       this.setData({ profile: { ...this.data.profile, ...saved } });
     }
+    // 同步夜间模式
+    const dark = wx.getStorageSync('dark');
+    this.setData({ nightMode: dark });
+    // 同步自定义 TabBar 选中态
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ selected: 3 });
     }
@@ -158,11 +162,6 @@ Page({
       title: v ? '已开启夜间模式' : '已关闭夜间模式',
       icon: 'success'
     });
-  },
-
-  onShow() {
-    const dark = wx.getStorageSync('dark');
-    this.setData({ nightMode: dark });
   },
 
   // 编辑个人信息（真能输入，改完即时更新）
